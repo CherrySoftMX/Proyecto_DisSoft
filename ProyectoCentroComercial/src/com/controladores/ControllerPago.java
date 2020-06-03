@@ -36,16 +36,6 @@ public class ControllerPago {
         menu.mensaje(cliente.pagarCarrito());
     }
 
-//    @Override
-//    public void actionPerformed(ActionEvent e) {
-//        switch (e.getActionCommand()) {
-//            case "Realizar compra":
-//                menu.mensaje(cliente.pagarCarrito());
-//                break;
-//            default:
-//                throw new AssertionError();
-//        }
-//    }
     private void setTotal() {
         double total = 0;
         List<Articulo> listaArticulos = cliente.getCarritoCompras().getArticulos();
@@ -74,7 +64,6 @@ public class ControllerPago {
 
     private void initComponents() {
         menu.getBtnRealizar().addActionListener(this::handleRealizarCompra);
-        //menu.getBtnRealizar().addActionListener(this);
     }
 
     public Cliente getCliente() {
