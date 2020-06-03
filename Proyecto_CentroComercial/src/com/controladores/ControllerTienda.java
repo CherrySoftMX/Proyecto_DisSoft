@@ -3,14 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.comtroladores;
+package com.controladores;
 
 import com.modelo.Cliente;
 import com.modelo.Decorator.Articulo;
 import com.modelo.tiendas.Tienda;
 import com.vista.MenuTienda;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
@@ -19,7 +18,7 @@ import javax.swing.JList;
  *
  * @author emman
  */
-public class ControllerTienda implements ActionListener {
+public class ControllerTienda{
 
     private MenuTienda menu = new MenuTienda();
     private ControllerCarrito contCarrito;
@@ -43,11 +42,16 @@ public class ControllerTienda implements ActionListener {
     }
 
     private void initComponents() {
-        menu.getBtnAgregarCarrito().addActionListener(this);
-        menu.getBtnComprar().addActionListener(this);
-        menu.getBtnMostrarCarrito().addActionListener(this);
-        menu.getBtnSalir().addActionListener(this);
-        menu.getBtnSelectCliente().addActionListener(this);
+        menu.getBtnAgregarCarrito().addActionListener(this::handleAgregarCarrito);
+        menu.getBtnMostrarCarrito().addActionListener(this::handleMostrarCarrito);
+        menu.getBtnComprar().addActionListener(this::handleComprar);
+        menu.getBtnSelectCliente().addActionListener(this::handleSeleccionarCliente);
+        menu.getBtnSalir().addActionListener(this::handleSalir);
+        //menu.getBtnAgregarCarrito().addActionListener(this);
+//        menu.getBtnComprar().addActionListener(this);
+//        menu.getBtnMostrarCarrito().addActionListener(this);
+//        menu.getBtnSalir().addActionListener(this);
+//        menu.getBtnSelectCliente().addActionListener(this);
 
     }
 
@@ -107,34 +111,55 @@ public class ControllerTienda implements ActionListener {
             contPago.iniciar();
         }
     }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        switch (e.getActionCommand()) {
-            case "Añadir al carrito":
-                agregarAlCarrito();
-
-                break;
-            case "Mostrar carrito":
-                mostrarCarrito();
-
-                break;
-            case "Seleccionar cliente":
-                cambiarClienteActual();
-                break;
-            case "Comprar ahora":
-                mostrarPago();
-                break;
-            case "Salir":
-                tienda.salir(clienteActual);
-                menu.dispose();
-
-                break;
-            default:
-                throw new AssertionError();
-        }
-
+    
+    public void handleAgregarCarrito(ActionEvent e){
+        agregarAlCarrito();
     }
+    
+    public void handleMostrarCarrito(ActionEvent e){
+        mostrarCarrito();
+    }
+    
+    public void handleSeleccionarCliente(ActionEvent e){
+        cambiarClienteActual();
+    }
+
+    public void handleComprar(ActionEvent e){
+        mostrarPago();
+    }
+    
+    public void handleSalir(ActionEvent e){
+        tienda.salir(clienteActual);
+        menu.dispose();
+    }
+    
+//    @Override
+//    public void actionPerformed(ActionEvent e) {
+//        switch (e.getActionCommand()) {
+////            case "Añadir al carrito":
+////                agregarAlCarrito();
+////
+////                break;
+//            case "Mostrar carrito":
+//                mostrarCarrito();
+//
+//                break;
+//            case "Seleccionar cliente":
+//                cambiarClienteActual();
+//                break;
+//            case "Comprar ahora":
+//                mostrarPago();
+//                break;
+//            case "Salir":
+//                tienda.salir(clienteActual);
+//                menu.dispose();
+//
+//                break;
+//            default:
+//                throw new AssertionError();
+//        }
+//
+//    }
 
     public void setClienteActual(Cliente clienteActual) {
         this.clienteActual = clienteActual;
