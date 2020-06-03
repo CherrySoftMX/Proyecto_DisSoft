@@ -48,10 +48,6 @@ public class ControllerCarrito {
         menu.getBtnEliminar().addActionListener(this::handleEliminar);
         menu.getBtnInspeccionar().addActionListener(this::handleInspeccionar);
         menu.getBtnSalir().addActionListener(this::handleSalir);
-//        menu.getBtnEliminar().addActionListener(this);
-//        menu.getBtnInspeccionar().addActionListener(this);
-//        menu.getBtnSalir().addActionListener(this);
-
     }
 
     public void handleInspeccionar(ActionEvent e) {
@@ -66,23 +62,6 @@ public class ControllerCarrito {
         menu.dispose();
     }
 
-//    @Override
-//    public void actionPerformed(ActionEvent e) {
-//        switch (e.getActionCommand()) {
-//            case "Inspeccionar articulo":
-//                inspeccionar();l
-//                break;
-//
-//            case "Eliminar del carrito":
-//                eliminar();
-//                break;
-//            case "Salir":
-//                menu.dispose();
-//                break;
-//            default:
-//                throw new AssertionError();
-//        }
-//    }
     private void inspeccionar() {
         JList listaCarrito = menu.getListaArticulos();
         Articulo articulo = (Articulo) listaCarrito.getSelectedValue();

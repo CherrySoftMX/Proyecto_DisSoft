@@ -107,9 +107,6 @@ public class ControllerMenu {
         menu.getBtnIrTienda().addActionListener(this::handleSeleccionarTienda);
         menu.getBtnSelectCliente().addActionListener(this::handleSelecionarCliente);
         menu.getBtnGetCarrito().addActionListener(this::handleSolicitarCarrito);
-//        menu.getBtnIrTienda().addActionListener(this);
-//        menu.getBtnSelectCliente().addActionListener(this);
-//        menu.getBtnGetCarrito().addActionListener(this);
     }
 
     private void solicitarCarrito() {
@@ -128,25 +125,4 @@ public class ControllerMenu {
     public void handleSolicitarCarrito(ActionEvent e) {
         solicitarCarrito();
     }
-
-//    @Override
-//    public void actionPerformed(ActionEvent e) {
-//        switch (e.getActionCommand()) {
-//            case "ir a tienda":
-//                seleccionarTienda();
-//                irATienda();
-//
-//                break;
-//            case "Seleccionar cliente":
-//                selectCliente();
-//                break;
-//
-//            case "Solicitar carrito":
-//                solicitarCarrito();
-//
-//                break;
-//            default:
-//                throw new AssertionError();
-//        }
-//    }
 }

@@ -41,11 +41,6 @@ public class ControllerTienda {
         menu.getBtnComprar().addActionListener(this::handleComprar);
         menu.getBtnSelectCliente().addActionListener(this::handleSeleccionarCliente);
         menu.getBtnSalir().addActionListener(this::handleSalir);
-        //menu.getBtnAgregarCarrito().addActionListener(this);
-//        menu.getBtnComprar().addActionListener(this);
-//        menu.getBtnMostrarCarrito().addActionListener(this);
-//        menu.getBtnSalir().addActionListener(this);
-//        menu.getBtnSelectCliente().addActionListener(this);
 
     }
 
@@ -132,33 +127,6 @@ public class ControllerTienda {
         menu.dispose();
     }
 
-//    @Override
-//    public void actionPerformed(ActionEvent e) {
-//        switch (e.getActionCommand()) {
-////            case "Añadir al carrito":
-////                agregarAlCarrito();
-////
-////                break;
-//            case "Mostrar carrito":
-//                mostrarCarrito();
-//
-//                break;
-//            case "Seleccionar cliente":
-//                cambiarClienteActual();
-//                break;
-//            case "Comprar ahora":
-//                mostrarPago();
-//                break;
-//            case "Salir":
-//                tienda.salir(clienteActual);
-//                menu.dispose();
-//
-//                break;
-//            default:
-//                throw new AssertionError();
-//        }
-//
-//    }
     public void setClienteActual(Cliente clienteActual) {
         this.clienteActual = clienteActual;
         menu.getLabelCliente().setText("Cliente: \n" + clienteActual.getNombre());
