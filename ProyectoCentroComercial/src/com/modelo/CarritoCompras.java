@@ -3,10 +3,9 @@ package com.modelo;
 import com.modelo.decorator.Articulo;
 import com.modelo.estado.CarritoCancelado;
 import com.modelo.estado.CarritoEstado;
-import com.modelo.estado.CarritoLleno;
-import com.modelo.estado.CarritoUsado;
 import com.modelo.estado.CarritoVacio;
 import com.modelo.iterator.FactoryEnumeration;
+import com.modelo.observer.Observado;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -15,10 +14,10 @@ import java.util.List;
  *
  * @author emman
  */
-public class CarritoCompras {
+public class CarritoCompras extends Observado {
 
     private List<Articulo> articulos;
-    private final int capacidad = 20;
+    public static final int CAPACIDAD = 20;
     //Este es el contexto deonde utilizaremos los estados
     private CarritoEstado estado;
 
@@ -28,18 +27,18 @@ public class CarritoCompras {
         setEstado(new CarritoVacio());
     }
 
-    public void addArticulo(Articulo articulo) {
-        if (articulos.size() > capacidad) {
-            setEstado(new CarritoLleno());
+    public static int getCAPACIDAD() {
+        return CAPACIDAD;
+    }
 
-        } else {
-            articulos.add(articulo);
-            setEstado(new CarritoUsado());
-        }
+    public void addArticulo(Articulo articulo) {
+        estado.addArticulo(this, articulo);
+        notificar();
     }
 
     public void eliminarArticulo(Articulo articulo) {
-        articulos.remove(articulo);
+        estado.removeArticulo(this, articulo);
+        notificar();
     }
 
     public List<Articulo> getArticulos() {
@@ -55,10 +54,13 @@ public class CarritoCompras {
 
     public void cancelarCarrito() {
         setEstado(new CarritoCancelado());
+        notificar();
+
     }
 
     public void setEstado(CarritoEstado estado) {
         this.estado = estado;
+        notificar();
 
     }
 
