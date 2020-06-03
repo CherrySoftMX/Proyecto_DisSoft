@@ -3,14 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.comtroladores;
+package com.controladores;
 
 import com.modelo.CentroComercial;
 import com.modelo.Cliente;
 import com.modelo.tiendas.Tienda;
 import com.vista.Menu;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Enumeration;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
@@ -19,7 +18,7 @@ import javax.swing.JList;
  *
  * @author emman
  */
-public class ControllerMenu implements ActionListener {
+public class ControllerMenu{
     //Modificar el cliente actual de los otros controllers
     //Aun no se implementa los label correctamente
     //Nota los ENUM del profe no tiendn sentido;
@@ -109,35 +108,50 @@ public class ControllerMenu implements ActionListener {
     }
 
     private void initComponents() {
-        menu.getBtnIrTienda().addActionListener(this);
-        menu.getBtnSelectCliente().addActionListener(this);
-        menu.getBtnGetCarrito().addActionListener(this);
+        menu.getBtnIrTienda().addActionListener(this::handleSeleccionarTienda);
+        menu.getBtnSelectCliente().addActionListener(this::handleSelecionarCliente);
+        menu.getBtnGetCarrito().addActionListener(this::handleSolicitarCarrito);
+//        menu.getBtnIrTienda().addActionListener(this);
+//        menu.getBtnSelectCliente().addActionListener(this);
+//        menu.getBtnGetCarrito().addActionListener(this);
     }
 
     private void solicitarCarrito() {
         clienteActual.setCarritoCompras(centroCom.getCarrito());
-
+    }
+    
+    public void handleSeleccionarTienda(ActionEvent e){
+        seleccionarTienda();
+        irATienda();
+    }
+    
+    public void handleSelecionarCliente(ActionEvent e){
+        selectCliente();
+    }
+    
+    public void handleSolicitarCarrito(ActionEvent e){
+        solicitarCarrito();
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        switch (e.getActionCommand()) {
-            case "ir a tienda":
-                seleccionarTienda();
-                irATienda();
-
-                break;
-            case "Seleccionar cliente":
-                selectCliente();
-                break;
-
-            case "Solicitar carrito":
-                solicitarCarrito();
-
-                break;
-            default:
-                throw new AssertionError();
-        }
-    }
+//    @Override
+//    public void actionPerformed(ActionEvent e) {
+//        switch (e.getActionCommand()) {
+//            case "ir a tienda":
+//                seleccionarTienda();
+//                irATienda();
+//
+//                break;
+//            case "Seleccionar cliente":
+//                selectCliente();
+//                break;
+//
+//            case "Solicitar carrito":
+//                solicitarCarrito();
+//
+//                break;
+//            default:
+//                throw new AssertionError();
+//        }
+//    }
 
 }

@@ -95,18 +95,8 @@ public class MenuCarrito extends javax.swing.JFrame {
 
         btnSalir.setText("Salir ");
         btnSalir.setActionCommand("Salir");
-        btnSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalirActionPerformed(evt);
-            }
-        });
 
         btnInspeccionar.setText("Inspeccionar articulo");
-        btnInspeccionar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInspeccionarActionPerformed(evt);
-            }
-        });
 
         jLabel1.setText("Articulos en el carrito");
 
@@ -180,14 +170,6 @@ public class MenuCarrito extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnInspeccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInspeccionarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnInspeccionarActionPerformed
-
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalirActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEliminar;

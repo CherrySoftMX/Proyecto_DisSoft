@@ -5,7 +5,7 @@
  */
 package com.principal;
 
-import com.comtroladores.ControllerMenu;
+import com.controladores.ControllerMenu;
 import com.modelo.ArticuloSencillo;
 import com.modelo.CentroComercial;
 import com.modelo.Cliente;

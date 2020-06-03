@@ -3,13 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.comtroladores;
+package com.controladores;
 
 import com.modelo.Cliente;
 import com.modelo.Decorator.Articulo;
 import com.vista.MenuCarrito;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Enumeration;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
@@ -18,7 +17,7 @@ import javax.swing.JList;
  *
  * @author emman
  */
-public class ControllerCarrito implements ActionListener {
+public class ControllerCarrito {
 
     private final MenuCarrito menu = new MenuCarrito();
     private Cliente cliente;
@@ -51,29 +50,45 @@ public class ControllerCarrito implements ActionListener {
     }
 
     private void initComponents() {
-        menu.getBtnEliminar().addActionListener(this);
-        menu.getBtnInspeccionar().addActionListener(this);
-        menu.getBtnSalir().addActionListener(this);
+        menu.getBtnEliminar().addActionListener(this::handleEliminar);
+        menu.getBtnInspeccionar().addActionListener(this::handleInspeccionar);
+        menu.getBtnSalir().addActionListener(this::handleSalir);
+//        menu.getBtnEliminar().addActionListener(this);
+//        menu.getBtnInspeccionar().addActionListener(this);
+//        menu.getBtnSalir().addActionListener(this);
 
     }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        switch (e.getActionCommand()) {
-            case "Inspeccionar articulo":
-                inspeccionar();
-                break;
-
-            case "Eliminar del carrito":
-                eliminar();
-                break;
-            case "Salir":
-                menu.dispose();
-                break;
-            default:
-                throw new AssertionError();
-        }
+    
+    public void handleInspeccionar(ActionEvent e){
+        inspeccionar();
     }
+    
+    public void handleEliminar(ActionEvent e){
+        eliminar();
+    }
+    
+    public void handleSalir(ActionEvent e){
+        menu.dispose();
+    }
+    
+
+//    @Override
+//    public void actionPerformed(ActionEvent e) {
+//        switch (e.getActionCommand()) {
+//            case "Inspeccionar articulo":
+//                inspeccionar();l
+//                break;
+//
+//            case "Eliminar del carrito":
+//                eliminar();
+//                break;
+//            case "Salir":
+//                menu.dispose();
+//                break;
+//            default:
+//                throw new AssertionError();
+//        }
+//    }
 
     private void inspeccionar() {
         JList listaCarrito = menu.getListaArticulos();

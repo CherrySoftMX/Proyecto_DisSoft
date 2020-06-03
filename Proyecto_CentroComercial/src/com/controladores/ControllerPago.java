@@ -3,13 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.comtroladores;
+package com.controladores;
 
 import com.modelo.Cliente;
 import com.modelo.Decorator.Articulo;
 import com.vista.MenuPago;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Enumeration;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -19,14 +18,14 @@ import javax.swing.JList;
  *
  * @author emman
  */
-public class ControllerPago implements ActionListener {
+public class ControllerPago{
 
     private final MenuPago menu = new MenuPago();
     private Cliente cliente;
 
     public ControllerPago(Cliente cliente) {
         this.cliente = cliente;
-        initComponenets();
+        initComponents();
         iniciarLista();
         setTotal();
     }
@@ -38,16 +37,20 @@ public class ControllerPago implements ActionListener {
         menu.setVisible(true);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        switch (e.getActionCommand()) {
-            case "Realizar compra":
-                menu.mensaje(cliente.pagarCarrito());
-                break;
-            default:
-                throw new AssertionError();
-        }
+    public void handleRealizarCompra(ActionEvent e){
+        menu.mensaje(cliente.pagarCarrito());
     }
+    
+//    @Override
+//    public void actionPerformed(ActionEvent e) {
+//        switch (e.getActionCommand()) {
+//            case "Realizar compra":
+//                menu.mensaje(cliente.pagarCarrito());
+//                break;
+//            default:
+//                throw new AssertionError();
+//        }
+//    }
 
     private void setTotal() {
         double total = 0;
@@ -71,9 +74,9 @@ public class ControllerPago implements ActionListener {
         listaCarrito.setModel(model);
     }
 
-    private void initComponenets() {
-        menu.getBtnRealizar().addActionListener(this);
-
+    private void initComponents() {
+        menu.getBtnRealizar().addActionListener(this::handleRealizarCompra);
+        //menu.getBtnRealizar().addActionListener(this);
     }
 
     public Cliente getCliente() {
