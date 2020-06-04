@@ -50,7 +50,7 @@ public class NewMain1 {
         articulos.add(ar2);
         articulos.add(ar5);
 
-        Articulo paq1 = new Paquete1(articulos);
+        Articulo paq1 = new Paquete1(articulos, 0.9);
         libreria.adicionarArticulo(paq1);
         centroComercial.entrar(cliente);
         centroComercial.entrar(cliente2);

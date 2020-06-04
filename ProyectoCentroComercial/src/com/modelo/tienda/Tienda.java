@@ -69,8 +69,8 @@ public abstract class Tienda extends Observado {
         notificar();
     }
 
-    public PaqueteArticulo crearPaquetesArticulo(List<Articulo> articulo, double descuento) {
-        return new Paquete1(articulo);
+    public PaqueteArticulo crearPaquetesArticulo(List<Articulo> articulos, double descuento) {
+        return new Paquete1(articulos, descuento);
     }
 
     @Override
