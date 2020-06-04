@@ -48,6 +48,10 @@ public class ControllerCarrito {
         menu.getBtnEliminar().addActionListener(this::handleEliminar);
         menu.getBtnInspeccionar().addActionListener(this::handleInspeccionar);
         menu.getBtnSalir().addActionListener(this::handleSalir);
+<<<<<<< HEAD
+=======
+
+>>>>>>> updateS
     }
 
     public void handleInspeccionar(ActionEvent e) {

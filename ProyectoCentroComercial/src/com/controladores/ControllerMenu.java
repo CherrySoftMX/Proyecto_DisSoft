@@ -1,13 +1,16 @@
 package com.controladores;
 
+import com.modelo.CarritoCompras;
 import com.modelo.CentroComercial;
 import com.modelo.Cliente;
 import com.modelo.tienda.Tienda;
+import com.vista.DibujadorCarrito;
 import com.vista.Menu;
 import java.awt.event.ActionEvent;
 import java.util.Enumeration;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.JPanel;
 
 /**
  *
@@ -23,6 +26,7 @@ public class ControllerMenu {
     private Tienda tiendaActual;
     private Cliente clienteActual;
     private ControllerTienda contTienda;
+    private ControllerPago contPago;
 
     public ControllerMenu(CentroComercial centroCom) {
         this.centroCom = centroCom;
@@ -101,21 +105,52 @@ public class ControllerMenu {
         Cliente cliente = (Cliente) listaClientes.getSelectedValue();
         clienteActual = cliente;
         menu.getLabelCliente().setText("Cliente: " + clienteActual.getNombre());
+        if (clienteActual.getCarritoCompras() == null) {
+            panelCarrito.repaint();
+        } else {
+            clienteActual.getCarritoCompras().notificar();
+        }
     }
 
     private void initComponents() {
         menu.getBtnIrTienda().addActionListener(this::handleSeleccionarTienda);
         menu.getBtnSelectCliente().addActionListener(this::handleSelecionarCliente);
         menu.getBtnGetCarrito().addActionListener(this::handleSolicitarCarrito);
+<<<<<<< HEAD
+=======
+        menu.getBtnPagar().addActionListener(this::handlePagar);
     }
 
+    private void pagar() {
+        if (contPago == null) {
+            contPago = new ControllerPago(clienteActual);
+            contPago.iniciar();
+        } else {
+            contPago.setCliente(clienteActual);
+            contPago.iniciar();
+        }
+>>>>>>> updateS
+    }
+
+    private JPanel panelCarrito = menu.getPanelCarrito();
+    private DibujadorCarrito dib;
+
     private void solicitarCarrito() {
-        clienteActual.setCarritoCompras(centroCom.getCarrito());
+        CarritoCompras carrito = centroCom.getCarrito();
+        clienteActual.setCarritoCompras(carrito);
+        dib = new DibujadorCarrito(panelCarrito, clienteActual.getCarritoCompras());
+
+        carrito.anadirObservador(dib);
+
     }
 
     public void handleSeleccionarTienda(ActionEvent e) {
         seleccionarTienda();
         irATienda();
+    }
+
+    public void handlePagar(ActionEvent e) {
+        pagar();
     }
 
     public void handleSelecionarCliente(ActionEvent e) {
@@ -125,4 +160,8 @@ public class ControllerMenu {
     public void handleSolicitarCarrito(ActionEvent e) {
         solicitarCarrito();
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> updateS
 }
