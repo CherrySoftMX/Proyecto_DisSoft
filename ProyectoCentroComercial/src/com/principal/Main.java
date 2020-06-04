@@ -28,8 +28,8 @@ public class Main {
         Factory fac = new FactoryTienda();
         Tienda zapateria = fac.crearTienda("Zapateria");
         Tienda libreria = fac.crearTienda("Libreria");
-        Cliente cliente = new Cliente("Emmanuel chable", null, zapateria);
-        Cliente cliente2 = new Cliente("Alvaro Trujeque", null, zapateria);
+        Cliente cliente = new Cliente("Emmanuel chable", null, null);
+        Cliente cliente2 = new Cliente("Alvaro Trujeque", null, null);
         zapateria.adicionarArticulo(new ArticuloSencillo("Zapato", "ddddd", zapateria, 103));
         zapateria.adicionarArticulo(new ArticuloSencillo("Zapato", "dddd1", zapateria, 1202));
         zapateria.adicionarArticulo(new ArticuloSencillo("Zapato", "dddd2", zapateria, 1333));
@@ -57,7 +57,7 @@ public class Main {
         centroComercial.addTienda(zapateria);
         centroComercial.addTienda(libreria);
         libreria.adicionarArticulo(new ArticuloSencillo("Libro", "aaaaa", libreria, 103));
-        System.out.println(cliente.getNotificacion());
+        //System.out.println(cliente.getNotificacion());
         ControllerMenu c2 = new ControllerMenu(centroComercial);
         c2.iniciar();
     }

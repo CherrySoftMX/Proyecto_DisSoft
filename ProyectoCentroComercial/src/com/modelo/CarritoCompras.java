@@ -11,6 +11,7 @@ import java.util.Enumeration;
 import java.util.List;
 
 /**
+ * Esta calse extiende de observado ya que notificara a un panel de los estados del carrito por medio de una imagen.
  *
  * @author emman
  */
