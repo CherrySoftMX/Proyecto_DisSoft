@@ -8,14 +8,16 @@ import com.modelo.tienda.Tienda;
  *
  * @author emman
  */
-public class Cliente implements Observador {
+public class Cliente implements Observador
+{
 
     private String nombre;
     private CarritoCompras carritoCompras;
     private Tienda tiendaActual;
     private String notificacion;
 
-    public Cliente(String nombre, CarritoCompras carritoCompras, Tienda tiendaActual) {
+    public Cliente(String nombre, CarritoCompras carritoCompras, Tienda tiendaActual)
+    {
         this.nombre = nombre;
         this.carritoCompras = carritoCompras;
         this.tiendaActual = tiendaActual;
@@ -24,47 +26,57 @@ public class Cliente implements Observador {
     /**
      * Esta es mi propuesta, que cada cliente pueda pagar su carrito
      */
-    public String pagarCarrito() {
+    public String pagarCarrito()
+    {
         //Se cancela el carrito, ya que fue pagado
         carritoCompras.setEstado(new CarritoCancelado());
         return "El cliente ha pagado por sus articulos";
     }
 
-    public String getNombre() {
+    public String getNombre()
+    {
         return nombre;
     }
 
-    public CarritoCompras getCarritoCompras() {
+    public CarritoCompras getCarritoCompras()
+    {
         return carritoCompras;
     }
 
-    public Tienda getTiendaActual() {
+    public Tienda getTiendaActual()
+    {
         return tiendaActual;
     }
 
-    public void setNombre(String nombre) {
+    public void setNombre(String nombre)
+    {
         this.nombre = nombre;
     }
 
-    public void setCarritoCompras(CarritoCompras carritoCompras) {
+    public void setCarritoCompras(CarritoCompras carritoCompras)
+    {
         this.carritoCompras = carritoCompras;
     }
 
-    public void setTiendaActual(Tienda tiendaActual) {
+    public void setTiendaActual(Tienda tiendaActual)
+    {
         this.tiendaActual = tiendaActual;
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "Cliente = " + "nombre: " + nombre;
     }
 
-    public String getNotificacion() {
+    public String getNotificacion()
+    {
         return notificacion;
     }
 
     @Override
-    public void actualizar() {
+    public void actualizar()
+    {
         notificacion = "Nuevo articulo en tienda" + tiendaActual;
 
     }

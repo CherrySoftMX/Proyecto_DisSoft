@@ -16,7 +16,8 @@ import javax.swing.JPanel;
  *
  * @author emman
  */
-public class ControllerMenu {
+public class ControllerMenu
+{
     //Modificar el cliente actual de los otros controllers
     //Aun no se implementa los label correctamente
     //Nota los ENUM del profe no tiendn sentido;
@@ -28,27 +29,32 @@ public class ControllerMenu {
     private ControllerTienda contTienda;
     private ControllerPago contPago;
 
-    public ControllerMenu(CentroComercial centroCom) {
+    public ControllerMenu(CentroComercial centroCom)
+    {
         this.centroCom = centroCom;
         iniciarListaClientes();
         iniciarListaTienda();
         initComponents();
     }
 
-    public ControllerMenu(String nombre) {
+    public ControllerMenu(String nombre)
+    {
         centroCom = new CentroComercial(nombre);
         iniciarListaClientes();
         iniciarListaTienda();
         initComponents();
     }
 
-    public void iniciar() {
+    public void iniciar()
+    {
         menu.setLocationRelativeTo(null);
         menu.setVisible(true);
     }
 
-    private void irATienda() {
-        if (tiendaActual != null && contTienda == null) {
+    private void irATienda()
+    {
+        if (tiendaActual != null && contTienda == null)
+        {
 
             clienteActual.setTiendaActual(tiendaActual);
             tiendaActual.entrar(clienteActual);
@@ -56,7 +62,8 @@ public class ControllerMenu {
             contTienda = new ControllerTienda(tiendaActual);
             contTienda.setClienteActual(clienteActual);
             contTienda.iniciar();
-        } else {
+        } else
+        {
             tiendaActual.entrar(clienteActual);
             clienteActual.setTiendaActual(tiendaActual);
             contTienda.setTienda(tiendaActual);
@@ -66,19 +73,22 @@ public class ControllerMenu {
         }
     }
 
-    private void seleccionarTienda() {
+    private void seleccionarTienda()
+    {
         JList listaTienda = menu.getListTiendas();
         Tienda tienda = (Tienda) listaTienda.getSelectedValue();
         tiendaActual = tienda;
     }
 
-    private void iniciarListaTienda() {
+    private void iniciarListaTienda()
+    {
         int i = 0;
         JList lista = menu.getListTiendas();
         Enumeration<Tienda> listaTiendas = centroCom.listarTiendas();
         DefaultListModel model = new DefaultListModel();
 
-        while (listaTiendas.hasMoreElements()) {
+        while (listaTiendas.hasMoreElements())
+        {
             Tienda nextElement = listaTiendas.nextElement();
             model.add(i++, nextElement);
         }
@@ -86,13 +96,15 @@ public class ControllerMenu {
         lista.setModel(model);
     }
 
-    private void iniciarListaClientes() {
+    private void iniciarListaClientes()
+    {
         int i = 0;
         JList lista = menu.getListClientes();
         Enumeration<Cliente> listaClientes = centroCom.listarClientes();
         DefaultListModel model = new DefaultListModel();
 
-        while (listaClientes.hasMoreElements()) {
+        while (listaClientes.hasMoreElements())
+        {
             Cliente nextElement = listaClientes.nextElement();
             model.add(i++, nextElement);
         }
@@ -100,19 +112,20 @@ public class ControllerMenu {
         lista.setModel(model);
     }
 
-    private void selectCliente() {
+    private void selectCliente()
+    {
         JList listaClientes = menu.getListClientes();
         Cliente cliente = (Cliente) listaClientes.getSelectedValue();
         clienteActual = cliente;
         menu.getLabelCliente().setText("Cliente: " + clienteActual.getNombre());
-        if (clienteActual.getCarritoCompras() == null) {
+        if (clienteActual.getCarritoCompras() == null)
             panelCarrito.repaint();
-        } else {
+        else
             clienteActual.getCarritoCompras().notificar();
-        }
     }
 
-    private void initComponents() {
+    private void initComponents()
+    {
         menu.getBtnIrTienda().addActionListener(this::handleSeleccionarTienda);
         menu.getBtnSelectCliente().addActionListener(this::handleSelecionarCliente);
         menu.getBtnGetCarrito().addActionListener(this::handleSolicitarCarrito);
@@ -120,11 +133,14 @@ public class ControllerMenu {
         menu.getBtnPagar().addActionListener(this::handlePagar);
     }
 
-    private void pagar() {
-        if (contPago == null) {
+    private void pagar()
+    {
+        if (contPago == null)
+        {
             contPago = new ControllerPago(clienteActual);
             contPago.iniciar();
-        } else {
+        } else
+        {
             contPago.setCliente(clienteActual);
             contPago.iniciar();
         }
@@ -138,7 +154,8 @@ public class ControllerMenu {
     private JPanel panelCarrito = menu.getPanelCarrito();
     private DibujadorCarrito dib;
 
-    private void solicitarCarrito() {
+    private void solicitarCarrito()
+    {
         CarritoCompras carrito = centroCom.getCarrito();
         clienteActual.setCarritoCompras(carrito);
         dib = new DibujadorCarrito(panelCarrito, clienteActual.getCarritoCompras());
@@ -148,20 +165,24 @@ public class ControllerMenu {
     }
     //-----------------------------------------------------------------------------------------------------------|
 
-    public void handleSeleccionarTienda(ActionEvent e) {
+    public void handleSeleccionarTienda(ActionEvent e)
+    {
         seleccionarTienda();
         irATienda();
     }
 
-    public void handlePagar(ActionEvent e) {
+    public void handlePagar(ActionEvent e)
+    {
         pagar();
     }
 
-    public void handleSelecionarCliente(ActionEvent e) {
+    public void handleSelecionarCliente(ActionEvent e)
+    {
         selectCliente();
     }
 
-    public void handleSolicitarCarrito(ActionEvent e) {
+    public void handleSolicitarCarrito(ActionEvent e)
+    {
         solicitarCarrito();
     }
 

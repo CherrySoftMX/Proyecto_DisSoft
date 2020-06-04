@@ -7,33 +7,41 @@ import java.util.List;
  *
  * @author emman
  */
-public class FactoryEnumeration {
+public class FactoryEnumeration
+{
 
-    public static <T> Enumeration<T> enumeration(final List<T> c) {
-        return new Enumeration<T>() {
+    public static <T> Enumeration<T> enumeration(final List<T> c)
+    {
+        return new Enumeration<T>()
+        {
             //Esta es mi implementacion del patron iterator, usando la clase Enumeration de java y mi interfaz Iterator
             //Este funciona solo para objetos List de java
-            private final Iterator<T> i = new Iterator<T>() {
+            private final Iterator<T> i = new Iterator<T>()
+            {
                 int cont;
 
                 @Override
-                public boolean hasNext() {
+                public boolean hasNext()
+                {
                     return cont < c.size();
                 }
 
                 @Override
-                public T next() {
+                public T next()
+                {
                     return c.get(cont++);
                 }
             };
 
             @Override
-            public boolean hasMoreElements() {
+            public boolean hasMoreElements()
+            {
                 return i.hasNext();
             }
 
             @Override
-            public T nextElement() {
+            public T nextElement()
+            {
                 return i.next();
             }
         };

@@ -4,6 +4,7 @@ package com.enumeration;
  *
  * @author emman
  */
-public enum ArticulosLibreria {
+public enum ArticulosLibreria
+{
 
 }

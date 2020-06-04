@@ -10,52 +10,64 @@ import javax.swing.JPanel;
  *
  * @author emman
  */
-public class MenuCarrito extends javax.swing.JFrame {
+public class MenuCarrito extends javax.swing.JFrame
+{
 
     /**
      * Creates new form MenuCarrito
      */
-    public MenuCarrito() {
+    public MenuCarrito()
+    {
         initComponents();
     }
 
-    public JButton getBtnEliminar() {
+    public JButton getBtnEliminar()
+    {
         return btnEliminar;
     }
 
-    public JButton getBtnInspeccionar() {
+    public JButton getBtnInspeccionar()
+    {
         return btnInspeccionar;
     }
 
-    public JButton getBtnSalir() {
+    public JButton getBtnSalir()
+    {
         return btnSalir;
     }
 
-    public JLabel getLabelDesc() {
+    public JLabel getLabelDesc()
+    {
         return labelDesc;
     }
 
-    public JLabel getLabelNombre() {
+    public JLabel getLabelNombre()
+    {
         return labelNombre;
     }
 
-    public JList getListaArticulos() {
+    public JList getListaArticulos()
+    {
         return listaArticulos;
     }
 
-    public JPanel getPanelFoto() {
+    public JPanel getPanelFoto()
+    {
         return panelFoto;
     }
 
-    public JLabel getLabelCliente() {
+    public JLabel getLabelCliente()
+    {
         return labelCliente;
     }
 
-    public void error(String mensaje) {
+    public void error(String mensaje)
+    {
         JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
-    public void mensaje(String mensaje) {
+    public void mensaje(String mensaje)
+    {
         JOptionPane.showMessageDialog(this, mensaje, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
     }
 

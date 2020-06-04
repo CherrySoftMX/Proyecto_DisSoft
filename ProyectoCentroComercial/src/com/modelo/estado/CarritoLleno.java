@@ -7,22 +7,27 @@ import com.modelo.decorator.Articulo;
  *
  * @author emman
  */
-public class CarritoLleno implements CarritoEstado {
+public class CarritoLleno implements CarritoEstado
+{
 
     @Override
-    public String manejar() {
+    public String manejar()
+    {
         return "Carrito lleno";
     }
 
     @Override
-    public String addArticulo(CarritoCompras carrito, Articulo articulo) {
+    public String addArticulo(CarritoCompras carrito, Articulo articulo)
+    {
         return manejar();
     }
 
     @Override
-    public String removeArticulo(CarritoCompras carrito, Articulo articulo) {
+    public String removeArticulo(CarritoCompras carrito, Articulo articulo)
+    {
 
-        if (carrito.getArticulos().size() == 0) {
+        if (carrito.getArticulos().size() == 0)
+        {
             carrito.setEstado(new CarritoVacio());
             return carrito.getEstado();
         }
@@ -32,7 +37,8 @@ public class CarritoLleno implements CarritoEstado {
     }
 
     @Override
-    public String cancelarCarrito(CarritoCompras carrito) {
+    public String cancelarCarrito(CarritoCompras carrito)
+    {
         carrito.setEstado(new CarritoCancelado());
         return carrito.getEstado();
     }
