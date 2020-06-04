@@ -65,7 +65,7 @@ public class Cliente implements Observador {
 
     @Override
     public void actualizar() {
-        notificacion = "Nuevo articulo en tienda";
+        notificacion = "Nuevo articulo en tienda" + tiendaActual;
 
     }
 
