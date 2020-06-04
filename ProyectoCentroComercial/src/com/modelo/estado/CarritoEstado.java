@@ -7,7 +7,8 @@ import com.modelo.decorator.Articulo;
  *
  * @author emman
  */
-public interface CarritoEstado {
+public interface CarritoEstado
+{
 
     public String addArticulo(CarritoCompras carrito, Articulo articulo);
 

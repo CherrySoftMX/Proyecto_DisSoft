@@ -9,56 +9,69 @@ import javax.swing.JOptionPane;
  *
  * @author emman
  */
-public class MenuTienda extends javax.swing.JFrame {
+public class MenuTienda extends javax.swing.JFrame
+{
 
     /**
      * Creates new form MenuPrincipal
      */
-    public MenuTienda() {
+    public MenuTienda()
+    {
         initComponents();
     }
 
-    public JButton getBtnAgregarCarrito() {
+    public JButton getBtnAgregarCarrito()
+    {
         return btnAgregarCarrito;
     }
 
-    public JButton getBtnComprar() {
+    public JButton getBtnComprar()
+    {
         return btnComprar;
     }
 
-    public JButton getBtnMostrarCarrito() {
+    public JButton getBtnMostrarCarrito()
+    {
         return btnMostrarCarrito;
     }
 
-    public JButton getBtnSalir() {
+    public JButton getBtnSalir()
+    {
         return btnSalir;
     }
 
-    public JButton getBtnSelectCliente() {
+    public JButton getBtnSelectCliente()
+    {
         return btnSelectCliente;
     }
 
-    public JLabel getLabelTienda() {
+    public JLabel getLabelTienda()
+    {
         return labelTienda;
     }
 
-    public JList getListClientes() {
+    public JList getListClientes()
+    {
         return listClientes;
     }
 
-    public JList getListArticulos() {
+    public JList getListArticulos()
+    {
         return listArticulos;
     }
 
-    public JLabel getLabelCliente() {
+    public JLabel getLabelCliente()
+    {
         return labelCliente;
     }
 
-    public void error(String mensaje) {
+    public void error(String mensaje)
+    {
         JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
-    public void mensaje(String mensaje) {
+    public void mensaje(String mensaje)
+    {
         JOptionPane.showMessageDialog(this, mensaje, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
     }
 

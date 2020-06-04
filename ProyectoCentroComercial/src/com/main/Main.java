@@ -1,4 +1,4 @@
-package com.principal;
+package com.main;
 
 import com.controladores.ControllerMenu;
 import com.modelo.ArticuloSencillo;
@@ -6,7 +6,7 @@ import com.modelo.CentroComercial;
 import com.modelo.Cliente;
 import com.modelo.decorator.Articulo;
 import com.modelo.decorator.Paquete1;
-import com.modelo.factory.Factory;
+import com.modelo.factory.CFactoryTienda;
 import com.modelo.factory.FactoryTienda;
 import com.modelo.tienda.Libreria;
 import com.modelo.tienda.Tienda;
@@ -17,19 +17,23 @@ import java.util.ArrayList;
  *
  * @author emman
  */
-public class Main {
+public class Main
+{
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         CentroComercial centroComercial = new CentroComercial("MATH.ES");
 
-        Factory fac = new FactoryTienda();
+        FactoryTienda fac = CFactoryTienda.getInstance();
         Tienda zapateria = fac.crearTienda("Zapateria");
         Tienda libreria = fac.crearTienda("Libreria");
-        Cliente cliente = new Cliente("Emmanuel chable", null, null);
+
+        Cliente cliente1 = new Cliente("Emmanuel chable", null, null);
         Cliente cliente2 = new Cliente("Alvaro Trujeque", null, null);
+
         zapateria.adicionarArticulo(new ArticuloSencillo("Zapato", "ddddd", zapateria, 103));
         zapateria.adicionarArticulo(new ArticuloSencillo("Zapato", "dddd1", zapateria, 1202));
         zapateria.adicionarArticulo(new ArticuloSencillo("Zapato", "dddd2", zapateria, 1333));
@@ -52,10 +56,12 @@ public class Main {
 
         Articulo paq1 = new Paquete1(articulos, 0.9);
         libreria.adicionarArticulo(paq1);
-        centroComercial.entrar(cliente);
+
+        centroComercial.entrar(cliente1);
         centroComercial.entrar(cliente2);
         centroComercial.addTienda(zapateria);
         centroComercial.addTienda(libreria);
+
         libreria.adicionarArticulo(new ArticuloSencillo("Libro", "aaaaa", libreria, 103));
         //System.out.println(cliente.getNotificacion());
         ControllerMenu c2 = new ControllerMenu(centroComercial);

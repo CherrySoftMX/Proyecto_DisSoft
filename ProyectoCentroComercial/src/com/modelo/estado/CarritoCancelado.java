@@ -7,25 +7,30 @@ import com.modelo.decorator.Articulo;
  *
  * @author emman
  */
-public class CarritoCancelado implements CarritoEstado {
+public class CarritoCancelado implements CarritoEstado
+{
 
     @Override
-    public String manejar() {
+    public String manejar()
+    {
         return "Carrito cancelado";
     }
 
     @Override
-    public String addArticulo(CarritoCompras carrito, Articulo articulo) {
+    public String addArticulo(CarritoCompras carrito, Articulo articulo)
+    {
         return manejar();
     }
 
     @Override
-    public String removeArticulo(CarritoCompras carrito, Articulo articulo) {
+    public String removeArticulo(CarritoCompras carrito, Articulo articulo)
+    {
         return manejar();
     }
 
     @Override
-    public String cancelarCarrito(CarritoCompras carrito) {
+    public String cancelarCarrito(CarritoCompras carrito)
+    {
         return manejar();
     }
 

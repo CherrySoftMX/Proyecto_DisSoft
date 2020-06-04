@@ -4,7 +4,8 @@ package com.modelo.iterator;
  *
  * @author emman
  */
-public interface Iterator<T> {
+public interface Iterator<T>
+{
 
     public boolean hasNext();
 

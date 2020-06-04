@@ -4,7 +4,8 @@ package com.enumeration;
  *
  * @author emman
  */
-public enum ArticulosZapateria {
+public enum ArticulosZapateria
+{
 
     Refill("zapato masculino marca refill", 1200),
     Nike("zapato femenino marca nike", 1800),
@@ -15,16 +16,19 @@ public enum ArticulosZapateria {
     private final String desc;
     private final double precio;
 
-    private ArticulosZapateria(String descripcion, double precio) {
+    private ArticulosZapateria(String descripcion, double precio)
+    {
         this.desc = descripcion;
         this.precio = precio;
     }
 
-    public String getDesc() {
+    public String getDesc()
+    {
         return desc;
     }
 
-    public double getPrecio() {
+    public double getPrecio()
+    {
         return precio;
     }
 }

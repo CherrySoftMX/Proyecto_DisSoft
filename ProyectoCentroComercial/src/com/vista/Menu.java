@@ -1,6 +1,7 @@
 package com.vista;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -10,80 +11,99 @@ import javax.swing.JPanel;
  *
  * @author emman
  */
-public class Menu extends javax.swing.JFrame {
+public class Menu extends JFrame
+{
 
     /**
      * Creates new form Menu
      */
-    public Menu() {
+    public Menu()
+    {
         initComponents();
     }
 
-    public JButton getBtnIrTienda() {
+    public JButton getBtnIrTienda()
+    {
         return btnIrTienda;
     }
 
-    public JButton getBtnSelectCliente() {
+    public JButton getBtnSelectCliente()
+    {
         return btnSelectCliente;
     }
 
-    public JLabel getLabelCliente() {
+    public JLabel getLabelCliente()
+    {
         return labelCliente;
     }
 
-    public JLabel getLabetTienda() {
+    public JLabel getLabetTienda()
+    {
         return labetTienda;
     }
 
-    public JList getListClientes() {
+    public JList getListClientes()
+    {
         return listClientes;
     }
 
-    public JList getListTiendas() {
+    public JList getListTiendas()
+    {
         return listTiendas;
     }
 
-    public void setBtnIrTienda(JButton btnIrTienda) {
+    public void setBtnIrTienda(JButton btnIrTienda)
+    {
         this.btnIrTienda = btnIrTienda;
     }
 
-    public void setBtnSelectCliente(JButton btnSelectCliente) {
+    public void setBtnSelectCliente(JButton btnSelectCliente)
+    {
         this.btnSelectCliente = btnSelectCliente;
     }
 
-    public void setLabelCliente(JLabel labelCliente) {
+    public void setLabelCliente(JLabel labelCliente)
+    {
         this.labelCliente = labelCliente;
     }
 
-    public void setLabetTienda(JLabel labetTienda) {
+    public void setLabetTienda(JLabel labetTienda)
+    {
         this.labetTienda = labetTienda;
     }
 
-    public void setListClientes(JList listClientes) {
+    public void setListClientes(JList listClientes)
+    {
         this.listClientes = listClientes;
     }
 
-    public void setListTiendas(JList listTiendas) {
+    public void setListTiendas(JList listTiendas)
+    {
         this.listTiendas = listTiendas;
     }
 
-    public JButton getBtnGetCarrito() {
+    public JButton getBtnGetCarrito()
+    {
         return btnGetCarrito;
     }
 
-    public JButton getBtnPagar() {
+    public JButton getBtnPagar()
+    {
         return btnPagar;
     }
 
-    public JPanel getPanelCarrito() {
+    public JPanel getPanelCarrito()
+    {
         return panelCarrito;
     }
 
-    public void error(String mensaje) {
+    public void error(String mensaje)
+    {
         JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
-    public void mensaje(String mensaje) {
+    public void mensaje(String mensaje)
+    {
         JOptionPane.showMessageDialog(this, mensaje, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
     }
 
