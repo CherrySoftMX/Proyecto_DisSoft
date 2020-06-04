@@ -64,10 +64,7 @@ public class ControllerPago {
 
     private void initComponents() {
         menu.getBtnRealizar().addActionListener(this::handleRealizarCompra);
-<<<<<<< HEAD
-=======
 
->>>>>>> updateS
     }
 
     public Cliente getCliente() {

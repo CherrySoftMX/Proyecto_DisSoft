@@ -41,10 +41,7 @@ public class ControllerTienda {
         menu.getBtnComprar().addActionListener(this::handleComprar);
         menu.getBtnSelectCliente().addActionListener(this::handleSeleccionarCliente);
         menu.getBtnSalir().addActionListener(this::handleSalir);
-<<<<<<< HEAD
 
-=======
->>>>>>> updateS
     }
 
     public void iniciarListaArticulos() {
