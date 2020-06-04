@@ -8,8 +8,11 @@ import java.util.List;
  */
 public class Paquete1 extends PaqueteArticulo {
 
-    public Paquete1(List<Articulo> articulos) {
+    private double descuento;
+
+    public Paquete1(List<Articulo> articulos, double descuento) {
         super(articulos);
+        this.descuento = descuento;
     }
 
     @Override
@@ -32,7 +35,7 @@ public class Paquete1 extends PaqueteArticulo {
     @Override
     public double precio() {
         double suma = sumar();
-        return suma - (0.15 * suma);
+        return suma - (descuento * suma);
     }
 
     @Override

@@ -116,6 +116,7 @@ public class ControllerMenu {
         menu.getBtnIrTienda().addActionListener(this::handleSeleccionarTienda);
         menu.getBtnSelectCliente().addActionListener(this::handleSelecionarCliente);
         menu.getBtnGetCarrito().addActionListener(this::handleSolicitarCarrito);
+
         menu.getBtnPagar().addActionListener(this::handlePagar);
     }
 
@@ -127,8 +128,13 @@ public class ControllerMenu {
             contPago.setCliente(clienteActual);
             contPago.iniciar();
         }
+
     }
 
+    //--------------------------------------------------------------------------------------------------------|
+    /**
+     * Esto sirve para dibujar el carrito en la pantalla, igual utiliza el patron observador para actualizarse
+     */
     private JPanel panelCarrito = menu.getPanelCarrito();
     private DibujadorCarrito dib;
 
@@ -140,6 +146,7 @@ public class ControllerMenu {
         carrito.anadirObservador(dib);
 
     }
+    //-----------------------------------------------------------------------------------------------------------|
 
     public void handleSeleccionarTienda(ActionEvent e) {
         seleccionarTienda();
