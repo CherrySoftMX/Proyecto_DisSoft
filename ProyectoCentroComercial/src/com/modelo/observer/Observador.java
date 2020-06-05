@@ -7,5 +7,5 @@ package com.modelo.observer;
 public interface Observador
 {
 
-    public void actualizar();
+    public void actualizar(Object item);
 }

@@ -8,6 +8,7 @@ import java.awt.Font;
 import java.util.EventObject;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultCellEditor;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTable;
@@ -39,12 +40,19 @@ public interface UIConstants
     public Border LIST_HIGHLIGHT_BORDER = (Border) UIManager.get("List.focusCellHighlightBorder");
     public Border TABLE_HIGHLIGHT_BORDER = (Border) UIManager.get("List.focusCellHighlightBorder");
 
-    public ImageIcon CLIENTE_ICON = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/cliente_icon.png"));
+    public Icon CLIENTE_ICON = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/cliente_icon.png"));
+    public Icon DEFAULT_ROW_ICON = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/right.gif"));
 
-    public ImageIcon CARRITO_EN_USO = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/CarritoUsado.png"));
+    public Icon AJAX = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/ajax.png"));
+    public Icon SONBEAR = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/sonbear.jpg"));
+    public Icon SHADIC = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/shadic.png"));
+    public Icon MOHAMMED = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/mohammed.jpg"));
+
+    public ImageIcon CARRITO_USADO = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/CarritoUsado.png"));
     public ImageIcon CARRITO_LLENO = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/CarritoLleno.png"));
     public ImageIcon CARRITO_VACIO = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/CarritoVacio.png"));
     public ImageIcon CARRITO_CANCELADO = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/CarritoCancelado.png"));
+    public ImageIcon CARRITO_NO_EXISTENTE = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/Carrito_no_existente.png"));
 
     public TableCellRenderer MY_TABLE_HEADER_RENDERER = (table, value, isSelected, hasFocus, row, column) ->
     {
@@ -158,10 +166,25 @@ public interface UIConstants
     public ListCellRenderer<Cliente> LISTA_CLIENTES_RENDERER = (list, value, index, isSelected, cellHasFocus) ->
     {
         JLabel label = new JLabel(value.getNombre());
-        label.setIcon(CLIENTE_ICON);
-        label.setHorizontalAlignment(SwingConstants.CENTER);
+
+        Icon icon;
+
+        if (value.getNombre().toLowerCase().contains("eusebio"))
+            icon = AJAX;
+        else if (value.getNombre().toLowerCase().contains("emmanuel"))
+            icon = SONBEAR;
+        else if (value.getNombre().toLowerCase().contains("carlos"))
+            icon = SHADIC;
+        else if (value.getNombre().toLowerCase().contains("nicolás"))
+            icon = MOHAMMED;
+        else
+            icon = CLIENTE_ICON;
+
+        label.setIcon(icon);
+        label.setHorizontalAlignment(SwingConstants.LEFT);
         label.setOpaque(true);
         label.setBackground(isSelected ? LIST_SELECTION_BACKGROUND : LIST_DEFAULT_BACKGROUND);
+        label.setForeground(isSelected ? Color.WHITE : Color.BLACK);
 
         if (isSelected)
             label.setBorder(LIST_HIGHLIGHT_BORDER);

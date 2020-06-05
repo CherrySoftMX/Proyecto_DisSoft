@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Window;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -24,8 +25,9 @@ import javax.swing.table.DefaultTableModel;
 public class MenuTienda extends JDialog
 {
 
-    public MenuTienda()
+    public MenuTienda(Window owner)
     {
+        super(owner);
         initComponents();
     }
 

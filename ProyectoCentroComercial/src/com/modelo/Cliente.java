@@ -12,9 +12,9 @@ public class Cliente implements Observador
 {
 
     private String nombre;
+    private String notificacion;
     private CarritoCompras carritoCompras;
     private Tienda tiendaActual;
-    private String notificacion;
 
     public Cliente(String nombre, CarritoCompras carritoCompras, Tienda tiendaActual)
     {
@@ -75,7 +75,7 @@ public class Cliente implements Observador
     }
 
     @Override
-    public void actualizar()
+    public void actualizar(Object item)
     {
         notificacion = "Nuevo articulo en tienda" + tiendaActual;
 

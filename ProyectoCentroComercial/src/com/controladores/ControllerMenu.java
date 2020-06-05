@@ -55,13 +55,13 @@ public class ControllerMenu
     {
         if (tiendaActual != null && contTienda == null)
         {
-
             clienteActual.setTiendaActual(tiendaActual);
             tiendaActual.entrar(clienteActual);
 
             contTienda = new ControllerTienda(tiendaActual);
             contTienda.setClienteActual(clienteActual);
             contTienda.iniciar();
+
         } else
         {
             tiendaActual.entrar(clienteActual);
@@ -118,10 +118,11 @@ public class ControllerMenu
         Cliente cliente = (Cliente) listaClientes.getSelectedValue();
         clienteActual = cliente;
         menu.getLabelCliente().setText("Cliente: " + clienteActual.getNombre());
+
         if (clienteActual.getCarritoCompras() == null)
             panelCarrito.repaint();
         else
-            clienteActual.getCarritoCompras().notificar();
+            clienteActual.getCarritoCompras().notificar(0);
     }
 
     private void initComponents()
@@ -139,6 +140,7 @@ public class ControllerMenu
         {
             contPago = new ControllerPago(clienteActual);
             contPago.iniciar();
+
         } else
         {
             contPago.setCliente(clienteActual);
@@ -161,7 +163,6 @@ public class ControllerMenu
         dib = new DibujadorCarrito(panelCarrito, clienteActual.getCarritoCompras());
 
         carrito.anadirObservador(dib);
-
     }
     //-----------------------------------------------------------------------------------------------------------|
 

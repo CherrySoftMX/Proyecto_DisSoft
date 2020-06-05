@@ -1,10 +1,16 @@
 package com.controladores;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.List;
+import javax.swing.AbstractAction;
 import javax.swing.DefaultListModel;
+import javax.swing.JComponent;
 import javax.swing.JList;
+import javax.swing.KeyStroke;
+import javax.swing.ListSelectionModel;
 
 /**
  *
@@ -32,6 +38,22 @@ public class ListManager
     public void initList(JList<?> lista)
     {
         lista.setModel(new DefaultListModel<>());
+        lista.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    }
+
+    public void initListSelectionBehavior(JList<?> lista, ActionListener action)
+    {
+        lista.getInputMap(JComponent.WHEN_FOCUSED).put(KeyStroke.getKeyStroke("ESCAPE"), "Clear selection");
+        lista.getActionMap().put("Clear selection", new AbstractAction()
+        {
+            @Override public void actionPerformed(ActionEvent e)
+            {
+                lista.getSelectionModel().clearSelection();
+
+                if (action != null)
+                    action.actionPerformed(e);
+            }
+        });
     }
 
     public void establecerElementos(JList<?> lista, Object[] elementos)
@@ -65,11 +87,6 @@ public class ListManager
     {
         DefaultListModel<?> defaultListModel = getDefaultListModel(lista);
         defaultListModel.removeAllElements();
-    }
-
-    public Object getSelectedObject(JList<?> lista)
-    {
-        return lista.getSelectedValue();
     }
 
     public DefaultListModel<Object> getDefaultListModel(JList<?> lista)

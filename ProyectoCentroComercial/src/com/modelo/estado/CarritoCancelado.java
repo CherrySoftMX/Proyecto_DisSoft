@@ -11,27 +11,27 @@ public class CarritoCancelado implements CarritoEstado
 {
 
     @Override
-    public String manejar()
-    {
-        return "Carrito cancelado";
-    }
-
-    @Override
-    public String addArticulo(CarritoCompras carrito, Articulo articulo)
+    public int addArticulo(CarritoCompras carrito, Articulo articulo)
     {
         return manejar();
     }
 
     @Override
-    public String removeArticulo(CarritoCompras carrito, Articulo articulo)
+    public int removeArticulo(CarritoCompras carrito, Articulo articulo)
     {
         return manejar();
     }
 
     @Override
-    public String cancelarCarrito(CarritoCompras carrito)
+    public int cancelarCarrito(CarritoCompras carrito)
     {
         return manejar();
+    }
+
+    @Override
+    public int manejar()
+    {
+        return ESTADO_CANCELADO;
     }
 
 }

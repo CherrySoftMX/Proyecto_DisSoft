@@ -10,11 +10,16 @@ import com.modelo.decorator.Articulo;
 public interface CarritoEstado
 {
 
-    public String addArticulo(CarritoCompras carrito, Articulo articulo);
+    public int ESTADO_LLENO = 0;
+    public int ESTADO_USADO = 1;
+    public int ESTADO_VACIO = 2;
+    public int ESTADO_CANCELADO = 3;
 
-    public String removeArticulo(CarritoCompras carrito, Articulo articulo);
+    public int addArticulo(CarritoCompras carrito, Articulo articulo);
 
-    public String cancelarCarrito(CarritoCompras carrito);
+    public int removeArticulo(CarritoCompras carrito, Articulo articulo);
 
-    public String manejar();
+    public int cancelarCarrito(CarritoCompras carrito);
+
+    public int manejar();
 }

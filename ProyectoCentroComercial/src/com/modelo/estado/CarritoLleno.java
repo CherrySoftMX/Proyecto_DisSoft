@@ -11,33 +11,34 @@ public class CarritoLleno implements CarritoEstado
 {
 
     @Override
-    public String manejar()
+    public int manejar()
     {
-        return "Carrito lleno";
+        return ESTADO_LLENO;
     }
 
     @Override
-    public String addArticulo(CarritoCompras carrito, Articulo articulo)
+    public int addArticulo(CarritoCompras carrito, Articulo articulo)
     {
         return manejar();
     }
 
     @Override
-    public String removeArticulo(CarritoCompras carrito, Articulo articulo)
+    public int removeArticulo(CarritoCompras carrito, Articulo articulo)
     {
 
-        if (carrito.getArticulos().size() == 0)
+        if (carrito.estaVacio())
         {
             carrito.setEstado(new CarritoVacio());
             return carrito.getEstado();
         }
+
         carrito.getArticulos().remove(articulo);
         carrito.setEstado(new CarritoUsado());
         return carrito.getEstado();
     }
 
     @Override
-    public String cancelarCarrito(CarritoCompras carrito)
+    public int cancelarCarrito(CarritoCompras carrito)
     {
         carrito.setEstado(new CarritoCancelado());
         return carrito.getEstado();

@@ -1,6 +1,6 @@
 package com.main;
 
-import com.controladores.ControllerMenu;
+import com.controladores.MenuController;
 import com.modelo.ArticuloSencillo;
 import com.modelo.CentroComercial;
 import com.modelo.Cliente;
@@ -10,6 +10,8 @@ import com.modelo.factory.CFactoryTienda;
 import com.modelo.factory.FactoryTienda;
 import com.modelo.tienda.Libreria;
 import com.modelo.tienda.Tienda;
+import com.vista2.Menu;
+import java.awt.EventQueue;
 import java.util.ArrayList;
 
 /**
@@ -31,8 +33,11 @@ public class Main
         Tienda zapateria = fac.crearTienda("Zapateria");
         Tienda libreria = fac.crearTienda("Libreria");
 
-        Cliente cliente1 = new Cliente("Emmanuel chable", null, null);
-        Cliente cliente2 = new Cliente("Alvaro Trujeque", null, null);
+        Cliente cliente1 = new Cliente("Emmanuel Chablé", null, null);
+        Cliente cliente2 = new Cliente("Eusebio Ajax", null, null);
+        Cliente cliente3 = new Cliente("Carlos Góngora", null, null);
+        Cliente cliente4 = new Cliente("Nicolás Canul", null, null);
+        Cliente cliente5 = new Cliente("Charly Álvarez", null, null);
 
         zapateria.adicionarArticulo(new ArticuloSencillo("Zapato", "ddddd", zapateria, 103));
         zapateria.adicionarArticulo(new ArticuloSencillo("Zapato", "dddd1", zapateria, 1202));
@@ -59,13 +64,22 @@ public class Main
 
         centroComercial.entrar(cliente1);
         centroComercial.entrar(cliente2);
+        centroComercial.entrar(cliente3);
+        centroComercial.entrar(cliente4);
+        centroComercial.entrar(cliente5);
+
         centroComercial.addTienda(zapateria);
         centroComercial.addTienda(libreria);
 
         libreria.adicionarArticulo(new ArticuloSencillo("Libro", "aaaaa", libreria, 103));
-        //System.out.println(cliente.getNotificacion());
-        ControllerMenu c2 = new ControllerMenu(centroComercial);
-        c2.iniciar();
+
+        EventQueue.invokeLater(() ->
+        {
+            Menu menu = new Menu();
+            menu.setLocationRelativeTo(null);
+            menu.setVisible(true);
+            new MenuController(menu, centroComercial);
+        });
     }
 
 }

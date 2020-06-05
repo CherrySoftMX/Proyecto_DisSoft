@@ -22,8 +22,8 @@ public abstract class Observado
         observadores.remove(ob);
     }
 
-    public void notificar()
+    public void notificar(Object item)
     {
-        observadores.forEach(Observador::actualizar);
+        observadores.forEach(o -> o.actualizar(item));
     }
 }

@@ -19,7 +19,9 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.WindowConstants;
@@ -66,7 +68,8 @@ public class Menu extends JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
         GridBagConstraints gridBagConstraints;
 
         jPanel1 = new JPanel();
@@ -74,22 +77,23 @@ public class Menu extends JFrame
         jLabel1 = new JLabel();
         filler1 = new Box.Filler(new Dimension(0, 10), new Dimension(0, 10), new Dimension(32767, 10));
         jLabel2 = new JLabel();
-        jPanel2 = new JPanel();
-        jPanel3 = new JPanel();
+        filler2 = new Box.Filler(new Dimension(0, 10), new Dimension(0, 10), new Dimension(32767, 10));
+        jSplitPane2 = new JSplitPane();
+        jSplitPane1 = new JSplitPane();
         jPanel5 = new JPanel();
         jScrollPane2 = new JScrollPane();
         listClientes = new JList<>();
         jPanel8 = new JPanel();
-        jLabel5 = new JLabel();
-        jPanel6 = new JPanel();
+        lblClienteSeleccionado = new JLabel();
+        panelCarrito = new JPanel();
         jPanel7 = new JPanel();
-        jButton1 = new JButton();
-        jButton2 = new JButton();
+        btnSolicitarCarrito = new JButton();
+        btnPagarCarrito = new JButton();
         jPanel9 = new JPanel();
-        jLabel4 = new JLabel();
-        jPanel4 = new JPanel();
+        lblCarrito = new JLabel();
+        panelTiendas = new JPanel();
         jScrollPane1 = new JScrollPane();
-        jTable1 = new JTable();
+        tablaTiendas = new JTable();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Centro comercial");
@@ -105,17 +109,25 @@ public class Menu extends JFrame
         jPanel1.add(jLabel1);
         jPanel1.add(filler1);
 
-        jLabel2.setIcon(new ImageIcon(getClass().getResource("/com/vista/images/logo_fmat.png"))); // NOI18N
+        jLabel2.setIcon(new ImageIcon(getClass().getResource("/com/img/logo_fmat.png"))); // NOI18N
         jLabel2.setAlignmentX(0.5F);
         jPanel1.add(jLabel2);
+        jPanel1.add(filler2);
 
         getContentPane().add(jPanel1, BorderLayout.PAGE_START);
 
-        jPanel2.setLayout(new GridLayout(2, 1));
+        jSplitPane2.setDividerLocation(160);
+        jSplitPane2.setDividerSize(7);
+        jSplitPane2.setOrientation(JSplitPane.VERTICAL_SPLIT);
+        jSplitPane2.setContinuousLayout(true);
+        jSplitPane2.setOneTouchExpandable(true);
 
-        jPanel3.setBorder(BorderFactory.createTitledBorder("Clientes disponibles"));
-        jPanel3.setLayout(new GridLayout(1, 0));
+        jSplitPane1.setDividerLocation(300);
+        jSplitPane1.setDividerSize(7);
+        jSplitPane1.setContinuousLayout(true);
+        jSplitPane1.setOneTouchExpandable(true);
 
+        jPanel5.setBorder(BorderFactory.createTitledBorder("Clientes disponibles"));
         jPanel5.setLayout(new BorderLayout());
 
         listClientes.setBackground(new Color(240, 240, 240));
@@ -126,100 +138,141 @@ public class Menu extends JFrame
         jPanel8.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         jPanel8.setLayout(new BorderLayout());
 
-        jLabel5.setText("Seleccione a un cliente...");
-        jPanel8.add(jLabel5, BorderLayout.PAGE_START);
+        lblClienteSeleccionado.setText("Seleccione a un cliente...");
+        jPanel8.add(lblClienteSeleccionado, BorderLayout.PAGE_START);
 
         jPanel5.add(jPanel8, BorderLayout.PAGE_END);
 
-        jPanel3.add(jPanel5);
+        jSplitPane1.setLeftComponent(jPanel5);
 
-        jPanel6.setLayout(new GridLayout(1, 2));
+        panelCarrito.setBorder(BorderFactory.createTitledBorder("Carrito"));
+        panelCarrito.setLayout(new GridLayout(1, 2));
 
         jPanel7.setLayout(new GridBagLayout());
 
-        jButton1.setText("Solicitar carrito");
+        btnSolicitarCarrito.setText("Solicitar carrito");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.insets = new Insets(5, 15, 5, 15);
-        jPanel7.add(jButton1, gridBagConstraints);
+        jPanel7.add(btnSolicitarCarrito, gridBagConstraints);
 
-        jButton2.setText("Pagar carrito");
+        btnPagarCarrito.setText("Pagar carrito");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.insets = new Insets(5, 15, 5, 15);
-        jPanel7.add(jButton2, gridBagConstraints);
+        jPanel7.add(btnPagarCarrito, gridBagConstraints);
 
-        jPanel6.add(jPanel7);
+        panelCarrito.add(jPanel7);
 
         jPanel9.setLayout(new BorderLayout());
 
-        jLabel4.setBorder(BorderFactory.createLineBorder(new Color(0, 0, 0)));
-        jLabel4.setOpaque(true);
-        jPanel9.add(jLabel4, BorderLayout.CENTER);
+        lblCarrito.setHorizontalAlignment(SwingConstants.CENTER);
+        lblCarrito.setIcon(new ImageIcon(getClass().getResource("/com/img/Carrito_no_existente.png"))); // NOI18N
+        lblCarrito.setOpaque(true);
+        jPanel9.add(lblCarrito, BorderLayout.CENTER);
 
-        jPanel6.add(jPanel9);
+        panelCarrito.add(jPanel9);
 
-        jPanel3.add(jPanel6);
+        jSplitPane1.setRightComponent(panelCarrito);
 
-        jPanel2.add(jPanel3);
+        jSplitPane2.setLeftComponent(jSplitPane1);
 
-        jPanel4.setBorder(BorderFactory.createTitledBorder("Tiendas disponibles"));
-        jPanel4.setLayout(new BorderLayout());
+        panelTiendas.setBorder(BorderFactory.createTitledBorder("Tiendas disponibles"));
+        panelTiendas.setLayout(new BorderLayout());
 
-        jTable1.setModel(new DefaultTableModel(
-            new Object [][] {
+        tablaTiendas.setModel(new DefaultTableModel(
+            new Object [][]
+            {
 
             },
-            new String [] {
+            new String []
+            {
                 "Tienda", "Ir a tienda"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(1).setMinWidth(70);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(70);
-            jTable1.getColumnModel().getColumn(1).setMaxWidth(70);
+        jScrollPane1.setViewportView(tablaTiendas);
+        if (tablaTiendas.getColumnModel().getColumnCount() > 0)
+        {
+            tablaTiendas.getColumnModel().getColumn(1).setMinWidth(70);
+            tablaTiendas.getColumnModel().getColumn(1).setPreferredWidth(70);
+            tablaTiendas.getColumnModel().getColumn(1).setMaxWidth(70);
         }
 
-        jPanel4.add(jScrollPane1, BorderLayout.CENTER);
+        panelTiendas.add(jScrollPane1, BorderLayout.CENTER);
 
-        jPanel2.add(jPanel4);
+        jSplitPane2.setRightComponent(panelTiendas);
 
-        getContentPane().add(jPanel2, BorderLayout.CENTER);
+        getContentPane().add(jSplitPane2, BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    public JButton getBtnPagarCarrito()
+    {
+        return btnPagarCarrito;
+    }
+
+    public JButton getBtnSolicitarCarrito()
+    {
+        return btnSolicitarCarrito;
+    }
+
+    public JLabel getLblCarrito()
+    {
+        return lblCarrito;
+    }
+
+    public JLabel getLblClienteSeleccionado()
+    {
+        return lblClienteSeleccionado;
+    }
 
     public JList<Cliente> getListClientes()
     {
         return listClientes;
     }
 
+    public JPanel getPanelCarrito()
+    {
+        return panelCarrito;
+    }
+
+    public JPanel getPanelTiendas()
+    {
+        return panelTiendas;
+    }
+
+    public JTable getTablaTiendas()
+    {
+        return tablaTiendas;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private JButton btnPagarCarrito;
+    private JButton btnSolicitarCarrito;
     private Box.Filler filler1;
+    private Box.Filler filler2;
     private Box.Filler filler3;
-    private JButton jButton1;
-    private JButton jButton2;
     private JLabel jLabel1;
     private JLabel jLabel2;
-    private JLabel jLabel4;
-    private JLabel jLabel5;
     private JPanel jPanel1;
-    private JPanel jPanel2;
-    private JPanel jPanel3;
-    private JPanel jPanel4;
     private JPanel jPanel5;
-    private JPanel jPanel6;
     private JPanel jPanel7;
     private JPanel jPanel8;
     private JPanel jPanel9;
     private JScrollPane jScrollPane1;
     private JScrollPane jScrollPane2;
-    private JTable jTable1;
+    private JSplitPane jSplitPane1;
+    private JSplitPane jSplitPane2;
+    private JLabel lblCarrito;
+    private JLabel lblClienteSeleccionado;
     private JList<Cliente> listClientes;
+    private JPanel panelCarrito;
+    private JPanel panelTiendas;
+    private JTable tablaTiendas;
     // End of variables declaration//GEN-END:variables
 }

@@ -47,14 +47,12 @@ public class CentroComercial
 
     public Enumeration<Tienda> listarTiendas()
     {
-        Enumeration<Tienda> enumeration = FactoryEnumeration.enumeration(tiendas);
-        return enumeration;
+        return FactoryEnumeration.enumeration(tiendas);
     }
 
     public Enumeration<Cliente> listarClientes()
     {
-        Enumeration<Cliente> enumeration = FactoryEnumeration.enumeration(clientes);
-        return enumeration;
+        return FactoryEnumeration.enumeration(clientes);
     }
 
     public void addTienda(Tienda tienda)

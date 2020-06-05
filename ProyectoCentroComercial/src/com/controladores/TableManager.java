@@ -46,7 +46,7 @@ public class TableManager implements UIConstants
         table.setTableHeader(jTableHeader);
         table.setDefaultEditor(Object.class, TABLA_NO_EDITABLE);
         table.setGridColor(new Color(237, 237, 237));
-        table.setRowHeight(20);
+        table.setRowHeight(25);
         table.setRowSelectionAllowed(true);
         table.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
     }

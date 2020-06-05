@@ -21,32 +21,32 @@ public class DibujadorCarrito implements Observador, UIConstants
         this.panel = panel;
         this.carrito = carrito;
 
-        actualizar();
+        actualizar(0);
     }
 
     @Override
-    public void actualizar()
+    public void actualizar(Object item)
     {
         Graphics2D g = (Graphics2D) panel.getGraphics();
-        switch (carrito.getEstado())
-        {
-            case "Carrito lleno":
-                g.drawImage(CARRITO_LLENO.getImage(), 0, 0, null);
 
-                break;
-            case "Carrito vacio":
-                g.drawImage(CARRITO_VACIO.getImage(), 0, 0, null);
-                break;
-            case "Carrito en uso":
-                g.drawImage(CARRITO_EN_USO.getImage(), 0, 0, null);
-                break;
-            case "Carrito cancelado":
-                g.drawImage(CARRITO_CANCELADO.getImage(), 0, 0, null);
-                break;
-            default:
-                throw new AssertionError();
-        }
-
+//        switch (carrito.getEstado())
+//        {
+//            case "Carrito lleno":
+//                g.drawImage(CARRITO_LLENO.getImage(), 0, 0, null);
+//
+//                break;
+//            case "Carrito vacio":
+//                g.drawImage(CARRITO_VACIO.getImage(), 0, 0, null);
+//                break;
+//            case "Carrito en uso":
+//                g.drawImage(CARRITO_EN_USO.getImage(), 0, 0, null);
+//                break;
+//            case "Carrito cancelado":
+//                g.drawImage(CARRITO_CANCELADO.getImage(), 0, 0, null);
+//                break;
+//            default:
+//                throw new AssertionError();
+//        }
         g.dispose();
     }
 

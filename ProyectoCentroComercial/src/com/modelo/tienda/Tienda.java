@@ -31,6 +31,11 @@ public abstract class Tienda extends Observado
         this.clientes = new ArrayList<>();
     }
 
+    public String getNombre()
+    {
+        return nombre;
+    }
+
     public List<Articulo> getArticulos()
     {
         return articulos;
@@ -77,18 +82,12 @@ public abstract class Tienda extends Observado
     {
         articulos.add(articulo);
         //Cada vez que un articulo se agrega se notifica a sus observadores
-        notificar();
+        notificar(articulo);
     }
 
     public PaqueteArticulo crearPaquetesArticulo(List<Articulo> articulos, double descuento)
     {
         return new Paquete1(articulos, descuento);
-    }
-
-    @Override
-    public String toString()
-    {
-        return "Tienda: " + nombre;
     }
 
 }

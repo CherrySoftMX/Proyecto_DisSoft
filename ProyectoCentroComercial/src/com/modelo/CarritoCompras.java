@@ -18,33 +18,28 @@ import java.util.List;
 public class CarritoCompras extends Observado
 {
 
-    private List<Articulo> articulos;
-    public static final int CAPACIDAD = 20;
+    public static final int MAX_CAPACIDAD = 20;
+
+    private final List<Articulo> articulos;
     //Este es el contexto deonde utilizaremos los estados
     private CarritoEstado estado;
 
     public CarritoCompras()
     {
-
         articulos = new ArrayList<>();
         setEstado(new CarritoVacio());
-    }
-
-    public static int getCAPACIDAD()
-    {
-        return CAPACIDAD;
     }
 
     public void addArticulo(Articulo articulo)
     {
         estado.addArticulo(this, articulo);
-        notificar();
+        notificar(articulo);
     }
 
     public void eliminarArticulo(Articulo articulo)
     {
         estado.removeArticulo(this, articulo);
-        notificar();
+        notificar(articulo);
     }
 
     public List<Articulo> getArticulos()
@@ -52,31 +47,31 @@ public class CarritoCompras extends Observado
         return articulos;
     }
 
-    public Enumeration listarArticulos()
+    public Enumeration<Articulo> listarArticulos()
     {
-        Enumeration<Articulo> enumeration = FactoryEnumeration.enumeration(articulos);
-
-        return enumeration;
-
+        return FactoryEnumeration.enumeration(articulos);
     }
 
     public void cancelarCarrito()
     {
         setEstado(new CarritoCancelado());
-        notificar();
-
+        notificar(CarritoEstado.ESTADO_CANCELADO);
     }
 
     public void setEstado(CarritoEstado estado)
     {
         this.estado = estado;
-        notificar();
-
+        notificar(estado.manejar());
     }
 
-    public String getEstado()
+    public int getEstado()
     {
         return estado.manejar();
+    }
+
+    public boolean estaVacio()
+    {
+        return getArticulos().isEmpty();
     }
 
 }
