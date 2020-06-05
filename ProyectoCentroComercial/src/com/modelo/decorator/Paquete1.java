@@ -34,7 +34,11 @@ public class Paquete1 extends PaqueteArticulo
         return total;
     }
 
-    //Por cada total de los articulos se resta un 15% del total
+    /**
+     * Nota el descuento debe estar entre [0 - 1], ya debe ser un porcentaje convertido
+     *
+     * @return
+     */
     @Override
     public double precio()
     {
