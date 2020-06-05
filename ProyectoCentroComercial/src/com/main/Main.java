@@ -10,7 +10,7 @@ import com.modelo.factory.CFactoryTienda;
 import com.modelo.factory.FactoryTienda;
 import com.modelo.tienda.Libreria;
 import com.modelo.tienda.Tienda;
-import com.vista2.Menu;
+import com.vista.Menu;
 import java.awt.EventQueue;
 import java.util.ArrayList;
 

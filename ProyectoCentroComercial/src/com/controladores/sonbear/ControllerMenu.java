@@ -1,11 +1,11 @@
-package com.controladores;
+package com.controladores.sonbear;
 
 import com.modelo.CarritoCompras;
 import com.modelo.CentroComercial;
 import com.modelo.Cliente;
 import com.modelo.tienda.Tienda;
-import com.vista.DibujadorCarrito;
-import com.vista.Menu;
+import com.vista.sonbear.DibujadorCarrito;
+import com.vista.sonbear.Menu;
 import java.awt.event.ActionEvent;
 import java.util.Enumeration;
 import javax.swing.DefaultListModel;

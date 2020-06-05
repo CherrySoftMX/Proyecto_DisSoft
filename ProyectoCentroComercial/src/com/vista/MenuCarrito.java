@@ -1,34 +1,226 @@
 package com.vista;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.Window;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author emman
+ * @author HikingCarrot7
  */
-public class MenuCarrito extends javax.swing.JFrame
+public class MenuCarrito extends JDialog
 {
 
     /**
      * Creates new form MenuCarrito
      */
-    public MenuCarrito()
+    public MenuCarrito(Window owner)
     {
+        super(owner);
         initComponents();
     }
 
-    public JButton getBtnEliminar()
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents()
     {
-        return btnEliminar;
-    }
+        GridBagConstraints gridBagConstraints;
 
-    public JButton getBtnInspeccionar()
+        jPanel3 = new JPanel();
+        filler1 = new Box.Filler(new Dimension(0, 5), new Dimension(0, 5), new Dimension(32767, 5));
+        jLabel1 = new JLabel();
+        filler2 = new Box.Filler(new Dimension(0, 10), new Dimension(0, 10), new Dimension(32767, 10));
+        jPanel6 = new JPanel();
+        jSplitPane1 = new JSplitPane();
+        jPanel1 = new JPanel();
+        jScrollPane1 = new JScrollPane();
+        tablaArticulosCarrito = new JTable();
+        jPanel7 = new JPanel();
+        lblTotal = new JLabel();
+        jPanel2 = new JPanel();
+        jLabel2 = new JLabel();
+        txtNombre = new JTextField();
+        jLabel3 = new JLabel();
+        txtDescripcion = new JTextField();
+        jLabel4 = new JLabel();
+        txtPrecio = new JTextField();
+        btnEliminarDelCarrito = new JButton();
+        jPanel5 = new JPanel();
+        lblCarrito = new JLabel();
+        jPanel4 = new JPanel();
+        btnSalir = new JButton();
+
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Detalles del carrito");
+        setMinimumSize(new Dimension(600, 440));
+        setPreferredSize(new Dimension(600, 440));
+
+        jPanel3.setLayout(new BoxLayout(jPanel3, BoxLayout.Y_AXIS));
+        jPanel3.add(filler1);
+
+        jLabel1.setFont(new Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setText("Detalles del carrito");
+        jLabel1.setAlignmentX(0.5F);
+        jPanel3.add(jLabel1);
+        jPanel3.add(filler2);
+
+        getContentPane().add(jPanel3, BorderLayout.PAGE_START);
+
+        jPanel6.setLayout(new BorderLayout());
+
+        jSplitPane1.setDividerLocation(310);
+        jSplitPane1.setDividerSize(7);
+        jSplitPane1.setContinuousLayout(true);
+        jSplitPane1.setOneTouchExpandable(true);
+
+        jPanel1.setBorder(BorderFactory.createTitledBorder("Artículos del carrito"));
+        jPanel1.setLayout(new BorderLayout());
+
+        tablaArticulosCarrito.setModel(new DefaultTableModel(
+            new Object [][]
+            {
+
+            },
+            new String []
+            {
+                "Artículo", "Precio"
+            }
+        ));
+        jScrollPane1.setViewportView(tablaArticulosCarrito);
+        if (tablaArticulosCarrito.getColumnModel().getColumnCount() > 0)
+        {
+            tablaArticulosCarrito.getColumnModel().getColumn(1).setMinWidth(90);
+            tablaArticulosCarrito.getColumnModel().getColumn(1).setPreferredWidth(90);
+            tablaArticulosCarrito.getColumnModel().getColumn(1).setMaxWidth(90);
+        }
+
+        jPanel1.add(jScrollPane1, BorderLayout.CENTER);
+
+        jPanel7.setLayout(new BorderLayout());
+
+        lblTotal.setText("Total:");
+        lblTotal.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        jPanel7.add(lblTotal, BorderLayout.CENTER);
+
+        jPanel1.add(jPanel7, BorderLayout.PAGE_END);
+
+        jSplitPane1.setLeftComponent(jPanel1);
+
+        jPanel2.setBorder(BorderFactory.createTitledBorder("Detalles del artículo"));
+        jPanel2.setLayout(new GridBagLayout());
+
+        jLabel2.setHorizontalAlignment(SwingConstants.RIGHT);
+        jLabel2.setText("Nombre:");
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
+        jPanel2.add(jLabel2, gridBagConstraints);
+
+        txtNombre.setEnabled(false);
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
+        jPanel2.add(txtNombre, gridBagConstraints);
+
+        jLabel3.setHorizontalAlignment(SwingConstants.RIGHT);
+        jLabel3.setText("Descripción:");
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
+        jPanel2.add(jLabel3, gridBagConstraints);
+
+        txtDescripcion.setEnabled(false);
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
+        jPanel2.add(txtDescripcion, gridBagConstraints);
+
+        jLabel4.setHorizontalAlignment(SwingConstants.RIGHT);
+        jLabel4.setText("Precio:");
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
+        jPanel2.add(jLabel4, gridBagConstraints);
+
+        txtPrecio.setEnabled(false);
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
+        jPanel2.add(txtPrecio, gridBagConstraints);
+
+        btnEliminarDelCarrito.setText("Eliminar artículo(s) del carrito");
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
+        jPanel2.add(btnEliminarDelCarrito, gridBagConstraints);
+
+        jPanel5.setLayout(new BorderLayout());
+
+        lblCarrito.setHorizontalAlignment(SwingConstants.CENTER);
+        lblCarrito.setIcon(new ImageIcon(getClass().getResource("/com/img/Carrito_no_existente.png"))); // NOI18N
+        jPanel5.add(lblCarrito, BorderLayout.CENTER);
+
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        jPanel2.add(jPanel5, gridBagConstraints);
+
+        jSplitPane1.setRightComponent(jPanel2);
+
+        jPanel6.add(jSplitPane1, BorderLayout.CENTER);
+
+        getContentPane().add(jPanel6, BorderLayout.CENTER);
+
+        jPanel4.setLayout(new FlowLayout(FlowLayout.RIGHT));
+
+        btnSalir.setText("Salir");
+        jPanel4.add(btnSalir);
+
+        getContentPane().add(jPanel4, BorderLayout.SOUTH);
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    public JButton getBtnEliminarDelCarrito()
     {
-        return btnInspeccionar;
+        return btnEliminarDelCarrito;
     }
 
     public JButton getBtnSalir()
@@ -36,158 +228,59 @@ public class MenuCarrito extends javax.swing.JFrame
         return btnSalir;
     }
 
-    public JLabel getLabelDesc()
+    public JLabel getLblCarrito()
     {
-        return labelDesc;
+        return lblCarrito;
     }
 
-    public JLabel getLabelNombre()
+    public JLabel getLblTotal()
     {
-        return labelNombre;
+        return lblTotal;
     }
 
-    public JList getListaArticulos()
+    public JTable getTablaArticulosCarrito()
     {
-        return listaArticulos;
+        return tablaArticulosCarrito;
     }
 
-    public JPanel getPanelFoto()
+    public JTextField getTxtDescripcion()
     {
-        return panelFoto;
+        return txtDescripcion;
     }
 
-    public JLabel getLabelCliente()
+    public JTextField getTxtNombre()
     {
-        return labelCliente;
+        return txtNombre;
     }
 
-    public void error(String mensaje)
+    public JTextField getTxtPrecio()
     {
-        JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+        return txtPrecio;
     }
-
-    public void mensaje(String mensaje)
-    {
-        JOptionPane.showMessageDialog(this, mensaje, "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-    }
-
-    /**
-     * This method is called from within the constructor to initialize the form. WARNING: Do NOT modify this code. The content of this method is always regenerated by the Form Editor.
-     */
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
-
-        jScrollPane1 = new javax.swing.JScrollPane();
-        listaArticulos = new javax.swing.JList();
-        btnEliminar = new javax.swing.JButton();
-        btnSalir = new javax.swing.JButton();
-        btnInspeccionar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        panelFoto = new javax.swing.JPanel();
-        labelNombre = new javax.swing.JLabel();
-        labelDesc = new javax.swing.JLabel();
-        labelCliente = new javax.swing.JLabel();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        listaArticulos.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(listaArticulos);
-
-        btnEliminar.setText("Eliminar del carrito");
-
-        btnSalir.setText("Salir ");
-        btnSalir.setActionCommand("Salir");
-
-        btnInspeccionar.setText("Inspeccionar articulo");
-
-        jLabel1.setText("Articulos en el carrito");
-
-        panelFoto.setBackground(new java.awt.Color(255, 51, 255));
-
-        javax.swing.GroupLayout panelFotoLayout = new javax.swing.GroupLayout(panelFoto);
-        panelFoto.setLayout(panelFotoLayout);
-        panelFotoLayout.setHorizontalGroup(
-            panelFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        panelFotoLayout.setVerticalGroup(
-            panelFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        labelNombre.setText("Nombre: ");
-
-        labelDesc.setText("Descripción: ");
-
-        labelCliente.setText("jLabel2");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(labelNombre)
-                            .addComponent(labelDesc)
-                            .addComponent(btnInspeccionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnEliminar)
-                            .addComponent(btnSalir)
-                            .addComponent(panelFoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(labelCliente)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addComponent(jLabel1)
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(panelFoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(labelNombre)
-                        .addGap(66, 66, 66)
-                        .addComponent(labelDesc)
-                        .addGap(97, 97, 97)
-                        .addComponent(labelCliente)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnInspeccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnEliminar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSalir)
-                        .addGap(0, 4, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1))
-                .addContainerGap())
-        );
-
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnInspeccionar;
-    private javax.swing.JButton btnSalir;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel labelCliente;
-    private javax.swing.JLabel labelDesc;
-    private javax.swing.JLabel labelNombre;
-    private javax.swing.JList listaArticulos;
-    private javax.swing.JPanel panelFoto;
+    private JButton btnEliminarDelCarrito;
+    private JButton btnSalir;
+    private Box.Filler filler1;
+    private Box.Filler filler2;
+    private JLabel jLabel1;
+    private JLabel jLabel2;
+    private JLabel jLabel3;
+    private JLabel jLabel4;
+    private JPanel jPanel1;
+    private JPanel jPanel2;
+    private JPanel jPanel3;
+    private JPanel jPanel4;
+    private JPanel jPanel5;
+    private JPanel jPanel6;
+    private JPanel jPanel7;
+    private JScrollPane jScrollPane1;
+    private JSplitPane jSplitPane1;
+    private JLabel lblCarrito;
+    private JLabel lblTotal;
+    private JTable tablaArticulosCarrito;
+    private JTextField txtDescripcion;
+    private JTextField txtNombre;
+    private JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables
 }

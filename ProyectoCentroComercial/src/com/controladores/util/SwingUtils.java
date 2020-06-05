@@ -1,4 +1,4 @@
-package com.controladores;
+package com.controladores.util;
 
 import java.awt.Component;
 import java.util.Enumeration;

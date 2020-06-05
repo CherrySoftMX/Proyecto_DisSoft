@@ -23,24 +23,10 @@ public class ArticuloSencillo implements Articulo
         this.precio = precio;
     }
 
+    @Override
     public String getNombre()
     {
         return nombre;
-    }
-
-    public String getIdentificador()
-    {
-        return identificador;
-    }
-
-    public Tienda getTiendaActual()
-    {
-        return tiendaActual;
-    }
-
-    public double getPrecio()
-    {
-        return precio;
     }
 
     public void setNombre(String nombre)
@@ -48,14 +34,30 @@ public class ArticuloSencillo implements Articulo
         this.nombre = nombre;
     }
 
+    public String getIdentificador()
+    {
+        return identificador;
+    }
+
     public void setIdentificador(String identificador)
     {
         this.identificador = identificador;
     }
 
+    public Tienda getTiendaActual()
+    {
+        return tiendaActual;
+    }
+
     public void setTiendaActual(Tienda tiendaActual)
     {
         this.tiendaActual = tiendaActual;
+    }
+
+    @Override
+    public double getPrecio()
+    {
+        return precio;
     }
 
     public void setPrecio(double precio)
@@ -66,19 +68,13 @@ public class ArticuloSencillo implements Articulo
     @Override
     public String toString()
     {
-        return descripcion() + " Precio: $" + precio;
+        return getDescripcion() + " Precio: $" + precio;
     }
 
     @Override
-    public String descripcion()
+    public String getDescripcion()
     {
-        return "Articulo sencillo: " + nombre;
-    }
-
-    @Override
-    public double precio()
-    {
-        return precio;
+        return "Artículo sencillo";
     }
 
 }

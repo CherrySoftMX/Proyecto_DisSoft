@@ -7,8 +7,10 @@ package com.modelo.decorator;
 public interface Articulo
 {
 
-    public String descripcion();
+    public String getNombre();
 
-    public double precio();
+    public String getDescripcion();
+
+    public double getPrecio();
 
 }

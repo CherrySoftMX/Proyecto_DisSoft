@@ -1,9 +1,9 @@
-package com.controladores;
+package com.controladores.sonbear;
 
 import com.modelo.Cliente;
 import com.modelo.decorator.Articulo;
 import com.modelo.tienda.Tienda;
-import com.vista.MenuTienda;
+import com.vista.sonbear.MenuTienda;
 import java.awt.event.ActionEvent;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -45,7 +45,6 @@ public class ControllerTienda
         menu.getBtnComprar().addActionListener(this::handleComprar);
         menu.getBtnSelectCliente().addActionListener(this::handleSeleccionarCliente);
         menu.getBtnSalir().addActionListener(this::handleSalir);
-
     }
 
     public void iniciarListaArticulos()

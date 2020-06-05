@@ -1,8 +1,8 @@
-package com.controladores;
+package com.controladores.sonbear;
 
 import com.modelo.Cliente;
 import com.modelo.decorator.Articulo;
-import com.vista.MenuCarrito;
+import com.vista.sonbear.MenuCarrito;
 import java.awt.event.ActionEvent;
 import java.util.Enumeration;
 import javax.swing.DefaultListModel;
@@ -77,7 +77,7 @@ public class ControllerCarrito
         JList listaCarrito = menu.getListaArticulos();
         Articulo articulo = (Articulo) listaCarrito.getSelectedValue();
         menu.getLabelNombre().setText("Nombre: " + articulo.toString());
-        menu.getLabelDesc().setText("Descripcion: " + articulo.descripcion());
+        menu.getLabelDesc().setText("Descripcion: " + articulo.getDescripcion());
     }
 
     private void eliminar()

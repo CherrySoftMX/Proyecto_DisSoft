@@ -1,8 +1,8 @@
-package com.controladores;
+package com.controladores.sonbear;
 
 import com.modelo.Cliente;
 import com.modelo.decorator.Articulo;
-import com.vista.MenuPago;
+import com.vista.sonbear.MenuPago;
 import java.awt.event.ActionEvent;
 import java.util.Enumeration;
 import java.util.List;
@@ -46,7 +46,7 @@ public class ControllerPago
         List<Articulo> listaArticulos = cliente.getCarritoCompras().getArticulos();
 
         for (int i = 0; i < listaArticulos.size(); i++)
-            total += listaArticulos.get(i).precio();
+            total += listaArticulos.get(i).getPrecio();
 
         menu.getLabelTotal().setText("$ " + total);
     }

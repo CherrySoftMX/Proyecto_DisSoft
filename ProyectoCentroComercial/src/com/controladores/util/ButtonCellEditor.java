@@ -1,6 +1,6 @@
-package com.controladores;
+package com.controladores.util;
 
-import com.vista2.UIConstants;
+import com.vista.UIConstants;
 import java.awt.Component;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
