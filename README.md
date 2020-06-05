@@ -54,9 +54,9 @@ Add additional notes about how to deploy this on a live system
 
 ## Authors
 
-* **Emmanue Chable** - *Initial work* - [PurpleBooth](https://github.com/SonBear)
-* **Nicólas Ibarra** - ** - [PurpleBooth](https://github.com/HikingCarrot7)
-* **Eusebio Ajas** - *Initial work* - [PurpleBooth](https://github.com/EusebioAjas)
+* **Emmanue Chable** - *Initial work* - [SonBear](https://github.com/SonBear)
+* **Nicólas Ibarra** - *full* - [HikingCarrot7](https://github.com/HikingCarrot7)
+* **Eusebio Ajas** - *full* - [EusebioAjas](https://github.com/EusebioAjas)
 
 See also the list of [contributors](https://github.com/SonBear/Proyecto_DisSoft/graphs/contributors) who participated in this project.
 
