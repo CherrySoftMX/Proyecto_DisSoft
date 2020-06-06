@@ -42,6 +42,7 @@ public class CarritoCompras extends Observado
         notificar(estado.manejar());
     }
 
+    /*Metodos creado para mejorar el patron estado*/
     public Articulo getArticulo(int idx)
     {
         return articulos.get(idx);
@@ -51,6 +52,7 @@ public class CarritoCompras extends Observado
     {
         return articulos;
     }
+    //Metodos del profe :v
 
     public Enumeration<Articulo> listarArticulos()
     {
@@ -76,7 +78,7 @@ public class CarritoCompras extends Observado
 
     public boolean estaVacio()
     {
-        return getArticulos().isEmpty();
+        return estado.manejar() == CarritoEstado.ESTADO_VACIO;
     }
 
 }
