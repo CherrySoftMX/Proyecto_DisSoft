@@ -18,10 +18,10 @@ import java.util.List;
 public class CarritoCompras extends Observado
 {
 
-    public static final int MAX_CAPACIDAD = 3;
+    public static final int MAX_CAPACIDAD = 20;
 
     private final List<Articulo> articulos;
-    //Este es el contexto deonde utilizaremos los estados
+    //Este es el contexto donde utilizaremos los estados.
     private CarritoEstado estado;
 
     public CarritoCompras()

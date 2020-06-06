@@ -36,6 +36,11 @@ public abstract class Tienda extends Observado
         return nombre;
     }
 
+    public Articulo getArticulo(int idx)
+    {
+        return articulos.get(idx);
+    }
+
     public List<Articulo> getArticulos()
     {
         return articulos;

@@ -10,12 +10,12 @@ import com.controladores.util.TableManager;
 import com.modelo.CarritoCompras;
 import com.modelo.Cliente;
 import com.modelo.decorator.Articulo;
+import com.modelo.decorator.PaqueteArticulo;
 import com.modelo.estado.CarritoEstado;
 import com.modelo.tienda.Tienda;
 import com.vista.MenuCarrito;
 import com.vista.MenuTienda;
 import com.vista.UIConstants;
-import static com.vista.UIConstants.DEFAULT_ROW_ICON;
 import java.awt.event.ActionEvent;
 import java.util.Enumeration;
 import java.util.List;
@@ -35,14 +35,14 @@ public class TiendaController implements UIConstants
 
     private final int BOTON_TABLA_ARTICULOS = 2;
 
-    private final MenuTienda vistaTienda;
+    private final MenuTienda menuTienda;
     private final Tienda tienda;
     private final Cliente cliente;
     private final TableManager tableManager;
 
     public TiendaController(MenuTienda vistaTienda, Cliente cliente, Tienda tienda)
     {
-        this.vistaTienda = vistaTienda;
+        this.menuTienda = vistaTienda;
         this.cliente = cliente;
         this.tienda = tienda;
         this.tableManager = TableManager.getInstance();
@@ -54,10 +54,10 @@ public class TiendaController implements UIConstants
     //<editor-fold defaultstate="collapsed" desc=" initComponents ">
     private void initComponents()
     {
-        vistaTienda.getBtnDetallesCarrito().addActionListener(this::accionBtnDetallesCarrito);
-        vistaTienda.getBtnComprarAhora().addActionListener(this::accionBtnComprarAhora);
-        vistaTienda.getBtnSalir().addActionListener(this::accionBtnSalir);
-        vistaTienda.getLblNombreTienda().setText(tienda.getNombre());
+        menuTienda.getBtnDetallesCarrito().addActionListener(this::accionBtnDetallesCarrito);
+        menuTienda.getBtnComprarAhora().addActionListener(this::accionBtnComprarAhora);
+        menuTienda.getBtnSalir().addActionListener(this::accionBtnSalir);
+        menuTienda.getLblNombreTienda().setText(tienda.getNombre());
         initTablas();
         initPopupMenus();
         // El cliente no puede mover artículos ni comprar nada si entra sin carrito.
@@ -67,7 +67,7 @@ public class TiendaController implements UIConstants
     private void initTablas()
     {
         // Iniciamos la tabla que muestra los artículos
-        JTable tabla = vistaTienda.getTablaArticulos();
+        JTable tabla = menuTienda.getTablaArticulos();
         tabla.getModel().addTableModelListener(this::clicEnTablaArticulos);
         tableManager.initTabla(tabla);
         tableManager.initTableSelectionBehavior(tabla, DEFAULT_FOCUS_LOST_BEHAVIOR);
@@ -83,7 +83,7 @@ public class TiendaController implements UIConstants
         tabla.getColumnModel().getColumn(BOTON_TABLA_ARTICULOS).setCellEditor(new ButtonCellEditor());
 
         // Inicializamos la tabla que muestra el carrito del cliente actual.
-        tabla = vistaTienda.getTablaCarrito();
+        tabla = menuTienda.getTablaCarrito();
         tableManager.initTabla(tabla);
         tableManager.initTableSelectionBehavior(tabla, DEFAULT_FOCUS_LOST_BEHAVIOR);
     }
@@ -91,11 +91,10 @@ public class TiendaController implements UIConstants
     private void initPopupMenus()
     {
         // Inicializamos el popupmenu de la tabla de los artículos de la tienda.
-        final JTable tablaArticulos = vistaTienda.getTablaArticulos();
+        final JTable tablaArticulos = menuTienda.getTablaArticulos();
         JPopupMenu popupMenuTablaArticulos = new JPopupMenu();
 
-        popupMenuTablaArticulos.add(new JMenuItem(new AccionEmergente("Añadir al carrito", CARRITO_ICON, e
-                -> anadirArticuloAlCarrito(tienda.getArticulos().get(tablaArticulos.getSelectedRow())))));
+        popupMenuTablaArticulos.add(new JMenuItem(new AccionEmergente("Añadir al carrito", CARRITO_ICON, this::accionPopupMenuAnadirAlCarrito)));
 
         JMenuItem paqueteMenuItem = new JMenuItem(new AccionEmergente("Ver detalles del paquete", PAQUETE_ICON, null));
         popupMenuTablaArticulos.add(paqueteMenuItem);
@@ -106,7 +105,7 @@ public class TiendaController implements UIConstants
             {
                 int rowClicked = tableManager.getRowClicked(tablaArticulos, tablaArticulos.getMousePosition().getY());
                 tableManager.selecionarFila(tablaArticulos, rowClicked);
-                paqueteMenuItem.setEnabled(false);
+                paqueteMenuItem.setEnabled(tienda.getArticulo(rowClicked) instanceof PaqueteArticulo);
             }
         });
 
@@ -114,11 +113,10 @@ public class TiendaController implements UIConstants
         tablaArticulos.setComponentPopupMenu(popupMenuTablaArticulos);
 
         // Inicializamos el popupmenu de la tabla de los artículos contenidos en el carrito.
-        final JTable tablaCarrito = vistaTienda.getTablaCarrito();
+        final JTable tablaCarrito = menuTienda.getTablaCarrito();
         JPopupMenu popupMenuTablaCarrito = new JPopupMenu();
 
-        popupMenuTablaCarrito.add(new JMenuItem(new AccionEmergente("Eliminar del carrito", DELETE_ICON, e
-                -> eliminarArticuloDelCarrito(cliente.getCarritoCompras().getArticulo(tablaCarrito.getSelectedRow())))));
+        popupMenuTablaCarrito.add(new JMenuItem(new AccionEmergente("Eliminar del carrito", DELETE_ICON, this::accionPopupMenuEliminarDelCarrito)));
 
         popupMenuTablaCarrito.addPopupMenuListener(new PopupMenuAdapter()
         {
@@ -136,7 +134,7 @@ public class TiendaController implements UIConstants
 
     private void initListaArticulos()
     {
-        JTable tabla = vistaTienda.getTablaArticulos();
+        JTable tabla = menuTienda.getTablaArticulos();
         Enumeration<Articulo> articulos = tienda.listarArticulos();
 
         while (articulos.hasMoreElements())
@@ -152,6 +150,7 @@ public class TiendaController implements UIConstants
     private void initListaCarrito()
     {
         CarritoCompras carritoCompras = cliente.getCarritoCompras();
+        tableManager.vaciarTabla(menuTienda.getTablaCarrito());
 
         if (carritoCompras != null)
         {
@@ -171,12 +170,13 @@ public class TiendaController implements UIConstants
 
         if (!carritoActual.estaVacio())
         {
-            MenuCarrito menuCarrito = new MenuCarrito(vistaTienda);
-            new CarritoController(menuCarrito, cliente.getCarritoCompras());
-            DialogUtils.showDialogAndWait(vistaTienda, menuCarrito);
+            MenuCarrito menuCarrito = new MenuCarrito(menuTienda);
+            new CarritoController(menuCarrito, cliente);
+            DialogUtils.showDialogAndWait(menuTienda, menuCarrito);
+            initListaCarrito();
 
         } else
-            Alerta.mostrarError(vistaTienda, "Tu carrito está vacío.");
+            Alerta.mostrarError(menuTienda, "Tu carrito está vacío.");
     }
 
     private void accionBtnComprarAhora(ActionEvent e)
@@ -198,12 +198,34 @@ public class TiendaController implements UIConstants
                 anadirArticuloAlCarrito(articuloSeleccionado);
 
             } else
-                Alerta.mostrarError(vistaTienda, "El carrito ya está lleno.");
+                Alerta.mostrarError(menuTienda, "El carrito ya está lleno.");
+    }
+
+    /**
+     * Se ha presionado la opción "añadir al carrito" en el popup menú de la tabla de artículos.
+     *
+     * @param e
+     */
+    private void accionPopupMenuAnadirAlCarrito(ActionEvent e)
+    {
+        JTable tablaArticulos = menuTienda.getTablaArticulos();
+        anadirArticuloAlCarrito(tienda.getArticulos().get(tablaArticulos.getSelectedRow()));
+    }
+
+    /**
+     * Se ha presionado la opción "eliminar del carrito" en el popup menú de la tabla de artículos del carrito.
+     *
+     * @param e
+     */
+    private void accionPopupMenuEliminarDelCarrito(ActionEvent e)
+    {
+        JTable tablaCarrito = menuTienda.getTablaCarrito();
+        eliminarArticuloDelCarrito(cliente.getCarritoCompras().getArticulo(tablaCarrito.getSelectedRow()));
     }
 
     private void accionBtnSalir(ActionEvent e)
     {
-        DialogUtils.quitarDialog(vistaTienda);
+        DialogUtils.quitarDialog(menuTienda);
     }
 
     private void anadirArticuloAlCarrito(Articulo articulo)
@@ -215,13 +237,13 @@ public class TiendaController implements UIConstants
     private void eliminarArticuloDelCarrito(Articulo articulo)
     {
         List<Articulo> articulos = cliente.getCarritoCompras().getArticulos();
-        tableManager.eliminarFila(vistaTienda.getTablaCarrito(), articulos.indexOf(articulo));
+        tableManager.eliminarFila(menuTienda.getTablaCarrito(), articulos.indexOf(articulo));
         cliente.getCarritoCompras().eliminarArticulo(articulo);
     }
 
     private void anadirArticuloATablaCarrito(Articulo articulo)
     {
-        tableManager.addFila(vistaTienda.getTablaCarrito(), new Object[]
+        tableManager.addFila(menuTienda.getTablaCarrito(), new Object[]
         {
             articulo, String.format("$%,.2f", articulo.getPrecio())
         });
@@ -234,11 +256,11 @@ public class TiendaController implements UIConstants
      */
     private void habilitarAccionesEnTienda(boolean habilitar)
     {
-        SwingUtils.setPanelEnabled(vistaTienda.getPanelListaArticulos(), habilitar);
-        SwingUtils.setPanelEnabled(vistaTienda.getPanelTablaCarrito(), habilitar);
-        vistaTienda.getTablaArticulos().setEnabled(habilitar);
-        vistaTienda.getTablaCarrito().setEnabled(habilitar);
-        vistaTienda.getBtnComprarAhora().setEnabled(habilitar);
+        SwingUtils.setPanelEnabled(menuTienda.getPanelListaArticulos(), habilitar);
+        SwingUtils.setPanelEnabled(menuTienda.getPanelTablaCarrito(), habilitar);
+        menuTienda.getTablaArticulos().setEnabled(habilitar);
+        menuTienda.getTablaCarrito().setEnabled(habilitar);
+        menuTienda.getBtnComprarAhora().setEnabled(habilitar);
     }
 
 }

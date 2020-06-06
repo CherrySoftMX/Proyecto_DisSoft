@@ -1,6 +1,5 @@
 package com.modelo;
 
-import com.modelo.estado.CarritoCancelado;
 import com.modelo.iterator.FactoryEnumeration;
 import com.modelo.tienda.Tienda;
 import java.util.ArrayList;
@@ -21,8 +20,8 @@ public class CentroComercial
     public CentroComercial(String nombre)
     {
         this.nombre = nombre;
-        tiendas = new ArrayList<>();
-        clientes = new ArrayList<>();
+        this.tiendas = new ArrayList<>();
+        this.clientes = new ArrayList<>();
     }
 
     public void entrar(Cliente cliente)
@@ -57,10 +56,7 @@ public class CentroComercial
 
     public void addTienda(Tienda tienda)
     {
-        //Cada vez que una tienda se agrega entonces a esa misma tienda le añadimos los observadores
-        for (int i = 0; i < clientes.size(); i++)
-            tienda.anadirObservador(clientes.get(i));
-
+        clientes.forEach(tienda::anadirObservador);
         tiendas.add(tienda);
     }
 
@@ -69,9 +65,4 @@ public class CentroComercial
         return clientes;
     }
 
-    public String pagar(CarritoCompras carritoCompras)
-    {
-        carritoCompras.setEstado(new CarritoCancelado());
-        return "El carrito ha sido pagado";
-    }
 }

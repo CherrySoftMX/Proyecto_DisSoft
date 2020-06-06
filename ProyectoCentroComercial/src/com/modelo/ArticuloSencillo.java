@@ -12,14 +12,14 @@ public class ArticuloSencillo implements Articulo
 
     private String nombre;
     private String identificador;
-    private Tienda tiendaActual;
+    private Tienda tienda;
     private double precio;
 
-    public ArticuloSencillo(String nombre, String identificador, Tienda tiendaActual, double precio)
+    public ArticuloSencillo(String nombre, String identificador, Tienda tienda, double precio)
     {
         this.nombre = nombre;
         this.identificador = identificador;
-        this.tiendaActual = tiendaActual;
+        this.tienda = tienda;
         this.precio = precio;
     }
 
@@ -46,12 +46,12 @@ public class ArticuloSencillo implements Articulo
 
     public Tienda getTiendaActual()
     {
-        return tiendaActual;
+        return tienda;
     }
 
     public void setTiendaActual(Tienda tiendaActual)
     {
-        this.tiendaActual = tiendaActual;
+        this.tienda = tiendaActual;
     }
 
     @Override
@@ -68,7 +68,7 @@ public class ArticuloSencillo implements Articulo
     @Override
     public String toString()
     {
-        return getDescripcion() + " Precio: $" + precio;
+        return String.format("%s: %s: Precio: $%,.2f", getNombre(), getDescripcion(), getPrecio());
     }
 
     @Override

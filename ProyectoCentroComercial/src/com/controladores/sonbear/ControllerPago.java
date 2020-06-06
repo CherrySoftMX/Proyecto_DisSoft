@@ -37,7 +37,7 @@ public class ControllerPago
 
     public void handleRealizarCompra(ActionEvent e)
     {
-        menu.mensaje(cliente.pagarCarrito());
+        //menu.mensaje(cliente.pagarCarrito());
     }
 
     private void setTotal()

@@ -55,7 +55,7 @@ public class ControllerMenu
     {
         if (tiendaActual != null && contTienda == null)
         {
-            clienteActual.setTiendaActual(tiendaActual);
+            //clienteActual.setTiendaActual(tiendaActual);
             tiendaActual.entrar(clienteActual);
 
             contTienda = new ControllerTienda(tiendaActual);
@@ -65,7 +65,7 @@ public class ControllerMenu
         } else
         {
             tiendaActual.entrar(clienteActual);
-            clienteActual.setTiendaActual(tiendaActual);
+            //clienteActual.setTiendaActual(tiendaActual);
             contTienda.setTienda(tiendaActual);
             contTienda.setClienteActual(clienteActual);
 
