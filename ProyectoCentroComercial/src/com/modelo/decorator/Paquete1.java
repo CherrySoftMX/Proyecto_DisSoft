@@ -18,20 +18,15 @@ public class Paquete1 extends PaqueteArticulo
     }
 
     @Override
-    public String descripcion()
+    public String getNombre()
     {
-        return "Articulos: " + getArticulos().toString();
+        return "Paquete 1";
     }
 
-    private double sumar()
+    @Override
+    public String getDescripcion()
     {
-        List<Articulo> ar = getArticulos();
-        double total = 0;
-
-        for (int i = 0; i < ar.size(); i++)
-            total += ar.get(i).precio();
-
-        return total;
+        return "Articulos: " + getArticulos().toString();
     }
 
     /**
@@ -40,16 +35,16 @@ public class Paquete1 extends PaqueteArticulo
      * @return
      */
     @Override
-    public double precio()
+    public double getPrecio()
     {
-        double suma = sumar();
-        return suma - (descuento * suma);
+        double precioTotal = getPrecioTotal();
+        return precioTotal - (descuento * precioTotal);
     }
 
     @Override
     public String toString()
     {
-        return "Paquete1{" + descripcion() + "TOTAL: " + precio();
+        return "Paquete1{" + getDescripcion() + "TOTAL: " + getPrecio();
     }
 
 }

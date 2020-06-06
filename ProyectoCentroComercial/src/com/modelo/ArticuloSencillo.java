@@ -12,35 +12,21 @@ public class ArticuloSencillo implements Articulo
 
     private String nombre;
     private String identificador;
-    private Tienda tiendaActual;
+    private Tienda tienda;
     private double precio;
 
-    public ArticuloSencillo(String nombre, String identificador, Tienda tiendaActual, double precio)
+    public ArticuloSencillo(String nombre, String identificador, Tienda tienda, double precio)
     {
         this.nombre = nombre;
         this.identificador = identificador;
-        this.tiendaActual = tiendaActual;
+        this.tienda = tienda;
         this.precio = precio;
     }
 
+    @Override
     public String getNombre()
     {
         return nombre;
-    }
-
-    public String getIdentificador()
-    {
-        return identificador;
-    }
-
-    public Tienda getTiendaActual()
-    {
-        return tiendaActual;
-    }
-
-    public double getPrecio()
-    {
-        return precio;
     }
 
     public void setNombre(String nombre)
@@ -48,14 +34,30 @@ public class ArticuloSencillo implements Articulo
         this.nombre = nombre;
     }
 
+    public String getIdentificador()
+    {
+        return identificador;
+    }
+
     public void setIdentificador(String identificador)
     {
         this.identificador = identificador;
     }
 
+    public Tienda getTiendaActual()
+    {
+        return tienda;
+    }
+
     public void setTiendaActual(Tienda tiendaActual)
     {
-        this.tiendaActual = tiendaActual;
+        this.tienda = tiendaActual;
+    }
+
+    @Override
+    public double getPrecio()
+    {
+        return precio;
     }
 
     public void setPrecio(double precio)
@@ -66,19 +68,13 @@ public class ArticuloSencillo implements Articulo
     @Override
     public String toString()
     {
-        return descripcion() + " Precio: $" + precio;
+        return String.format("%s: %s: Precio: $%,.2f", getNombre(), getDescripcion(), getPrecio());
     }
 
     @Override
-    public String descripcion()
+    public String getDescripcion()
     {
-        return "Articulo sencillo: " + nombre;
-    }
-
-    @Override
-    public double precio()
-    {
-        return precio;
+        return "Artículo sencillo";
     }
 
 }

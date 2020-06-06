@@ -1,6 +1,5 @@
 package com.modelo;
 
-import com.modelo.estado.CarritoCancelado;
 import com.modelo.observer.Observador;
 import com.modelo.tienda.Tienda;
 
@@ -12,25 +11,13 @@ public class Cliente implements Observador
 {
 
     private String nombre;
-    private String notificacion;
     private CarritoCompras carritoCompras;
     private Tienda tiendaActual;
 
-    public Cliente(String nombre, CarritoCompras carritoCompras, Tienda tiendaActual)
+    public Cliente(String nombre, CarritoCompras carritoCompras)
     {
         this.nombre = nombre;
         this.carritoCompras = carritoCompras;
-        this.tiendaActual = tiendaActual;
-    }
-
-    /**
-     * Esta es mi propuesta, que cada cliente pueda pagar su carrito
-     */
-    public String pagarCarrito()
-    {
-        //Se cancela el carrito, ya que fue pagado
-        carritoCompras.setEstado(new CarritoCancelado());
-        return "El cliente ha pagado por sus articulos";
     }
 
     public String getNombre()
@@ -43,11 +30,6 @@ public class Cliente implements Observador
         return carritoCompras;
     }
 
-    public Tienda getTiendaActual()
-    {
-        return tiendaActual;
-    }
-
     public void setNombre(String nombre)
     {
         this.nombre = nombre;
@@ -56,6 +38,11 @@ public class Cliente implements Observador
     public void setCarritoCompras(CarritoCompras carritoCompras)
     {
         this.carritoCompras = carritoCompras;
+    }
+
+    public Tienda getTiendaActual()
+    {
+        return tiendaActual;
     }
 
     public void setTiendaActual(Tienda tiendaActual)
@@ -69,16 +56,10 @@ public class Cliente implements Observador
         return "Cliente = " + "nombre: " + nombre;
     }
 
-    public String getNotificacion()
-    {
-        return notificacion;
-    }
-
     @Override
     public void actualizar(Object item)
     {
-        notificacion = "Nuevo articulo en tienda" + tiendaActual;
-
+        //System.out.println(nombre + ": Hay un nuevo artículo en la tienda: " + item);
     }
 
 }

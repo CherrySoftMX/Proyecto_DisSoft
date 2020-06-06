@@ -16,6 +16,17 @@ public abstract class PaqueteArticulo implements Articulo
         this.articulos = articulos;
     }
 
+    public double getPrecioTotal()
+    {
+        List<Articulo> articulos = getArticulos();
+        double total = 0;
+
+        for (Articulo articulo : articulos)
+            total += articulo.getPrecio();
+
+        return total;
+    }
+
     public List<Articulo> getArticulos()
     {
         return articulos;

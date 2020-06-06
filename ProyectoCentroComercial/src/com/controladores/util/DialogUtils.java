@@ -1,4 +1,4 @@
-package com.controladores;
+package com.controladores.util;
 
 import java.awt.Dialog;
 import java.awt.Window;

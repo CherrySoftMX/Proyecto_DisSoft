@@ -36,6 +36,11 @@ public abstract class Tienda extends Observado
         return nombre;
     }
 
+    public Articulo getArticulo(int idx)
+    {
+        return articulos.get(idx);
+    }
+
     public List<Articulo> getArticulos()
     {
         return articulos;
@@ -58,14 +63,12 @@ public abstract class Tienda extends Observado
 
     public Enumeration<Cliente> listarClientes()
     {
-        Enumeration<Cliente> enumeration = FactoryEnumeration.enumeration(clientes);
-        return enumeration;
+        return FactoryEnumeration.enumeration(clientes);
     }
 
     public Enumeration<Articulo> listarArticulos()
     {
-        Enumeration<Articulo> enumeration = FactoryEnumeration.enumeration(articulos);
-        return enumeration;
+        return FactoryEnumeration.enumeration(articulos);
     }
 
     public void agregarAlCarrito(CarritoCompras carrito, Articulo articulo)

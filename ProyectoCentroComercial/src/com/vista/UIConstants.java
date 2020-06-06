@@ -1,10 +1,14 @@
-package com.vista2;
+package com.vista;
 
 import com.modelo.Cliente;
+import com.modelo.decorator.Articulo;
+import com.modelo.decorator.PaqueteArticulo;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusListener;
 import java.util.EventObject;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultCellEditor;
@@ -48,11 +52,16 @@ public interface UIConstants
     public Icon SHADIC = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/shadic.png"));
     public Icon MOHAMMED = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/mohammed.jpg"));
 
-    public ImageIcon CARRITO_USADO = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/CarritoUsado.png"));
-    public ImageIcon CARRITO_LLENO = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/CarritoLleno.png"));
-    public ImageIcon CARRITO_VACIO = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/CarritoVacio.png"));
-    public ImageIcon CARRITO_CANCELADO = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/CarritoCancelado.png"));
-    public ImageIcon CARRITO_NO_EXISTENTE = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/Carrito_no_existente.png"));
+    public Icon CARRITO_ICON = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/carrito_icon.png"));
+    public Icon DELETE_ICON = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/delete.png"));
+    public Icon PAQUETE_ICON = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/box.png"));
+    public Icon ARTICULO_ICON = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/articulo_icon.png"));
+
+    public Icon CARRITO_USADO = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/CarritoUsado.png"));
+    public Icon CARRITO_LLENO = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/CarritoLleno.png"));
+    public Icon CARRITO_VACIO = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/CarritoVacio.png"));
+    public Icon CARRITO_CANCELADO = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/CarritoCancelado.png"));
+    public Icon CARRITO_NO_EXISTENTE = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/Carrito_no_existente.png"));
 
     public TableCellRenderer MY_TABLE_HEADER_RENDERER = (table, value, isSelected, hasFocus, row, column) ->
     {
@@ -109,6 +118,11 @@ public interface UIConstants
         }
     };
 
+    public FocusListener DEFAULT_FOCUS_LOST_BEHAVIOR = new FocusAdapter()
+    {
+
+    };
+
     public TableCellEditor TABLA_NO_EDITABLE = new TableCellEditor()
     {
 
@@ -163,19 +177,47 @@ public interface UIConstants
         return label;
     };
 
+    public TableCellRenderer ARTICULO_COLUMNA_RENDERER = (table, value, isSelected, hasFocus, row, column) ->
+    {
+        final Color BACKGROUND_COLOR = new Color(200, 228, 235);
+        final Color SELECTED_BACKGROUND_COLOR = BACKGROUND_COLOR.darker();
+        Articulo articulo = (Articulo) value;
+
+        JLabel label = new JLabel(articulo.getNombre());
+        label.setIcon(articulo instanceof PaqueteArticulo ? PAQUETE_ICON : ARTICULO_ICON);
+        label.setHorizontalAlignment(SwingConstants.LEFT);
+        label.setFont(new Font("Tahoma", Font.PLAIN, 13));
+        label.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 1, Color.WHITE));
+        label.setOpaque(true);
+
+        if (!isSelected)
+        {
+            label.setBackground(row % 2 == 0 ? BACKGROUND_COLOR : Color.WHITE);
+            label.setForeground(Color.BLACK);
+
+        } else
+        {
+            label.setBackground(SELECTED_BACKGROUND_COLOR);
+            label.setForeground(Color.WHITE);
+        }
+
+        return label;
+    };
+
     public ListCellRenderer<Cliente> LISTA_CLIENTES_RENDERER = (list, value, index, isSelected, cellHasFocus) ->
     {
         JLabel label = new JLabel(value.getNombre());
 
+        String nombre = value.getNombre().toLowerCase();
         Icon icon;
 
-        if (value.getNombre().toLowerCase().contains("eusebio"))
+        if (nombre.contains("eusebio"))
             icon = AJAX;
-        else if (value.getNombre().toLowerCase().contains("emmanuel"))
+        else if (nombre.contains("emmanuel"))
             icon = SONBEAR;
-        else if (value.getNombre().toLowerCase().contains("carlos"))
+        else if (nombre.contains("carlos"))
             icon = SHADIC;
-        else if (value.getNombre().toLowerCase().contains("nicolás"))
+        else if (nombre.contains("nicolás"))
             icon = MOHAMMED;
         else
             icon = CLIENTE_ICON;

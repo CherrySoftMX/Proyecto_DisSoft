@@ -1,11 +1,11 @@
-package com.controladores;
+package com.controladores.sonbear;
 
 import com.modelo.CarritoCompras;
 import com.modelo.CentroComercial;
 import com.modelo.Cliente;
 import com.modelo.tienda.Tienda;
-import com.vista.DibujadorCarrito;
-import com.vista.Menu;
+import com.vista.sonbear.DibujadorCarrito;
+import com.vista.sonbear.Menu;
 import java.awt.event.ActionEvent;
 import java.util.Enumeration;
 import javax.swing.DefaultListModel;
@@ -55,7 +55,7 @@ public class ControllerMenu
     {
         if (tiendaActual != null && contTienda == null)
         {
-            clienteActual.setTiendaActual(tiendaActual);
+            //clienteActual.setTiendaActual(tiendaActual);
             tiendaActual.entrar(clienteActual);
 
             contTienda = new ControllerTienda(tiendaActual);
@@ -65,7 +65,7 @@ public class ControllerMenu
         } else
         {
             tiendaActual.entrar(clienteActual);
-            clienteActual.setTiendaActual(tiendaActual);
+            //clienteActual.setTiendaActual(tiendaActual);
             contTienda.setTienda(tiendaActual);
             contTienda.setClienteActual(clienteActual);
 

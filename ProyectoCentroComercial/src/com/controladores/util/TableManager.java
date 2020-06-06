@@ -1,6 +1,6 @@
-package com.controladores;
+package com.controladores.util;
 
-import com.vista2.UIConstants;
+import com.vista.UIConstants;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -121,6 +121,12 @@ public class TableManager implements UIConstants
             tableModel.addRow(filas[i]);
     }
 
+    public void eliminarFila(JTable table, int idxFila)
+    {
+        DefaultTableModel tableModel = getDefaultTableModel(table);
+        tableModel.removeRow(idxFila);
+    }
+
     public void vaciarTabla(JTable table)
     {
         DefaultTableModel tableModel = getDefaultTableModel(table);
@@ -160,6 +166,24 @@ public class TableManager implements UIConstants
     public int getRowClicked(JTable table, double y)
     {
         return (int) (y / table.getRowHeight());
+    }
+
+    private Object[][] getTableData(JTable table)
+    {
+        Object[][] items = new Object[table.getRowCount()][table.getColumnCount()];
+
+        for (int i = 0; i < items.length; i++)
+            for (int j = 0; j < items[i].length; j++)
+                items[i][j] = table.getValueAt(i, j);
+
+        return items;
+    }
+
+    public void setTableItems(JTable table, Object[][] items)
+    {
+        for (int i = 0; i < items.length; i++)
+            for (int j = 0; j < items[i].length; j++)
+                table.setValueAt(items[i][j], i, j);
     }
 
     public void limpiarSeleccion(JTable table)

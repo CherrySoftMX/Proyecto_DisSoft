@@ -1,13 +1,19 @@
 package com.controladores;
 
+import com.controladores.util.SwingUtils;
+import com.controladores.util.Alerta;
+import com.controladores.util.ButtonCellEditor;
+import com.controladores.util.DialogUtils;
+import com.controladores.util.TableManager;
+import com.controladores.util.ListManager;
 import com.modelo.CarritoCompras;
 import com.modelo.CentroComercial;
 import com.modelo.Cliente;
 import com.modelo.tienda.Tienda;
-import com.vista2.DibujadorCarrito;
-import com.vista2.Menu;
-import com.vista2.MenuTienda;
-import com.vista2.UIConstants;
+import com.vista.DibujadorCarrito;
+import com.vista.Menu;
+import com.vista.MenuTienda;
+import com.vista.UIConstants;
 import java.awt.event.ActionEvent;
 import java.util.Enumeration;
 import java.util.function.Consumer;
@@ -16,13 +22,12 @@ import javax.swing.JList;
 import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 
 /**
  *
  * @author HikingCarrot7
  */
-public class MenuController implements UIConstants, TableModelListener
+public class MenuController implements UIConstants
 {
 
     private final int BOTON_TABLA_TIENDAS = 1;
@@ -30,7 +35,7 @@ public class MenuController implements UIConstants, TableModelListener
     private final Menu vistaMenu;
     private final CentroComercial centroComercial;
     private final ListManager listManager;
-    private final TableManager tableManger;
+    private final TableManager tableManager;
     private final DibujadorCarrito dibujadorCarrito;
 
     public MenuController(Menu vistaMenu, CentroComercial centroComercial)
@@ -38,7 +43,7 @@ public class MenuController implements UIConstants, TableModelListener
         this.vistaMenu = vistaMenu;
         this.centroComercial = centroComercial;
         this.listManager = ListManager.getInstance();
-        this.tableManger = TableManager.getInstance();
+        this.tableManager = TableManager.getInstance();
         this.dibujadorCarrito = new DibujadorCarrito(vistaMenu.getLblCarrito());
         initComponents();
         iniciarListaClientes();
@@ -60,12 +65,12 @@ public class MenuController implements UIConstants, TableModelListener
 
         // Iniciamos la tabla que muestra las tiendas.
         JTable tabla = vistaMenu.getTablaTiendas();
-        tabla.getModel().addTableModelListener(this);
-        tableManger.initTabla(tabla);
-        tableManger.initTableSelectionBehavior(tabla);
-        tableManger.quitarCabeceraTabla(tabla);
+        tabla.getModel().addTableModelListener(this::clicEnTablaTiendas);
+        tableManager.initTabla(tabla);
+        tableManager.initTableSelectionBehavior(tabla);
+        tableManager.quitarCabeceraTabla(tabla);
 
-        // Para mostrar los botones en la tabla.
+        // Para mostrar los botones en la tabla de la tiendas.
         tabla.getColumnModel().getColumn(BOTON_TABLA_TIENDAS).setCellRenderer((table, value, isSelected, hasFocus, row, column) ->
         {
             JButton button = new JButton(DEFAULT_ROW_ICON);
@@ -74,7 +79,6 @@ public class MenuController implements UIConstants, TableModelListener
         });
 
         tabla.getColumnModel().getColumn(BOTON_TABLA_TIENDAS).setCellEditor(new ButtonCellEditor());
-        tabla.putClientProperty("terminateEditOnFocusLost", true);
 
         // Deshabilitamos el panel para seleccionar el carrito y la tabla de las tiendas (aún no hay ningún cliente seleccionado).
         habilitarPanelesSecundarios(false);
@@ -96,12 +100,12 @@ public class MenuController implements UIConstants, TableModelListener
     {
         JTable tabla = vistaMenu.getTablaTiendas();
         Enumeration<Tienda> tiendas = centroComercial.listarTiendas();
-        tableManger.vaciarTabla(tabla);
+        tableManager.vaciarTabla(tabla);
 
         while (tiendas.hasMoreElements())
         {
             Tienda tienda = tiendas.nextElement();
-            tableManger.addFila(tabla, new Object[]
+            tableManager.addFila(tabla, new Object[]
             {
                 tienda.getNombre()
             });
@@ -117,8 +121,9 @@ public class MenuController implements UIConstants, TableModelListener
             habilitarPanelesSecundarios(true);
             actualizarClienteSeleccionado("Cliente actual: " + clienteSeleccionado.getNombre());
 
-            CarritoCompras carritoCompras = clienteSeleccionado.getCarritoCompras();
-            dibujadorCarrito.actualizar(carritoCompras != null ? carritoCompras.getEstado() : -1);
+            Cliente clienteActual = getClienteSeleccionado();
+            dibujadorCarrito.actualizar(clienteTieneCarrito(clienteActual)
+                    ? clienteActual.getCarritoCompras().getEstado() : -1);
 
         } else
         {
@@ -167,19 +172,35 @@ public class MenuController implements UIConstants, TableModelListener
      *
      * @param e
      */
-    @Override public void tableChanged(TableModelEvent e)
+    private void clicEnTablaTiendas(TableModelEvent e)
     {
         if (e.getColumn() == BOTON_TABLA_TIENDAS)
         {
-            MenuTienda menuTienda = new MenuTienda(vistaMenu);
+            Cliente clienteActual = getClienteSeleccionado();
 
-            DialogUtils.showDialogAndWait(vistaMenu, menuTienda);
+            Consumer<Object> accionEntrarATienda = object ->
+            {
+                Tienda tiendaSeleccionada = centroComercial.getTiendas().get(e.getFirstRow());
+
+                MenuTienda menuTienda = new MenuTienda(vistaMenu);
+                new TiendaController(menuTienda, clienteActual, tiendaSeleccionada);
+                DialogUtils.showDialogAndWait(vistaMenu, menuTienda);
+            };
+
+            if (!clienteTieneCarrito(clienteActual))
+            {
+                if (Alerta.mostrarConfirmacion(vistaMenu, "No tiene carrito",
+                        "No podrá comprar nada si entra sin carrito. ¿Está seguro?"))
+                    accionEntrarATienda.accept(null);
+
+            } else
+                accionEntrarATienda.accept(null);
         }
     }
 
     private boolean carritoClienteTieneArticulos(Cliente cliente)
     {
-        return cliente.getCarritoCompras() != null && !cliente.getCarritoCompras().estaVacio();
+        return clienteTieneCarrito(cliente) && !cliente.getCarritoCompras().estaVacio();
     }
 
     private void actualizarClienteSeleccionado(String txt)
@@ -187,10 +208,15 @@ public class MenuController implements UIConstants, TableModelListener
         vistaMenu.getLblClienteSeleccionado().setText(txt);
     }
 
+    private boolean clienteTieneCarrito(Cliente cliente)
+    {
+        return cliente.getCarritoCompras() != null;
+    }
+
     /**
      * Consideramos secundarios al panel del carrito y la tabla de las tiendas.
      *
-     * @param habilitar <code>true</code> si quiremos habilitar dichos paneles; false en caso contrario.
+     * @param habilitar <code>true</code> si quiremos habilitar dichos componentes; <code>false</code> en caso contrario.
      */
     private void habilitarPanelesSecundarios(boolean habilitar)
     {

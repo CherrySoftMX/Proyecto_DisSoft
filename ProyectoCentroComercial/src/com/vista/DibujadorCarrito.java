@@ -1,53 +1,48 @@
 package com.vista;
 
-import com.modelo.CarritoCompras;
+import com.modelo.estado.CarritoEstado;
 import com.modelo.observer.Observador;
-import com.vista2.UIConstants;
-import java.awt.Graphics2D;
-import javax.swing.JPanel;
+import javax.swing.JLabel;
 
 /**
  *
- * @author emman
+ * @author HikingCarrot7
  */
 public class DibujadorCarrito implements Observador, UIConstants
 {
 
-    private JPanel panel;
-    private CarritoCompras carrito;
+    private final JLabel lblCarrito;
 
-    public DibujadorCarrito(JPanel panel, CarritoCompras carrito)
+    public DibujadorCarrito(JLabel lblCarrito)
     {
-        this.panel = panel;
-        this.carrito = carrito;
-
-        actualizar(0);
+        this.lblCarrito = lblCarrito;
     }
 
     @Override
     public void actualizar(Object item)
     {
-        Graphics2D g = (Graphics2D) panel.getGraphics();
+        if (item instanceof Integer)
+        {
+            int estadoCarrito = (Integer) item;
 
-//        switch (carrito.getEstado())
-//        {
-//            case "Carrito lleno":
-//                g.drawImage(CARRITO_LLENO.getImage(), 0, 0, null);
-//
-//                break;
-//            case "Carrito vacio":
-//                g.drawImage(CARRITO_VACIO.getImage(), 0, 0, null);
-//                break;
-//            case "Carrito en uso":
-//                g.drawImage(CARRITO_EN_USO.getImage(), 0, 0, null);
-//                break;
-//            case "Carrito cancelado":
-//                g.drawImage(CARRITO_CANCELADO.getImage(), 0, 0, null);
-//                break;
-//            default:
-//                throw new AssertionError();
-//        }
-        g.dispose();
+            switch (estadoCarrito)
+            {
+                case CarritoEstado.ESTADO_LLENO:
+                    lblCarrito.setIcon(CARRITO_LLENO);
+                    break;
+                case CarritoEstado.ESTADO_VACIO:
+                    lblCarrito.setIcon(CARRITO_VACIO);
+                    break;
+                case CarritoEstado.ESTADO_USADO:
+                    lblCarrito.setIcon(CARRITO_USADO);
+                    break;
+                case CarritoEstado.ESTADO_CANCELADO:
+                    lblCarrito.setIcon(CARRITO_CANCELADO);
+                    break;
+                default:
+                    lblCarrito.setIcon(CARRITO_NO_EXISTENTE);
+            }
+        }
     }
 
 }

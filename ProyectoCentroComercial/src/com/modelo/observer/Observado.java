@@ -14,6 +14,7 @@ public abstract class Observado
 
     public void anadirObservador(Observador ob)
     {
+        eliminarObservador(ob);
         observadores.add(ob);
     }
 

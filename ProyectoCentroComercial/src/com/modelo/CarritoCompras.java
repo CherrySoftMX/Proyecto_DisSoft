@@ -11,7 +11,7 @@ import java.util.Enumeration;
 import java.util.List;
 
 /**
- * Esta calse extiende de observado ya que notificara a un panel de los estados del carrito por medio de una imagen.
+ * Esta clase extiende de observado ya que notificara a un panel de los estados del carrito por medio de una imagen.
  *
  * @author emman
  */
@@ -21,7 +21,7 @@ public class CarritoCompras extends Observado
     public static final int MAX_CAPACIDAD = 20;
 
     private final List<Articulo> articulos;
-    //Este es el contexto deonde utilizaremos los estados
+    //Este es el contexto donde utilizaremos los estados.
     private CarritoEstado estado;
 
     public CarritoCompras()
@@ -33,13 +33,18 @@ public class CarritoCompras extends Observado
     public void addArticulo(Articulo articulo)
     {
         estado.addArticulo(this, articulo);
-        notificar(articulo);
+        notificar(estado.manejar());
     }
 
     public void eliminarArticulo(Articulo articulo)
     {
         estado.removeArticulo(this, articulo);
-        notificar(articulo);
+        notificar(estado.manejar());
+    }
+
+    public Articulo getArticulo(int idx)
+    {
+        return articulos.get(idx);
     }
 
     public List<Articulo> getArticulos()

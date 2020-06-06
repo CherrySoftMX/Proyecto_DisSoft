@@ -10,7 +10,7 @@ import java.util.List;
 public class FactoryEnumeration
 {
 
-    public static <T> Enumeration<T> enumeration(final List<T> c)
+    public static <T> Enumeration<T> enumeration(final List<T> lista)
     {
         return new Enumeration<T>()
         {
@@ -23,13 +23,13 @@ public class FactoryEnumeration
                 @Override
                 public boolean hasNext()
                 {
-                    return cont < c.size();
+                    return cont < lista.size();
                 }
 
                 @Override
                 public T next()
                 {
-                    return c.get(cont++);
+                    return lista.get(cont++);
                 }
             };
 
