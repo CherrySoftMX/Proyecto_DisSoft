@@ -1,6 +1,7 @@
 package com.vista;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -52,6 +53,7 @@ public class MenuTienda extends JDialog
         tablaCarrito = new JTable();
         jPanel6 = new JPanel();
         btnDetallesCarrito = new JButton();
+        btnCancelarCarrito = new JButton();
         jPanel4 = new JPanel();
         jPanel5 = new JPanel();
         btnComprarAhora = new JButton();
@@ -59,8 +61,8 @@ public class MenuTienda extends JDialog
 
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Tienda");
-        setMinimumSize(new Dimension(615, 380));
-        setPreferredSize(new Dimension(615, 380));
+        setMinimumSize(new Dimension(700, 430));
+        setPreferredSize(new Dimension(700, 430));
 
         jPanel1.setLayout(new BoxLayout(jPanel1, BoxLayout.Y_AXIS));
         jPanel1.add(filler1);
@@ -73,7 +75,7 @@ public class MenuTienda extends JDialog
 
         getContentPane().add(jPanel1, BorderLayout.NORTH);
 
-        jSplitPane1.setDividerLocation(300);
+        jSplitPane1.setDividerLocation(350);
         jSplitPane1.setDividerSize(7);
         jSplitPane1.setContinuousLayout(true);
         jSplitPane1.setOneTouchExpandable(true);
@@ -97,9 +99,9 @@ public class MenuTienda extends JDialog
             tablaArticulos.getColumnModel().getColumn(1).setMinWidth(90);
             tablaArticulos.getColumnModel().getColumn(1).setPreferredWidth(90);
             tablaArticulos.getColumnModel().getColumn(1).setMaxWidth(90);
-            tablaArticulos.getColumnModel().getColumn(2).setMinWidth(40);
-            tablaArticulos.getColumnModel().getColumn(2).setPreferredWidth(40);
-            tablaArticulos.getColumnModel().getColumn(2).setMaxWidth(40);
+            tablaArticulos.getColumnModel().getColumn(2).setMinWidth(30);
+            tablaArticulos.getColumnModel().getColumn(2).setPreferredWidth(30);
+            tablaArticulos.getColumnModel().getColumn(2).setMaxWidth(30);
         }
 
         panelListaArticulos.add(jScrollPane1, BorderLayout.CENTER);
@@ -131,6 +133,10 @@ public class MenuTienda extends JDialog
 
         btnDetallesCarrito.setText("Detalles del carrito");
         jPanel6.add(btnDetallesCarrito);
+
+        btnCancelarCarrito.setForeground(new Color(255, 0, 0));
+        btnCancelarCarrito.setText("Cancelar carrito");
+        jPanel6.add(btnCancelarCarrito);
 
         panelTablaCarrito.add(jPanel6, BorderLayout.PAGE_END);
 
@@ -195,7 +201,13 @@ public class MenuTienda extends JDialog
         return tablaCarrito;
     }
 
+    public JButton getBtnCancelarCarrito()
+    {
+        return btnCancelarCarrito;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private JButton btnCancelarCarrito;
     private JButton btnComprarAhora;
     private JButton btnDetallesCarrito;
     private JButton btnSalir;

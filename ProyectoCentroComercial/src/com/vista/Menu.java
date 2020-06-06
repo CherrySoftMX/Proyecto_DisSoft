@@ -89,6 +89,7 @@ public class Menu extends JFrame
         jPanel7 = new JPanel();
         btnSolicitarCarrito = new JButton();
         btnPagarCarrito = new JButton();
+        btnCancelarCarrito = new JButton();
         jPanel9 = new JPanel();
         lblCarrito = new JLabel();
         panelTiendas = new JPanel();
@@ -165,6 +166,15 @@ public class Menu extends JFrame
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.insets = new Insets(5, 15, 5, 15);
         jPanel7.add(btnPagarCarrito, gridBagConstraints);
+
+        btnCancelarCarrito.setForeground(new Color(255, 0, 0));
+        btnCancelarCarrito.setText("Cancelar carrito");
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new Insets(5, 15, 5, 15);
+        jPanel7.add(btnCancelarCarrito, gridBagConstraints);
 
         panelCarrito.add(jPanel7);
 
@@ -251,7 +261,13 @@ public class Menu extends JFrame
         return tablaTiendas;
     }
 
+    public JButton getBtnCancelarCarrito()
+    {
+        return btnCancelarCarrito;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private JButton btnCancelarCarrito;
     private JButton btnPagarCarrito;
     private JButton btnSolicitarCarrito;
     private Box.Filler filler1;

@@ -1,17 +1,19 @@
 package com.controladores;
 
-import com.controladores.util.SwingUtils;
 import com.controladores.util.Alerta;
 import com.controladores.util.ButtonCellEditor;
 import com.controladores.util.DialogUtils;
-import com.controladores.util.TableManager;
 import com.controladores.util.ListManager;
+import com.controladores.util.SwingUtils;
+import com.controladores.util.TableManager;
 import com.modelo.CarritoCompras;
 import com.modelo.CentroComercial;
 import com.modelo.Cliente;
+import com.modelo.estado.CarritoCancelado;
 import com.modelo.tienda.Tienda;
 import com.vista.DibujadorCarrito;
 import com.vista.Menu;
+import com.vista.MenuPago;
 import com.vista.MenuTienda;
 import com.vista.UIConstants;
 import java.awt.event.ActionEvent;
@@ -32,7 +34,7 @@ public class MenuController implements UIConstants
 
     private final int BOTON_TABLA_TIENDAS = 1;
 
-    private final Menu vistaMenu;
+    private final Menu menu;
     private final CentroComercial centroComercial;
     private final ListManager listManager;
     private final TableManager tableManager;
@@ -40,7 +42,7 @@ public class MenuController implements UIConstants
 
     public MenuController(Menu vistaMenu, CentroComercial centroComercial)
     {
-        this.vistaMenu = vistaMenu;
+        this.menu = vistaMenu;
         this.centroComercial = centroComercial;
         this.listManager = ListManager.getInstance();
         this.tableManager = TableManager.getInstance();
@@ -53,20 +55,22 @@ public class MenuController implements UIConstants
     //<editor-fold defaultstate="collapsed" desc=" initComponents ">
     private void initComponents()
     {
-        vistaMenu.getBtnSolicitarCarrito().addActionListener(this::accionBtnSolicitarCarrito);
-        vistaMenu.getBtnPagarCarrito().addActionListener(this::accionBtnPagarCarrito);
+        menu.getBtnSolicitarCarrito().addActionListener(this::accionBtnSolicitarCarrito);
+        menu.getBtnPagarCarrito().addActionListener(this::accionBtnPagarCarrito);
+        menu.getBtnCancelarCarrito().addActionListener(this::accionBtnCancelarCarrito);
 
         // Iniciamos la lista que muestra a los clientes.
-        JList<Cliente> listaClientes = vistaMenu.getListClientes();
+        JList<Cliente> listaClientes = menu.getListClientes();
         listManager.initList(listaClientes);
         listManager.initListSelectionBehavior(listaClientes, null);
         listaClientes.setCellRenderer(LISTA_CLIENTES_RENDERER);
         listaClientes.getSelectionModel().addListSelectionListener(this::accionClicListaClientes);
 
         // Iniciamos la tabla que muestra las tiendas.
-        JTable tabla = vistaMenu.getTablaTiendas();
+        JTable tabla = menu.getTablaTiendas();
         tabla.getModel().addTableModelListener(this::clicEnTablaTiendas);
-        tableManager.initTabla(tabla);
+        tabla.getColumnModel().getColumn(0).setCellRenderer(TIENDA_COLUMNA_RENDERER);
+        tableManager.initTable(tabla);
         tableManager.initTableSelectionBehavior(tabla);
         tableManager.quitarCabeceraTabla(tabla);
 
@@ -90,7 +94,7 @@ public class MenuController implements UIConstants
      */
     private void iniciarListaClientes()
     {
-        listManager.establecerElementos(vistaMenu.getListClientes(), centroComercial.listarClientes());
+        listManager.establecerElementos(menu.getListClientes(), centroComercial.listarClientes());
     }
 
     /**
@@ -98,7 +102,7 @@ public class MenuController implements UIConstants
      */
     private void iniciarTablaTiendas()
     {
-        JTable tabla = vistaMenu.getTablaTiendas();
+        JTable tabla = menu.getTablaTiendas();
         Enumeration<Tienda> tiendas = centroComercial.listarTiendas();
         tableManager.vaciarTabla(tabla);
 
@@ -122,14 +126,18 @@ public class MenuController implements UIConstants
             actualizarClienteSeleccionado("Cliente actual: " + clienteSeleccionado.getNombre());
 
             Cliente clienteActual = getClienteSeleccionado();
-            dibujadorCarrito.actualizar(clienteTieneCarrito(clienteActual)
-                    ? clienteActual.getCarritoCompras().getEstado() : -1);
+            dibujadorCarrito.actualizar(clienteActual.tieneCarrito() ? clienteActual.getCarritoCompras().getEstado() : -1);
+
+            comprobarBtnPagar();
+            comprobarBtnCancelarCarrito();
 
         } else
         {
             habilitarPanelesSecundarios(false);
             actualizarClienteSeleccionado("Seleccione a un cliente...");
             dibujadorCarrito.actualizar(-1);
+            comprobarBtnPagar();
+            comprobarBtnCancelarCarrito();
         }
     }
 
@@ -146,10 +154,11 @@ public class MenuController implements UIConstants
             carrito.notificar(carrito.getEstado());
         };
 
-        if (carritoClienteTieneArticulos(clienteSeleccionado))
+        if (carritoClienteTieneArticulos(clienteSeleccionado)
+                && !clienteSeleccionado.getCarritoCompras().estaCancelado())
         {
-            if (Alerta.mostrarConfirmacion(vistaMenu, "Confimación",
-                    "Todos los artículos de su carrito anterior serán eliminados. ¿Está seguro?"))
+            if (Alerta.mostrarConfirmacion(menu,
+                    "Todos los artículos de su carrito serán eliminados. ¿Está seguro?"))
                 accionSolicitarCarrito.accept(null);
 
         } else
@@ -159,12 +168,24 @@ public class MenuController implements UIConstants
     private void accionBtnPagarCarrito(ActionEvent e)
     {
         Cliente clienteActual = getClienteSeleccionado();
+        MenuPago menuPago = new MenuPago(menu);
+        new PagoController(menuPago, clienteActual);
 
-        if (carritoClienteTieneArticulos(clienteActual))
+        DialogUtils.showDialogAndWait(menu, menuPago);
+
+        comprobarBtnPagar();
+        comprobarBtnCancelarCarrito();
+    }
+
+    private void accionBtnCancelarCarrito(ActionEvent e)
+    {
+        if (Alerta.mostrarConfirmacion(menu, "Perderá todos los artículos del carrito. ¿Está seguro?"))
         {
-
-        } else
-            Alerta.mostrarMensaje(vistaMenu, "No hay artículos", "No hay ningún artículo en tu carrito");
+            Cliente cliente = getClienteSeleccionado();
+            cliente.getCarritoCompras().setEstado(new CarritoCancelado());
+            comprobarBtnPagar();
+            comprobarBtnCancelarCarrito();
+        }
     }
 
     /**
@@ -181,15 +202,24 @@ public class MenuController implements UIConstants
             Consumer<Object> accionEntrarATienda = object ->
             {
                 Tienda tiendaSeleccionada = centroComercial.getTiendas().get(e.getFirstRow());
+                tiendaSeleccionada.entrar(clienteActual);
+                clienteActual.setTiendaActual(tiendaSeleccionada);
 
-                MenuTienda menuTienda = new MenuTienda(vistaMenu);
-                new TiendaController(menuTienda, clienteActual, tiendaSeleccionada);
-                DialogUtils.showDialogAndWait(vistaMenu, menuTienda);
+                MenuTienda menuTienda = new MenuTienda(menu);
+                TiendaController tiendaController = new TiendaController(menuTienda, clienteActual, tiendaSeleccionada);
+
+                DialogUtils.showDialogAndWait(menu, menuTienda);
+
+                // Cuando la ventana del menú de la tienda se cierre, sacaremos al cliente de la tienda.
+                tiendaSeleccionada.salir(clienteActual);
+                clienteActual.setTiendaActual(null);
+                comprobarBtnPagar();
+                comprobarBtnCancelarCarrito();
             };
 
-            if (!clienteTieneCarrito(clienteActual))
+            if (!clienteActual.tieneCarrito() || clienteActual.getCarritoCompras().estaCancelado())
             {
-                if (Alerta.mostrarConfirmacion(vistaMenu, "No tiene carrito",
+                if (Alerta.mostrarConfirmacion(menu, "No tiene carrito",
                         "No podrá comprar nada si entra sin carrito. ¿Está seguro?"))
                     accionEntrarATienda.accept(null);
 
@@ -200,17 +230,12 @@ public class MenuController implements UIConstants
 
     private boolean carritoClienteTieneArticulos(Cliente cliente)
     {
-        return clienteTieneCarrito(cliente) && !cliente.getCarritoCompras().estaVacio();
+        return cliente.tieneCarrito() && !cliente.getCarritoCompras().estaVacio();
     }
 
     private void actualizarClienteSeleccionado(String txt)
     {
-        vistaMenu.getLblClienteSeleccionado().setText(txt);
-    }
-
-    private boolean clienteTieneCarrito(Cliente cliente)
-    {
-        return cliente.getCarritoCompras() != null;
+        menu.getLblClienteSeleccionado().setText(txt);
     }
 
     /**
@@ -220,14 +245,30 @@ public class MenuController implements UIConstants
      */
     private void habilitarPanelesSecundarios(boolean habilitar)
     {
-        SwingUtils.setPanelEnabled(vistaMenu.getPanelTiendas(), habilitar);
-        SwingUtils.setPanelEnabled(vistaMenu.getPanelCarrito(), habilitar);
-        vistaMenu.getTablaTiendas().setEnabled(habilitar);
+        SwingUtils.setPanelEnabled(menu.getPanelTiendas(), habilitar);
+        SwingUtils.setPanelEnabled(menu.getPanelCarrito(), habilitar);
+        menu.getTablaTiendas().setEnabled(habilitar);
+    }
+
+    private void comprobarBtnPagar()
+    {
+        Cliente clienteSeleccionado = getClienteSeleccionado();
+        menu.getBtnPagarCarrito().setEnabled(clienteSeleccionado != null
+                && carritoClienteTieneArticulos(clienteSeleccionado)
+                && !clienteSeleccionado.getCarritoCompras().estaCancelado());
+    }
+
+    private void comprobarBtnCancelarCarrito()
+    {
+        Cliente clienteSeleccionado = getClienteSeleccionado();
+        menu.getBtnCancelarCarrito().setEnabled(clienteSeleccionado != null
+                && carritoClienteTieneArticulos(clienteSeleccionado)
+                && !clienteSeleccionado.getCarritoCompras().estaCancelado());
     }
 
     private Cliente getClienteSeleccionado()
     {
-        return vistaMenu.getListClientes().getSelectedValue();
+        return menu.getListClientes().getSelectedValue();
     }
 
 }

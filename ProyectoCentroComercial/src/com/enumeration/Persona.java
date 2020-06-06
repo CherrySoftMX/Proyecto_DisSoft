@@ -7,27 +7,22 @@ package com.enumeration;
 public enum Persona
 {
 
-    Juan("Julio chow", "02/06/2020"),
-    Manuel("Manuel Rodriguez", "03/07/2020"),
-    Julia("Julia Deewers", " 04/06/2020");
+    Emmanuel("Emmanuel Chablé"),
+    Carlos("Carlos Góngora"),
+    Eusebio("Eusebio Ajax"),
+    Charly("Charly Álvarez"),
+    Nicolas("Nicolás Canul");
 
-    private final String nombreP;
-    private final String fechaP;
+    private final String nombre;
 
-    Persona(String nombre, String fecha)
+    private Persona(String nombre)
     {
-        nombreP = nombre;
-        fechaP = fecha;
+        this.nombre = nombre;
     }
 
-    public String getNombreP()
+    public String getNombre()
     {
-        return nombreP;
-    }
-
-    public String getFechaP()
-    {
-        return fechaP;
+        return nombre;
     }
 
 }

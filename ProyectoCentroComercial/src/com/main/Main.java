@@ -1,18 +1,19 @@
 package com.main;
 
 import com.controladores.MenuController;
+import com.enumeration.ArticuloGameStore;
+import com.enumeration.ArticuloLibreria;
+import com.enumeration.ArticuloZapateria;
+import com.enumeration.Comercio;
+import com.enumeration.Persona;
 import com.modelo.ArticuloSencillo;
 import com.modelo.CentroComercial;
 import com.modelo.Cliente;
-import com.modelo.decorator.Articulo;
-import com.modelo.decorator.Paquete1;
 import com.modelo.factory.CFactoryTienda;
 import com.modelo.factory.FactoryTienda;
-import com.modelo.tienda.Libreria;
 import com.modelo.tienda.Tienda;
 import com.vista.Menu;
 import java.awt.EventQueue;
-import java.util.ArrayList;
 
 /**
  *
@@ -29,47 +30,32 @@ public class Main
         CentroComercial centroComercial = new CentroComercial("MATH.ES");
 
         FactoryTienda factory = CFactoryTienda.getInstance();
-        Tienda zapateria = factory.crearTienda("Zapateria");
-        Tienda libreria = factory.crearTienda("Libreria");
+        Tienda zapateria = factory.crearTienda(Comercio.Zapateria);
+        Tienda libreria = factory.crearTienda(Comercio.Libreria);
+        Tienda gameStore = factory.crearTienda(Comercio.GameStore);
 
-        Cliente cliente1 = new Cliente("Emmanuel Chablé", null);
-        Cliente cliente2 = new Cliente("Eusebio Ajax", null);
-        Cliente cliente3 = new Cliente("Carlos Góngora", null);
-        Cliente cliente4 = new Cliente("Nicolás Canul", null);
-        Cliente cliente5 = new Cliente("Charly Álvarez", null);
-
-        centroComercial.entrar(cliente1);
-        centroComercial.entrar(cliente2);
-        centroComercial.entrar(cliente3);
-        centroComercial.entrar(cliente4);
-        centroComercial.entrar(cliente5);
+        for (Persona persona : Persona.values())
+        {
+            Cliente cliente = new Cliente(persona.getNombre(), null);
+            centroComercial.entrar(cliente);
+        }
 
         centroComercial.addTienda(zapateria);
         centroComercial.addTienda(libreria);
+        centroComercial.addTienda(gameStore);
 
-        zapateria.adicionarArticulo(new ArticuloSencillo("Zapato", "ddddd", zapateria, 103));
-        zapateria.adicionarArticulo(new ArticuloSencillo("Zapato", "dddd1", zapateria, 1202));
-        zapateria.adicionarArticulo(new ArticuloSencillo("Zapato", "dddd2", zapateria, 1333));
-        zapateria.adicionarArticulo(new ArticuloSencillo("Zapato", "dddd3", zapateria, 300));
-        zapateria.adicionarArticulo(new ArticuloSencillo("Zapato", "dddd4", zapateria, 560));
+        for (ArticuloZapateria value : ArticuloZapateria.values())
+            zapateria.adicionarArticulo(new ArticuloSencillo(value.getDescripcion(), value.getCategoria(), value.getIdentificador(), zapateria, value.getPrecio()));
 
-        libreria.adicionarArticulo(new ArticuloSencillo("Libro", "aaaaa", libreria, 103));
-        libreria.adicionarArticulo(new ArticuloSencillo("Libro", "aaaaa", libreria, 103));
+        for (ArticuloLibreria value : ArticuloLibreria.values())
+            libreria.adicionarArticulo(new ArticuloSencillo(value.getDescripcion(), value.getCategoria(), value.getIdentificador(), zapateria, value.getPrecio()));
 
-        Articulo ar1 = new ArticuloSencillo("asdsa", "sadasda", new Libreria(), 1200);
-        Articulo ar2 = new ArticuloSencillo("asdsa", "sadasda", new Libreria(), 1200);
-        Articulo ar3 = new ArticuloSencillo("asdsa", "sadasda", new Libreria(), 1200);
+        for (ArticuloGameStore value : ArticuloGameStore.values())
+            gameStore.adicionarArticulo(new ArticuloSencillo(value.getDescripcion(), value.getCategoria(), value.getIdentificador(), zapateria, value.getPrecio()));
 
-        ArrayList<Articulo> articulos = new ArrayList<>();
-        articulos.add(ar1);
-        articulos.add(ar2);
-        articulos.add(ar3);
-
-        Articulo paq1 = new Paquete1(articulos, 0.9);
-        libreria.adicionarArticulo(paq1);
-
-        libreria.adicionarArticulo(new ArticuloSencillo("Libro", "aaaaa", libreria, 103));
-
+        /**
+         * Iniciamos el menú principal.
+         */
         EventQueue.invokeLater(() ->
         {
             Menu menu = new Menu();

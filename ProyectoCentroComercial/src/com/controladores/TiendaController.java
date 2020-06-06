@@ -11,9 +11,13 @@ import com.modelo.CarritoCompras;
 import com.modelo.Cliente;
 import com.modelo.decorator.Articulo;
 import com.modelo.decorator.PaqueteArticulo;
+import com.modelo.estado.CarritoCancelado;
 import com.modelo.estado.CarritoEstado;
+import com.modelo.exceptions.CarritoLlenoException;
+import com.modelo.exceptions.CarritoVacioException;
 import com.modelo.tienda.Tienda;
 import com.vista.MenuCarrito;
+import com.vista.MenuPago;
 import com.vista.MenuTienda;
 import com.vista.UIConstants;
 import java.awt.event.ActionEvent;
@@ -55,13 +59,22 @@ public class TiendaController implements UIConstants
     private void initComponents()
     {
         menuTienda.getBtnDetallesCarrito().addActionListener(this::accionBtnDetallesCarrito);
+        menuTienda.getBtnCancelarCarrito().addActionListener(this::accionBtnCancelarCarrito);
         menuTienda.getBtnComprarAhora().addActionListener(this::accionBtnComprarAhora);
         menuTienda.getBtnSalir().addActionListener(this::accionBtnSalir);
         menuTienda.getLblNombreTienda().setText(tienda.getNombre());
         initTablas();
         initPopupMenus();
+
         // El cliente no puede mover artículos ni comprar nada si entra sin carrito.
-        habilitarAccionesEnTienda(cliente.getCarritoCompras() != null);
+        habilitarAccionesEnTienda(cliente.getCarritoCompras() != null
+                && !cliente.getCarritoCompras().estaCancelado());
+
+        if (cliente.getCarritoCompras() != null && !cliente.getCarritoCompras().estaCancelado())
+            habilitarAccionesDelCarrito(!cliente.getCarritoCompras().estaVacio());
+
+        else
+            habilitarAccionesDelCarrito(false);
     }
 
     private void initTablas()
@@ -69,7 +82,7 @@ public class TiendaController implements UIConstants
         // Iniciamos la tabla que muestra los artículos
         JTable tabla = menuTienda.getTablaArticulos();
         tabla.getModel().addTableModelListener(this::clicEnTablaArticulos);
-        tableManager.initTabla(tabla);
+        tableManager.initTable(tabla);
         tableManager.initTableSelectionBehavior(tabla, DEFAULT_FOCUS_LOST_BEHAVIOR);
 
         // Para mostrar los botones en la tabla de los artículos.
@@ -84,7 +97,7 @@ public class TiendaController implements UIConstants
 
         // Inicializamos la tabla que muestra el carrito del cliente actual.
         tabla = menuTienda.getTablaCarrito();
-        tableManager.initTabla(tabla);
+        tableManager.initTable(tabla);
         tableManager.initTableSelectionBehavior(tabla, DEFAULT_FOCUS_LOST_BEHAVIOR);
     }
 
@@ -166,22 +179,52 @@ public class TiendaController implements UIConstants
 
     private void accionBtnDetallesCarrito(ActionEvent e)
     {
-        CarritoCompras carritoActual = cliente.getCarritoCompras();
-
-        if (!carritoActual.estaVacio())
+        try
         {
+            CarritoCompras carritoActual = cliente.getCarritoCompras();
+
+            if (carritoActual.estaVacio())
+                throw new CarritoVacioException();
+
             MenuCarrito menuCarrito = new MenuCarrito(menuTienda);
             new CarritoController(menuCarrito, cliente);
             DialogUtils.showDialogAndWait(menuTienda, menuCarrito);
             initListaCarrito();
+            habilitarAccionesDelCarrito(!carritoActual.estaVacio());
 
-        } else
-            Alerta.mostrarError(menuTienda, "Tu carrito está vacío.");
+        } catch (CarritoVacioException ex)
+        {
+            Alerta.mostrarError(menuTienda, ex.getMessage());
+        }
+    }
+
+    private void accionBtnCancelarCarrito(ActionEvent e)
+    {
+        if (Alerta.mostrarConfirmacion(menuTienda, "Perderá todos los artículos del carrito. ¿Está seguro?"))
+        {
+            cliente.getCarritoCompras().setEstado(new CarritoCancelado());
+            habilitarAccionesEnTienda(false);
+            habilitarAccionesDelCarrito(false);
+        }
     }
 
     private void accionBtnComprarAhora(ActionEvent e)
     {
+        try
+        {
+            if (cliente.getCarritoCompras().estaVacio())
+                throw new CarritoVacioException();
 
+            MenuPago menuPago = new MenuPago(menuTienda);
+            PagoController pagoController = new PagoController(menuPago, cliente);
+            pagoController.anadirObservador(i -> DialogUtils.quitarDialog(menuTienda));
+            DialogUtils.showDialogAndWait(menuTienda, menuPago);
+            initListaCarrito();
+
+        } catch (CarritoVacioException ex)
+        {
+            Alerta.mostrarError(menuTienda, ex.getMessage());
+        }
     }
 
     /**
@@ -192,13 +235,20 @@ public class TiendaController implements UIConstants
     private void clicEnTablaArticulos(TableModelEvent e)
     {
         if (e.getColumn() == BOTON_TABLA_ARTICULOS)
-            if (cliente.getCarritoCompras().getEstado() != CarritoEstado.ESTADO_LLENO)
+            try
             {
+                if (cliente.getCarritoCompras().getEstado() == CarritoEstado.ESTADO_LLENO)
+                    throw new CarritoLlenoException();
+
                 Articulo articuloSeleccionado = tienda.getArticulos().get(e.getFirstRow());
                 anadirArticuloAlCarrito(articuloSeleccionado);
 
-            } else
-                Alerta.mostrarError(menuTienda, "El carrito ya está lleno.");
+                habilitarAccionesDelCarrito(true);
+
+            } catch (CarritoLlenoException ex)
+            {
+                Alerta.mostrarError(menuTienda, ex.getMessage());
+            }
     }
 
     /**
@@ -260,6 +310,28 @@ public class TiendaController implements UIConstants
         SwingUtils.setPanelEnabled(menuTienda.getPanelTablaCarrito(), habilitar);
         menuTienda.getTablaArticulos().setEnabled(habilitar);
         menuTienda.getTablaCarrito().setEnabled(habilitar);
+        habilitarBtnComprarAhora(habilitar);
+    }
+
+    private void habilitarAccionesDelCarrito(boolean habilitar)
+    {
+        habilitarBtnVerDetalles(habilitar);
+        habilitarBtnCancelarCarrito(habilitar);
+        habilitarBtnComprarAhora(habilitar);
+    }
+
+    private void habilitarBtnVerDetalles(boolean habilitar)
+    {
+        menuTienda.getBtnDetallesCarrito().setEnabled(habilitar);
+    }
+
+    private void habilitarBtnCancelarCarrito(boolean habilitar)
+    {
+        menuTienda.getBtnCancelarCarrito().setEnabled(habilitar);
+    }
+
+    private void habilitarBtnComprarAhora(boolean habilitar)
+    {
         menuTienda.getBtnComprarAhora().setEnabled(habilitar);
     }
 

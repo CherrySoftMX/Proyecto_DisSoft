@@ -1,5 +1,7 @@
 package com.modelo.factory;
 
+import com.enumeration.Comercio;
+import com.modelo.tienda.GameStore;
 import com.modelo.tienda.Libreria;
 import com.modelo.tienda.Tienda;
 import com.modelo.tienda.Zapateria;
@@ -26,15 +28,18 @@ public class CFactoryTienda implements FactoryTienda
 
     }
 
-    @Override public Tienda crearTienda(String tipo)
+    @Override public Tienda crearTienda(Comercio tipo)
     {
         switch (tipo)
         {
-            case "Libreria":
+            case Libreria:
                 return Libreria.getInstance();
 
-            case "Zapateria":
+            case Zapateria:
                 return Zapateria.getInstance();
+
+            case GameStore:
+                return GameStore.getInstance();
 
             default:
                 throw new AssertionError();

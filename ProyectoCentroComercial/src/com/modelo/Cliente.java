@@ -50,6 +50,11 @@ public class Cliente implements Observador
         this.tiendaActual = tiendaActual;
     }
 
+    public boolean tieneCarrito()
+    {
+        return carritoCompras != null;
+    }
+
     @Override
     public String toString()
     {

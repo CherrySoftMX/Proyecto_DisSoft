@@ -17,7 +17,7 @@ public class Libreria extends Tienda
         return instance;
     }
 
-    public Libreria()
+    private Libreria()
     {
         super("Librería", "LIB123");
     }

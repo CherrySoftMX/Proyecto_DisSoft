@@ -81,4 +81,9 @@ public class CarritoCompras extends Observado
         return estado.manejar() == CarritoEstado.ESTADO_VACIO;
     }
 
+    public boolean estaCancelado()
+    {
+        return getEstado() == CarritoEstado.ESTADO_CANCELADO;
+    }
+
 }

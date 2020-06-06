@@ -69,7 +69,7 @@ public class CarritoController implements UIConstants
         tabla.getSelectionModel().addListSelectionListener(this::accionClicTablaArticulosCarrito);
         tabla.getColumnModel().getColumn(0).setCellRenderer(ARTICULO_COLUMNA_RENDERER);
 
-        tableManager.initTabla(tabla);
+        tableManager.initTable(tabla);
         tableManager.initTableSelectionBehavior(tabla, DEFAULT_FOCUS_LOST_BEHAVIOR);
 
         tabla.getSelectionModel().addListSelectionListener(e ->
@@ -189,9 +189,10 @@ public class CarritoController implements UIConstants
 
     private void actualizarCamposArticulo(Articulo articulo)
     {
-        menuCarrito.getTxtNombre().setText(articulo.getNombre());
-        menuCarrito.getTxtDescripcion().setText(articulo.getDescripcion());
+        menuCarrito.getTxtNombre().setText(articulo.getDescripcion());
+        menuCarrito.getTxtDescripcion().setText(articulo.getCategoria());
         menuCarrito.getTxtPrecio().setText(String.format("$%,.2f", articulo.getPrecio()));
+        menuCarrito.getTxtIdentificador().setText(articulo.getIdentificador());
     }
 
     private void limpiarCamposArticulo()
@@ -199,6 +200,7 @@ public class CarritoController implements UIConstants
         menuCarrito.getTxtNombre().setText("");
         menuCarrito.getTxtDescripcion().setText("");
         menuCarrito.getTxtPrecio().setText("");
+        menuCarrito.getTxtIdentificador().setText("");
     }
 
     private void habilitarBtnEliminarArticulos(boolean habilitar)

@@ -67,6 +67,9 @@ public class MenuCarrito extends JDialog
         btnEliminarDelCarrito = new JButton();
         jPanel5 = new JPanel();
         lblCarrito = new JLabel();
+        jLabel5 = new JLabel();
+        txtIdentificador = new JTextField();
+        jButton1 = new JButton();
         jPanel4 = new JPanel();
         btnSalir = new JButton();
 
@@ -130,7 +133,7 @@ public class MenuCarrito extends JDialog
         jPanel2.setLayout(new GridBagLayout());
 
         jLabel2.setHorizontalAlignment(SwingConstants.RIGHT);
-        jLabel2.setText("Nombre:");
+        jLabel2.setText("Descripción:");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new Insets(5, 5, 5, 5);
@@ -144,7 +147,7 @@ public class MenuCarrito extends JDialog
         jPanel2.add(txtNombre, gridBagConstraints);
 
         jLabel3.setHorizontalAlignment(SwingConstants.RIGHT);
-        jLabel3.setText("Descripción:");
+        jLabel3.setText("Categoría:");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -182,9 +185,10 @@ public class MenuCarrito extends JDialog
         btnEliminarDelCarrito.setText("Eliminar artículo(s) del carrito");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new Insets(5, 35, 5, 35);
         jPanel2.add(btnEliminarDelCarrito, gridBagConstraints);
 
         jPanel5.setLayout(new BorderLayout());
@@ -195,12 +199,40 @@ public class MenuCarrito extends JDialog
 
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.1;
         jPanel2.add(jPanel5, gridBagConstraints);
+
+        jLabel5.setHorizontalAlignment(SwingConstants.RIGHT);
+        jLabel5.setText("Identificador:");
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
+        jPanel2.add(jLabel5, gridBagConstraints);
+
+        txtIdentificador.setEnabled(false);
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new Insets(5, 5, 5, 5);
+        jPanel2.add(txtIdentificador, gridBagConstraints);
+
+        jButton1.setText("Ver detalles del paquete");
+        jButton1.setEnabled(false);
+        gridBagConstraints = new GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new Insets(5, 35, 5, 35);
+        jPanel2.add(jButton1, gridBagConstraints);
 
         jSplitPane1.setRightComponent(jPanel2);
 
@@ -258,15 +290,22 @@ public class MenuCarrito extends JDialog
         return txtPrecio;
     }
 
+    public JTextField getTxtIdentificador()
+    {
+        return txtIdentificador;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JButton btnEliminarDelCarrito;
     private JButton btnSalir;
     private Box.Filler filler1;
     private Box.Filler filler2;
+    private JButton jButton1;
     private JLabel jLabel1;
     private JLabel jLabel2;
     private JLabel jLabel3;
     private JLabel jLabel4;
+    private JLabel jLabel5;
     private JPanel jPanel1;
     private JPanel jPanel2;
     private JPanel jPanel3;
@@ -280,6 +319,7 @@ public class MenuCarrito extends JDialog
     private JLabel lblTotal;
     private JTable tablaArticulosCarrito;
     private JTextField txtDescripcion;
+    private JTextField txtIdentificador;
     private JTextField txtNombre;
     private JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables

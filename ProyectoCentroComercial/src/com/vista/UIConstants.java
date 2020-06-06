@@ -56,6 +56,7 @@ public interface UIConstants
     public Icon DELETE_ICON = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/delete.png"));
     public Icon PAQUETE_ICON = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/box.png"));
     public Icon ARTICULO_ICON = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/articulo_icon.png"));
+    public Icon TIENDA_ICON = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/tienda_icon.png"));
 
     public Icon CARRITO_USADO = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/CarritoUsado.png"));
     public Icon CARRITO_LLENO = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/CarritoLleno.png"));
@@ -183,8 +184,34 @@ public interface UIConstants
         final Color SELECTED_BACKGROUND_COLOR = BACKGROUND_COLOR.darker();
         Articulo articulo = (Articulo) value;
 
-        JLabel label = new JLabel(articulo.getNombre());
+        JLabel label = new JLabel(articulo.getDescripcion());
         label.setIcon(articulo instanceof PaqueteArticulo ? PAQUETE_ICON : ARTICULO_ICON);
+        label.setHorizontalAlignment(SwingConstants.LEFT);
+        label.setFont(new Font("Tahoma", Font.PLAIN, 13));
+        label.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 1, Color.WHITE));
+        label.setOpaque(true);
+
+        if (!isSelected)
+        {
+            label.setBackground(row % 2 == 0 ? BACKGROUND_COLOR : Color.WHITE);
+            label.setForeground(Color.BLACK);
+
+        } else
+        {
+            label.setBackground(SELECTED_BACKGROUND_COLOR);
+            label.setForeground(Color.WHITE);
+        }
+
+        return label;
+    };
+
+    public TableCellRenderer TIENDA_COLUMNA_RENDERER = (table, value, isSelected, hasFocus, row, column) ->
+    {
+        final Color BACKGROUND_COLOR = new Color(200, 228, 235);
+        final Color SELECTED_BACKGROUND_COLOR = BACKGROUND_COLOR.darker();
+
+        JLabel label = new JLabel(String.valueOf(value));
+        label.setIcon(TIENDA_ICON);
         label.setHorizontalAlignment(SwingConstants.LEFT);
         label.setFont(new Font("Tahoma", Font.PLAIN, 13));
         label.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 1, Color.WHITE));
