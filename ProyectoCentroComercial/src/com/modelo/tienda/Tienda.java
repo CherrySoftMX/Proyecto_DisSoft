@@ -3,8 +3,6 @@ package com.modelo.tienda;
 import com.modelo.CarritoCompras;
 import com.modelo.Cliente;
 import com.modelo.decorator.Articulo;
-import com.modelo.decorator.Paquete1;
-import com.modelo.decorator.PaqueteArticulo;
 import com.modelo.iterator.FactoryEnumeration;
 import com.modelo.observer.Observado;
 import java.util.ArrayList;
@@ -86,11 +84,6 @@ public abstract class Tienda extends Observado
         articulos.add(articulo);
         //Cada vez que un articulo se agrega se notifica a sus observadores
         notificar(articulo);
-    }
-
-    public PaqueteArticulo crearPaquetesArticulo(List<Articulo> articulos, double descuento)
-    {
-        return new Paquete1(articulos, descuento);
     }
 
 }

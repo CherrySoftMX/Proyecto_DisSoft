@@ -7,7 +7,17 @@ package com.modelo.tienda;
 public class GameStore extends Tienda
 {
 
-    public GameStore()
+    private static GameStore instance;
+
+    public static synchronized GameStore getInstance()
+    {
+        if (instance == null)
+            instance = new GameStore();
+
+        return instance;
+    }
+
+    private GameStore()
     {
         super("GameStore", "123GS");
     }

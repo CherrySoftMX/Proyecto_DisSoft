@@ -11,12 +11,6 @@ public class CarritoLleno implements CarritoEstado
 {
 
     @Override
-    public int manejar()
-    {
-        return ESTADO_LLENO;
-    }
-
-    @Override
     public int addArticulo(CarritoCompras carrito, Articulo articulo)
     {
         return manejar();
@@ -41,6 +35,12 @@ public class CarritoLleno implements CarritoEstado
     {
         carrito.setEstado(new CarritoCancelado());
         return carrito.getEstado();
+    }
+
+    @Override
+    public int manejar()
+    {
+        return ESTADO_LLENO;
     }
 
 }

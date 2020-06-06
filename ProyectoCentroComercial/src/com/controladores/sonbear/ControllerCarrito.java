@@ -77,7 +77,7 @@ public class ControllerCarrito
         JList listaCarrito = menu.getListaArticulos();
         Articulo articulo = (Articulo) listaCarrito.getSelectedValue();
         menu.getLabelNombre().setText("Nombre: " + articulo.toString());
-        menu.getLabelDesc().setText("Descripcion: " + articulo.getDescripcion());
+        menu.getLabelDesc().setText("Descripcion: " + articulo.getCategoria());
     }
 
     private void eliminar()

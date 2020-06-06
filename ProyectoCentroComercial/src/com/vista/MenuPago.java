@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Window;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -31,11 +32,9 @@ import javax.swing.table.DefaultTableModel;
 public class MenuPago extends JDialog
 {
 
-    /**
-     * Creates new form MenuCarrito
-     */
-    public MenuPago()
+    public MenuPago(Window owner)
     {
+        super(owner);
         initComponents();
     }
 
@@ -53,21 +52,22 @@ public class MenuPago extends JDialog
         jSplitPane1 = new JSplitPane();
         jPanel1 = new JPanel();
         jScrollPane1 = new JScrollPane();
-        jTable1 = new JTable();
+        tablaArticulosCarrito = new JTable();
         jPanel2 = new JPanel();
         jLabel2 = new JLabel();
-        jTextField1 = new JTextField();
+        txtCliente = new JTextField();
         jLabel3 = new JLabel();
-        jTextField2 = new JTextField();
+        txtTotal = new JTextField();
         jLabel4 = new JLabel();
-        jButton2 = new JButton();
-        jComboBox1 = new JComboBox<>();
+        btnRealizarPago = new JButton();
+        cmbMetodoPago = new JComboBox<>();
         jPanel5 = new JPanel();
         jLabel5 = new JLabel();
         jPanel4 = new JPanel();
-        jButton1 = new JButton();
+        btnCancelar = new JButton();
 
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Realizar pago");
         setMinimumSize(new Dimension(600, 325));
         setPreferredSize(new Dimension(600, 325));
 
@@ -92,7 +92,7 @@ public class MenuPago extends JDialog
         jPanel1.setBorder(BorderFactory.createTitledBorder("Artículos del carrito"));
         jPanel1.setLayout(new BorderLayout());
 
-        jTable1.setModel(new DefaultTableModel(
+        tablaArticulosCarrito.setModel(new DefaultTableModel(
             new Object [][]
             {
 
@@ -102,12 +102,12 @@ public class MenuPago extends JDialog
                 "Artículo", "Precio"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0)
+        jScrollPane1.setViewportView(tablaArticulosCarrito);
+        if (tablaArticulosCarrito.getColumnModel().getColumnCount() > 0)
         {
-            jTable1.getColumnModel().getColumn(1).setMinWidth(90);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(90);
-            jTable1.getColumnModel().getColumn(1).setMaxWidth(90);
+            tablaArticulosCarrito.getColumnModel().getColumn(1).setMinWidth(90);
+            tablaArticulosCarrito.getColumnModel().getColumn(1).setPreferredWidth(90);
+            tablaArticulosCarrito.getColumnModel().getColumn(1).setMaxWidth(90);
         }
 
         jPanel1.add(jScrollPane1, BorderLayout.CENTER);
@@ -124,12 +124,12 @@ public class MenuPago extends JDialog
         gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         jPanel2.add(jLabel2, gridBagConstraints);
 
-        jTextField1.setEnabled(false);
+        txtCliente.setEnabled(false);
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.insets = new Insets(5, 5, 5, 5);
-        jPanel2.add(jTextField1, gridBagConstraints);
+        jPanel2.add(txtCliente, gridBagConstraints);
 
         jLabel3.setHorizontalAlignment(SwingConstants.RIGHT);
         jLabel3.setText("Total:");
@@ -140,14 +140,14 @@ public class MenuPago extends JDialog
         gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         jPanel2.add(jLabel3, gridBagConstraints);
 
-        jTextField2.setEnabled(false);
+        txtTotal.setEnabled(false);
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.insets = new Insets(5, 5, 5, 5);
-        jPanel2.add(jTextField2, gridBagConstraints);
+        jPanel2.add(txtTotal, gridBagConstraints);
 
         jLabel4.setHorizontalAlignment(SwingConstants.RIGHT);
         jLabel4.setText("Método de pago:");
@@ -158,21 +158,21 @@ public class MenuPago extends JDialog
         gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         jPanel2.add(jLabel4, gridBagConstraints);
 
-        jButton2.setText("Realizar pago");
+        btnRealizarPago.setText("Realizar pago");
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.insets = new Insets(5, 5, 5, 5);
-        jPanel2.add(jButton2, gridBagConstraints);
+        jPanel2.add(btnRealizarPago, gridBagConstraints);
 
-        jComboBox1.setModel(new DefaultComboBoxModel<>(new String[] { "Paypal", "Débito", "Crédito" }));
+        cmbMetodoPago.setModel(new DefaultComboBoxModel<>(new String[] { "Paypal", "Débito", "Crédito" }));
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new Insets(5, 5, 5, 5);
-        jPanel2.add(jComboBox1, gridBagConstraints);
+        jPanel2.add(cmbMetodoPago, gridBagConstraints);
 
         jPanel5.setLayout(new BorderLayout());
         jPanel5.add(jLabel5, BorderLayout.CENTER);
@@ -194,20 +194,50 @@ public class MenuPago extends JDialog
 
         jPanel4.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
-        jButton1.setText("Cancelar");
-        jPanel4.add(jButton1);
+        btnCancelar.setText("Cancelar");
+        jPanel4.add(btnCancelar);
 
         getContentPane().add(jPanel4, BorderLayout.SOUTH);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public JButton getBtnCancelar()
+    {
+        return btnCancelar;
+    }
+
+    public JButton getBtnRealizarPago()
+    {
+        return btnRealizarPago;
+    }
+
+    public JComboBox<String> getCmbMetodoPago()
+    {
+        return cmbMetodoPago;
+    }
+
+    public JTable getTablaArticulosCarrito()
+    {
+        return tablaArticulosCarrito;
+    }
+
+    public JTextField getTxtCliente()
+    {
+        return txtCliente;
+    }
+
+    public JTextField getTxtTotal()
+    {
+        return txtTotal;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private JButton btnCancelar;
+    private JButton btnRealizarPago;
+    private JComboBox<String> cmbMetodoPago;
     private Box.Filler filler1;
     private Box.Filler filler2;
-    private JButton jButton1;
-    private JButton jButton2;
-    private JComboBox<String> jComboBox1;
     private JLabel jLabel1;
     private JLabel jLabel2;
     private JLabel jLabel3;
@@ -221,8 +251,8 @@ public class MenuPago extends JDialog
     private JPanel jPanel6;
     private JScrollPane jScrollPane1;
     private JSplitPane jSplitPane1;
-    private JTable jTable1;
-    private JTextField jTextField1;
-    private JTextField jTextField2;
+    private JTable tablaArticulosCarrito;
+    private JTextField txtCliente;
+    private JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
 }

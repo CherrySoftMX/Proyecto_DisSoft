@@ -37,7 +37,7 @@ public class TableManager implements UIConstants
 
     }
 
-    public void initTabla(JTable table)
+    public void initTable(JTable table)
     {
         table.setDefaultRenderer(Object.class, MY_TABLE_CELL_RENDERER);
         JTableHeader jTableHeader = table.getTableHeader();
@@ -54,11 +54,6 @@ public class TableManager implements UIConstants
     public void quitarCabeceraTabla(JTable table)
     {
         table.getTableHeader().setUI(null);
-    }
-
-    public void initTable(JTable table)
-    {
-        table.setRowHeight(25);
     }
 
     public void initTableSelectionBehavior(JTable table)

@@ -23,6 +23,11 @@ public abstract class Observado
         observadores.remove(ob);
     }
 
+    public void notificar()
+    {
+        notificar(null);
+    }
+
     public void notificar(Object item)
     {
         observadores.forEach(o -> o.actualizar(item));
