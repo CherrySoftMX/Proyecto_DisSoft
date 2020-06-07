@@ -327,7 +327,7 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton1">
+                <Component class="javax.swing.JButton" name="btnVerDetallesPaquete">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Ver detalles del paquete"/>
                     <Property name="enabled" type="boolean" value="false"/>

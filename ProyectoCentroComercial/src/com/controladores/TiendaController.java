@@ -20,6 +20,7 @@ import com.vista.MenuCarrito;
 import com.vista.MenuPago;
 import com.vista.MenuTienda;
 import com.vista.UIConstants;
+import com.vista.VistaDetallesPaquete;
 import java.awt.event.ActionEvent;
 import java.util.Enumeration;
 import java.util.List;
@@ -109,7 +110,7 @@ public class TiendaController implements UIConstants
 
         popupMenuTablaArticulos.add(new JMenuItem(new AccionEmergente("Añadir al carrito", CARRITO_ICON, this::accionPopupMenuAnadirAlCarrito)));
 
-        JMenuItem paqueteMenuItem = new JMenuItem(new AccionEmergente("Ver detalles del paquete", PAQUETE_ICON, null));
+        JMenuItem paqueteMenuItem = new JMenuItem(new AccionEmergente("Ver detalles del paquete", PAQUETE_ICON, this::accionPopupMenuVerDetallesDelPaquete));
         popupMenuTablaArticulos.add(paqueteMenuItem);
 
         popupMenuTablaArticulos.addPopupMenuListener(new PopupMenuAdapter()
@@ -260,6 +261,22 @@ public class TiendaController implements UIConstants
     {
         JTable tablaArticulos = menuTienda.getTablaArticulos();
         anadirArticuloAlCarrito(tienda.getArticulos().get(tablaArticulos.getSelectedRow()));
+    }
+
+    /**
+     * Se ha presionado la opción "ver detalles del paquete" en el popup menú de la tabla de artículos.
+     *
+     * @param e
+     */
+    private void accionPopupMenuVerDetallesDelPaquete(ActionEvent e)
+    {
+        JTable tablaArticulos = menuTienda.getTablaArticulos();
+        VistaDetallesPaquete vistaDetallesPaquete = new VistaDetallesPaquete(menuTienda);
+
+        new DetallesPaqueteController(vistaDetallesPaquete,
+                (PaqueteArticulo) tienda.getArticulo(tablaArticulos.getSelectedRow()));
+
+        DialogUtils.showDialogAndWait(menuTienda, vistaDetallesPaquete);
     }
 
     /**

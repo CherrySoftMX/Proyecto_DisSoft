@@ -17,6 +17,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.JTree;
 import javax.swing.ListCellRenderer;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
@@ -25,6 +26,7 @@ import javax.swing.event.CellEditorListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.tree.TreeCellRenderer;
 
 /**
  *
@@ -259,6 +261,24 @@ public interface UIConstants
             label.setBorder(LIST_HIGHLIGHT_BORDER);
 
         return label;
+    };
+
+    public TreeCellRenderer TREE_DETALLES_PAQUETE_RENDERER = new TreeCellRenderer()
+    {
+        @Override
+        public Component getTreeCellRendererComponent(JTree tree, Object value, boolean selected, boolean expanded, boolean leaf, int row, boolean hasFocus)
+        {
+            JLabel label = new JLabel(String.valueOf(value));
+            label.setIcon(leaf ? ARTICULO_ICON : PAQUETE_ICON);
+            label.setHorizontalAlignment(SwingConstants.CENTER);
+            label.setOpaque(true);
+            label.setBackground(selected ? TABLE_SELECTION_BACKGROUND : TABLE_DEFAULT_BACKGROUND);
+
+            if (hasFocus)
+                label.setBorder(TABLE_HIGHLIGHT_BORDER);
+
+            return label;
+        }
     };
 
 }

@@ -69,7 +69,7 @@ public class MenuCarrito extends JDialog
         lblCarrito = new JLabel();
         jLabel5 = new JLabel();
         txtIdentificador = new JTextField();
-        jButton1 = new JButton();
+        btnVerDetallesPaquete = new JButton();
         jPanel4 = new JPanel();
         btnSalir = new JButton();
 
@@ -224,15 +224,15 @@ public class MenuCarrito extends JDialog
         gridBagConstraints.insets = new Insets(5, 5, 5, 5);
         jPanel2.add(txtIdentificador, gridBagConstraints);
 
-        jButton1.setText("Ver detalles del paquete");
-        jButton1.setEnabled(false);
+        btnVerDetallesPaquete.setText("Ver detalles del paquete");
+        btnVerDetallesPaquete.setEnabled(false);
         gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new Insets(5, 35, 5, 35);
-        jPanel2.add(jButton1, gridBagConstraints);
+        jPanel2.add(btnVerDetallesPaquete, gridBagConstraints);
 
         jSplitPane1.setRightComponent(jPanel2);
 
@@ -295,12 +295,17 @@ public class MenuCarrito extends JDialog
         return txtIdentificador;
     }
 
+    public JButton getBtnVerDetallesPaquete()
+    {
+        return btnVerDetallesPaquete;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JButton btnEliminarDelCarrito;
     private JButton btnSalir;
+    private JButton btnVerDetallesPaquete;
     private Box.Filler filler1;
     private Box.Filler filler2;
-    private JButton jButton1;
     private JLabel jLabel1;
     private JLabel jLabel2;
     private JLabel jLabel3;
