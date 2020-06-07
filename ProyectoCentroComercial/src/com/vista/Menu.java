@@ -1,6 +1,5 @@
 package com.vista;
 
-import com.controladores.util.Alerta;
 import com.modelo.Cliente;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -50,22 +49,8 @@ public class Menu extends JFrame
          */
         try
         {
-            String os = System.getProperty("os.name").toLowerCase();
-            if (os.contains("nix") || os.contains("aix") || os.contains("nux"))
-            {
-                JLabel label = new JLabel(UIConstants.AJAX_2);
-                label.setText("Efecto LINUX detectado... Abortando!");
-                Alerta.mostrarError(this, label, "Error!");
-                System.exit(1);
-            }
-
-            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels())
-                if ("Windows".equals(info.getName()))
-                {
-                    UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex)
         {
             System.out.println(ex.getMessage());
@@ -78,8 +63,7 @@ public class Menu extends JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
         GridBagConstraints gridBagConstraints;
 
         jPanel1 = new JPanel();
@@ -207,18 +191,15 @@ public class Menu extends JFrame
         panelTiendas.setLayout(new BorderLayout());
 
         tablaTiendas.setModel(new DefaultTableModel(
-            new Object [][]
-            {
+            new Object [][] {
 
             },
-            new String []
-            {
+            new String [] {
                 "Tienda", "Ir a tienda"
             }
         ));
         jScrollPane1.setViewportView(tablaTiendas);
-        if (tablaTiendas.getColumnModel().getColumnCount() > 0)
-        {
+        if (tablaTiendas.getColumnModel().getColumnCount() > 0) {
             tablaTiendas.getColumnModel().getColumn(1).setMinWidth(70);
             tablaTiendas.getColumnModel().getColumn(1).setPreferredWidth(70);
             tablaTiendas.getColumnModel().getColumn(1).setMaxWidth(70);
