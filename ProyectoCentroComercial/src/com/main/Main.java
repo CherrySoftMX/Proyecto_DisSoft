@@ -4,7 +4,6 @@ import com.controladores.MenuController;
 import com.enumeration.ArticuloGameStore;
 import com.enumeration.ArticuloLibreria;
 import com.enumeration.ArticuloZapateria;
-import com.enumeration.Comercio;
 import com.enumeration.Persona;
 import com.modelo.ArticuloSencillo;
 import com.modelo.CentroComercial;
@@ -14,7 +13,10 @@ import com.modelo.decorator.Paquete1;
 import com.modelo.decorator.PaqueteArticulo;
 import com.modelo.factory.CFactoryTienda;
 import com.modelo.factory.FactoryTienda;
+import com.modelo.tienda.GameStore;
+import com.modelo.tienda.Libreria;
 import com.modelo.tienda.Tienda;
+import com.modelo.tienda.Zapateria;
 import com.vista.Menu;
 import java.awt.EventQueue;
 import java.util.ArrayList;
@@ -35,9 +37,9 @@ public class Main
         CentroComercial centroComercial = new CentroComercial("MATH.ES");
 
         FactoryTienda factory = CFactoryTienda.getInstance();
-        Tienda zapateria = factory.crearTienda(Comercio.Zapateria);
-        Tienda libreria = factory.crearTienda(Comercio.Libreria);
-        Tienda gameStore = factory.crearTienda(Comercio.GameStore);
+        Tienda zapateria = factory.crearTienda(Zapateria.getInstance());
+        Tienda libreria = factory.crearTienda(Libreria.getInstance());
+        Tienda gameStore = factory.crearTienda(GameStore.getInstance());
 
         for (Persona persona : Persona.values())
         {
