@@ -3,10 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/nicol/Documents/GitHub/Proyecto_DisSoft/ProyectoCentroComercial/src/com/controladores/MenuController.java</file>
-            <file>file:/C:/Users/nicol/Documents/GitHub/Proyecto_DisSoft/ProyectoCentroComercial/src/com/controladores/PagoController.java</file>
-            <file>file:/C:/Users/nicol/Documents/GitHub/Proyecto_DisSoft/ProyectoCentroComercial/src/com/controladores/TiendaController.java</file>
-            <file>file:/C:/Users/nicol/Documents/GitHub/Proyecto_DisSoft/ProyectoCentroComercial/src/com/controladores/util/Alerta.java</file>
+            <file>file:/C:/Users/nicol/Documents/GitHub/Proyecto_DisSoft/ProyectoCentroComercial/src/com/vista/MenuTienda.java</file>
+            <file>file:/C:/Users/nicol/Documents/GitHub/Proyecto_DisSoft/ProyectoCentroComercial/src/com/vista/MenuCarrito.java</file>
+            <file>file:/C:/Users/nicol/Documents/GitHub/Proyecto_DisSoft/ProyectoCentroComercial/src/com/vista/MenuPago.java</file>
+            <file>file:/C:/Users/nicol/Documents/GitHub/Proyecto_DisSoft/ProyectoCentroComercial/src/com/vista/VistaDetallesPaquete.java</file>
+            <file>file:/C:/Users/nicol/Documents/GitHub/Proyecto_DisSoft/ProyectoCentroComercial/src/com/vista/Menu.java</file>
+            <file>file:/C:/Users/nicol/Documents/GitHub/Proyecto_DisSoft/ProyectoCentroComercial/src/com/vista/sonbear/MenuCarrito.java</file>
+            <file>file:/C:/Users/nicol/Documents/GitHub/Proyecto_DisSoft/ProyectoCentroComercial/src/com/vista/sonbear/Menu.java</file>
         </group>
     </open-files>
 </project-private>

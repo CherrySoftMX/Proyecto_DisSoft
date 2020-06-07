@@ -88,6 +88,7 @@
       <Properties>
         <Property name="dividerLocation" type="int" value="350"/>
         <Property name="dividerSize" type="int" value="7"/>
+        <Property name="resizeWeight" type="double" value="0.5"/>
         <Property name="continuousLayout" type="boolean" value="true"/>
         <Property name="oneTouchExpandable" type="boolean" value="true"/>
       </Properties>

@@ -15,6 +15,11 @@ public class Alerta
         JOptionPane.showMessageDialog(parentComponent, text, "Error!", JOptionPane.ERROR_MESSAGE);
     }
 
+    public static void mostrarError(Component parentComponent, Object mensaje, String text)
+    {
+        JOptionPane.showMessageDialog(parentComponent, mensaje, text, JOptionPane.ERROR_MESSAGE);
+    }
+
     public static boolean mostrarConfirmacion(Component parentComponent, String text)
     {
         return mostrarConfirmacion(parentComponent, "Confirmación", text);

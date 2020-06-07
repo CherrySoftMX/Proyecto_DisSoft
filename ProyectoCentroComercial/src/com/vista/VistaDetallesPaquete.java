@@ -74,6 +74,7 @@ public class VistaDetallesPaquete extends JDialog
 
         jSplitPane1.setDividerLocation(250);
         jSplitPane1.setDividerSize(7);
+        jSplitPane1.setResizeWeight(0.5);
         jSplitPane1.setContinuousLayout(true);
         jSplitPane1.setOneTouchExpandable(true);
 

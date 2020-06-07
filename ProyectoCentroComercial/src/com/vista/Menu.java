@@ -1,5 +1,6 @@
 package com.vista;
 
+import com.controladores.util.Alerta;
 import com.modelo.Cliente;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -49,6 +50,15 @@ public class Menu extends JFrame
          */
         try
         {
+            String os = System.getProperty("os.name").toLowerCase();
+            if (os.contains("nix") || os.contains("aix") || os.contains("nux"))
+            {
+                JLabel label = new JLabel(UIConstants.AJAX_2);
+                label.setText("Efecto LINUX detectado... Abortando!");
+                Alerta.mostrarError(this, label, "Error!");
+                System.exit(1);
+            }
+
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels())
                 if ("Windows".equals(info.getName()))
                 {
@@ -120,11 +130,13 @@ public class Menu extends JFrame
         jSplitPane2.setDividerLocation(160);
         jSplitPane2.setDividerSize(7);
         jSplitPane2.setOrientation(JSplitPane.VERTICAL_SPLIT);
+        jSplitPane2.setResizeWeight(0.5);
         jSplitPane2.setContinuousLayout(true);
         jSplitPane2.setOneTouchExpandable(true);
 
         jSplitPane1.setDividerLocation(300);
         jSplitPane1.setDividerSize(7);
+        jSplitPane1.setResizeWeight(0.5);
         jSplitPane1.setContinuousLayout(true);
         jSplitPane1.setOneTouchExpandable(true);
 

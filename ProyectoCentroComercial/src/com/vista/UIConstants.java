@@ -50,6 +50,7 @@ public interface UIConstants
     public Icon DEFAULT_ROW_ICON = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/right.gif"));
 
     public Icon AJAX = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/ajax.png"));
+    public Icon AJAX_2 = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/ajax_2.png"));
     public Icon SONBEAR = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/sonbear.jpg"));
     public Icon SHADIC = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/shadic.png"));
     public Icon MOHAMMED = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/mohammed.jpg"));

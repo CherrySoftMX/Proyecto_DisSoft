@@ -52,7 +52,6 @@ public class CarritoCompras extends Observado
     {
         return articulos;
     }
-    //Metodos del profe :v
 
     public Enumeration<Articulo> listarArticulos()
     {
@@ -78,7 +77,7 @@ public class CarritoCompras extends Observado
 
     public boolean estaVacio()
     {
-        return estado.manejar() == CarritoEstado.ESTADO_VACIO;
+        return articulos.isEmpty();
     }
 
     public boolean estaCancelado()

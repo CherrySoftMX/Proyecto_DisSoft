@@ -23,18 +23,12 @@ public abstract class PaqueteArticulo extends Articulo
     @Override
     public double getPrecio()
     {
-        double precioTotal = getPrecioTotal();
-        return precioTotal - (descuento * precioTotal);
-    }
-
-    public double getPrecioTotal()
-    {
-        double total = 0;
+        double precioTotal = 0;
 
         for (Articulo articulo : articulos)
-            total += articulo.getPrecio();
+            precioTotal += articulo.getPrecio();
 
-        return total;
+        return precioTotal - (descuento * precioTotal);
     }
 
     public List<Articulo> getArticulos()
