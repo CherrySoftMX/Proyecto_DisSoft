@@ -13,6 +13,7 @@ import com.modelo.decorator.PaqueteArticulo;
 import com.vista.DibujadorCarrito;
 import com.vista.MenuCarrito;
 import com.vista.UIConstants;
+import com.vista.VistaDetallesPaquete;
 import java.awt.event.ActionEvent;
 import java.util.Enumeration;
 import java.util.List;
@@ -52,6 +53,7 @@ public class CarritoController implements UIConstants
     private void initComponets()
     {
         menuCarrito.getBtnEliminarDelCarrito().addActionListener(this::accionBtnEliminarDelCarrito);
+        menuCarrito.getBtnVerDetallesPaquete().addActionListener(this::accionPopupMenuVerDetallesPaquete);
         menuCarrito.getBtnSalir().addActionListener(this::accionBtnSalir);
         actualizarPrecioCarrito();
 
@@ -126,8 +128,7 @@ public class CarritoController implements UIConstants
 
     private void accionBtnEliminarDelCarrito(ActionEvent e)
     {
-        if (Alerta.mostrarConfirmacion(menuCarrito, "Confirmación",
-                String.format("Se eliminarán %d artículo(s) del carrito.", idxSeleccionados.length)))
+        if (Alerta.mostrarConfirmacion(menuCarrito, String.format("Se eliminarán %d artículo(s) del carrito.", idxSeleccionados.length)))
         {
             for (int i = idxSeleccionados.length - 1; i >= 0; i--)
                 eliminarArticuloDelCarrito(cliente.getCarritoCompras().getArticulo(idxSeleccionados[i]));
@@ -153,17 +154,31 @@ public class CarritoController implements UIConstants
             Articulo articuloSeleccionado = cliente.getCarritoCompras().getArticulo(selectedRow);
             actualizarCamposArticulo(articuloSeleccionado);
             habilitarBtnEliminarArticulos(true);
+            habilitarBtnVerDetallesPaquete(idxSeleccionados.length == 1
+                    && articuloSeleccionado instanceof PaqueteArticulo);
 
         } else
         {
             limpiarCamposArticulo();
             habilitarBtnEliminarArticulos(false);
+            habilitarBtnVerDetallesPaquete(false);
         }
     }
 
     public void accionPopupMenuVerDetallesPaquete(ActionEvent e)
     {
+        JTable tablaArticulos = menuCarrito.getTablaArticulosCarrito();
+        VistaDetallesPaquete vistaDetallesPaquete = new VistaDetallesPaquete(menuCarrito);
 
+        new DetallesPaqueteController(vistaDetallesPaquete,
+                (PaqueteArticulo) cliente.getCarritoCompras().getArticulo(tablaArticulos.getSelectedRow()));
+
+        DialogUtils.showDialogAndWait(menuCarrito, vistaDetallesPaquete);
+    }
+
+    private void accionBtnSalir(ActionEvent e)
+    {
+        DialogUtils.quitarDialog(menuCarrito);
     }
 
     private void eliminarArticuloDelCarrito(Articulo articulo)
@@ -175,11 +190,6 @@ public class CarritoController implements UIConstants
 
         if (cliente.getCarritoCompras().estaVacio())
             DialogUtils.quitarDialog(menuCarrito);
-    }
-
-    private void accionBtnSalir(ActionEvent e)
-    {
-        DialogUtils.quitarDialog(menuCarrito);
     }
 
     private void actualizarPrecioCarrito()
@@ -206,6 +216,11 @@ public class CarritoController implements UIConstants
     private void habilitarBtnEliminarArticulos(boolean habilitar)
     {
         menuCarrito.getBtnEliminarDelCarrito().setEnabled(habilitar);
+    }
+
+    private void habilitarBtnVerDetallesPaquete(boolean habilitar)
+    {
+        menuCarrito.getBtnVerDetallesPaquete().setEnabled(habilitar);
     }
 
 }

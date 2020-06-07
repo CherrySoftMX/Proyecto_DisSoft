@@ -13,6 +13,7 @@ import com.modelo.decorator.PaqueteArticulo;
 import com.modelo.observer.Observado;
 import com.vista.MenuPago;
 import com.vista.UIConstants;
+import com.vista.VistaDetallesPaquete;
 import java.awt.event.ActionEvent;
 import java.util.Enumeration;
 import java.util.List;
@@ -101,8 +102,7 @@ public class PagoController extends Observado implements UIConstants
 
     private void accionBtnRealizarPago(ActionEvent e)
     {
-        if (Alerta.mostrarConfirmacion(menuPago, "Confirmación",
-                "Está a punto de realizar una compra de " + getTotalCarrito()))
+        if (Alerta.mostrarConfirmacion(menuPago, "Está a punto de realizar una compra de " + getTotalCarrito()))
         {
             cajaRegistradora.pagar(cliente.getCarritoCompras());
             DialogUtils.quitarDialog(menuPago);
@@ -119,7 +119,13 @@ public class PagoController extends Observado implements UIConstants
 
     public void accionPopupMenuVerDetallesPaquete(ActionEvent e)
     {
+        JTable tablaArticulos = menuPago.getTablaArticulosCarrito();
+        VistaDetallesPaquete vistaDetallesPaquete = new VistaDetallesPaquete(menuPago);
 
+        new DetallesPaqueteController(vistaDetallesPaquete,
+                (PaqueteArticulo) cliente.getCarritoCompras().getArticulo(tablaArticulos.getSelectedRow()));
+
+        DialogUtils.showDialogAndWait(menuPago, vistaDetallesPaquete);
     }
 
     private void accionBtnCancelar(ActionEvent e)
