@@ -7,17 +7,7 @@ package com.modelo.tienda;
 public class Zapateria extends Tienda
 {
 
-    private static Zapateria instance;
-
-    public static synchronized Zapateria getInstance()
-    {
-        if (instance == null)
-            instance = new Zapateria();
-
-        return instance;
-    }
-
-    private Zapateria()
+    public Zapateria()
     {
         super("Zapatería", "ZAP123");
     }

@@ -1,6 +1,10 @@
 package com.modelo.factory;
 
+import com.enumeration.Negocio;
+import com.modelo.tienda.GameStore;
+import com.modelo.tienda.Libreria;
 import com.modelo.tienda.Tienda;
+import com.modelo.tienda.Zapateria;
 
 /**
  *
@@ -24,9 +28,19 @@ public class CFactoryTienda implements FactoryTienda
 
     }
 
-    @Override public Tienda crearTienda(Tienda tipo)
+    @Override public Tienda crearTienda(Negocio tipo)
     {
-        return tipo;
+        switch (tipo)
+        {
+            case Zapateria:
+                return new Zapateria();
+            case Libreria:
+                return new Libreria();
+            case GameStore:
+                return new GameStore();
+            default:
+                throw new AssertionError();
+        }
     }
 
 }
