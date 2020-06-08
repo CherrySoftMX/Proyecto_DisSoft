@@ -1,6 +1,6 @@
 package com.modelo.factory;
 
-import com.enumeration.Negocio;
+import com.modelo.enumeration.Negocio;
 import com.modelo.tienda.Tienda;
 
 /**

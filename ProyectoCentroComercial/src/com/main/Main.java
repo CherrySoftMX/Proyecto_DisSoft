@@ -1,11 +1,11 @@
 package com.main;
 
 import com.controladores.MenuController;
-import com.enumeration.ArticuloGameStore;
-import com.enumeration.ArticuloLibreria;
-import com.enumeration.ArticuloZapateria;
-import com.enumeration.Negocio;
-import com.enumeration.Persona;
+import com.modelo.enumeration.ArticuloGameStore;
+import com.modelo.enumeration.ArticuloLibreria;
+import com.modelo.enumeration.ArticuloZapateria;
+import com.modelo.enumeration.Negocio;
+import com.modelo.enumeration.Persona;
 import com.modelo.ArticuloSencillo;
 import com.modelo.CentroComercial;
 import com.modelo.Cliente;
