@@ -61,12 +61,12 @@ public abstract class Tienda extends Observado
 
     public Enumeration<Cliente> listarClientes()
     {
-        return FactoryEnumeration.enumeration(clientes);
+        return FactoryEnumeration.enumerationOf(clientes);
     }
 
     public Enumeration<Articulo> listarArticulos()
     {
-        return FactoryEnumeration.enumeration(articulos);
+        return FactoryEnumeration.enumerationOf(articulos);
     }
 
     public void agregarAlCarrito(CarritoCompras carrito, Articulo articulo)

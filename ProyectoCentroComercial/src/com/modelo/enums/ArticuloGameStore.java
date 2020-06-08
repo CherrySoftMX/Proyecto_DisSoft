@@ -1,4 +1,4 @@
-package com.modelo.enumeration;
+package com.modelo.enums;
 
 /**
  *

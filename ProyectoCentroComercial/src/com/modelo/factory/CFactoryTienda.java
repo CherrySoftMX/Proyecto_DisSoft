@@ -1,6 +1,6 @@
 package com.modelo.factory;
 
-import com.modelo.enumeration.Negocio;
+import com.modelo.enums.Negocio;
 import com.modelo.tienda.GameStore;
 import com.modelo.tienda.Libreria;
 import com.modelo.tienda.Tienda;

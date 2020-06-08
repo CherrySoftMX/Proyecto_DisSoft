@@ -55,7 +55,7 @@ public class CarritoCompras extends Observado
 
     public Enumeration<Articulo> listarArticulos()
     {
-        return FactoryEnumeration.enumeration(articulos);
+        return FactoryEnumeration.enumerationOf(articulos);
     }
 
     public void cancelarCarrito()

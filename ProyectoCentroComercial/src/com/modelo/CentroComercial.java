@@ -46,12 +46,12 @@ public class CentroComercial
 
     public Enumeration<Tienda> listarTiendas()
     {
-        return FactoryEnumeration.enumeration(tiendas);
+        return FactoryEnumeration.enumerationOf(tiendas);
     }
 
     public Enumeration<Cliente> listarClientes()
     {
-        return FactoryEnumeration.enumeration(clientes);
+        return FactoryEnumeration.enumerationOf(clientes);
     }
 
     public void addTienda(Tienda tienda)
