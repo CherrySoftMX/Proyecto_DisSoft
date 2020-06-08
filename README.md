@@ -33,14 +33,20 @@ Patrones:
 ```
 
 ### Diagramas de cada patron:
-Singleton:
+# Singleton:
 ![](Diagramas/Singleton.png)
 
-Decorator:
+# Decorator:
 ![](Diagramas/Decorator.png)
 
-Iterator:
+# Iterator:
 ![](Diagramas/Iterator.png)
+
+# Factory:
+![](Diagramas/Factory.png)
+
+# Observer:
+![](Diagramas/Observer.png)
 
 ## Deployment
 
