@@ -11,7 +11,7 @@ import java.util.Enumeration;
 import java.util.List;
 
 /**
- * Esta clase extiende de observado ya que notificara a un panel de los estados del carrito por medio de una imagen.
+ * Esta clase extiende de observado ya que notificara a un label de los estados del carrito por medio de una imagen.
  *
  * @author emman
  */
