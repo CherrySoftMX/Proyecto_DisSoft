@@ -15,7 +15,35 @@ Centro comercial, que nos presenta una lista de clientes y tiendas, despúes de 
 
 ### Capturas de pantalla. 
 
+#### Menú principal:
 
+<p align="center">
+  <img src="https://github.com/SonBear/Proyecto_DisSoft/blob/master/Capturas/menu.png?raw=true" alt="capturas_menu"/>
+</p>
+
+#### Menú tienda:
+
+<p align="center">
+  <img src="https://github.com/SonBear/Proyecto_DisSoft/blob/master/Capturas/menu_tienda.png?raw=true" alt="capturas_menu_tienda"/>
+</p>
+
+#### Menú para ver los detalles del carrito:
+
+<p align="center">
+  <img src="https://github.com/SonBear/Proyecto_DisSoft/blob/master/Capturas/menu_detalles.png?raw=true" alt="capturas_menu_detalles_carrito"/>
+</p>
+
+#### Menú para realizar el pago:
+
+<p align="center">
+  <img src="https://github.com/SonBear/Proyecto_DisSoft/blob/master/Capturas/menu_pago.png?raw=true" alt="capturas_menu_realizar_pago"/>
+</p>
+
+#### Menú para ver los detalles de un paquete:
+
+<p align="center">
+  <img src="https://github.com/SonBear/Proyecto_DisSoft/blob/master/Capturas/detalles_paquete.png?raw=true" alt="capturas_menu_detalles_paquete"/>
+</p>
 
 <!--Patrones de diseño-->
 
@@ -65,7 +93,7 @@ Los objectos Enumeration<T> son utilizados para recorrer una colección de eleme
 #### Abstract Factory:
 
 <p align="center">
-  <img src="https://github.com/SonBear/Proyecto_DisSoft/blob/master/Diagramas/abstract%20factory/DiagramaClases.png?raw=true" alt="diagrama_clases_iterator"/>
+  <img src="https://github.com/SonBear/Proyecto_DisSoft/blob/master/Diagramas/abstract%20factory/DiagramaClases.png?raw=true" alt="diagrama_clases_abstractFactory"/>
 </p>
 
 Este patrón de diseño nos facilita mucho la creación de familias de objectos. Para esta situación en particular en la que tenemos objetos que no dependen entre sí, la creación de este conjunto de tiendas es muy sencilla. 
@@ -74,7 +102,7 @@ Este patrón de diseño nos facilita mucho la creación de familias de objectos.
 #### Observer:
 
 <p align="center">
-  <img src="https://github.com/SonBear/Proyecto_DisSoft/blob/master/Diagramas/observer/DiagramaClases.png?raw=true" alt="diagrama_clases_iterator"/>
+  <img src="https://github.com/SonBear/Proyecto_DisSoft/blob/master/Diagramas/observer/DiagramaClases.png?raw=true" alt="diagrama_clases_observer/>
 </p>
 
 Este patrón de diseño no solo se usa en este contexto específico del sistema, sino también para mandar notificaciones entre ventanas para responder de cierta manera ante las acciones del usuario; dibujar el estado del carrito en pantalla según los cambios que se hagan dentro de él, o simples acciones internas que se realizan dentro de las tablas para actualizar los datos. 
@@ -83,7 +111,7 @@ Este patrón de diseño no solo se usa en este contexto específico del sistema,
 #### State:
 
 <p align="center">
-  <img src="https://github.com/SonBear/Proyecto_DisSoft/blob/master/Diagramas/state/DiagramaClases.png?raw=true" alt="diagrama_clases_iterator"/>
+  <img src="https://github.com/SonBear/Proyecto_DisSoft/blob/master/Diagramas/state/DiagramaClases.png?raw=true" alt="diagrama_clases_state"/>
 </p>
 
 Este patrón es utilizado para la clase CarritoCompras el cual nos ayuda a procesar los estados que el carrito tiene cuando se ejecuta una acción. Este patrón también es utilizado para la parte gráfica y, uniéndolo con el patrón Observer, nos permite actualizar elementos visuales que representan al carrito.
