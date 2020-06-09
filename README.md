@@ -86,7 +86,7 @@ Este patrón es utilizado para la clase CarritoCompras el cuál nos ayuda a proc
 * [Java 8 swing](https://www.java.com/es/download/) - Lenguaje principal
 
 
-<a name="headers"/>
+<a name="header"/>
 ## Version
 
 
