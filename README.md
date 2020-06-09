@@ -7,7 +7,6 @@ Proyecto para la asignatura Diseño de software, el cual consiste en una simulac
 - [Headers](#header)
 - [Emphasis](#emphasis)  
 ...snip...    
-<a name="headers"/>
 ## Headers
 
 ## Para empezar
