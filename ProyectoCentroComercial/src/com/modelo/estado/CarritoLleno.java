@@ -19,12 +19,6 @@ public class CarritoLleno implements CarritoEstado
     @Override
     public int removeArticulo(CarritoCompras carrito, Articulo articulo)
     {
-        if (carrito.estaVacio())
-        {
-            carrito.setEstado(new CarritoVacio());
-            return carrito.getEstado();
-        }
-
         carrito.getArticulos().remove(articulo);
         carrito.setEstado(new CarritoUsado());
         return carrito.getEstado();
