@@ -4,27 +4,22 @@ Proyecto para la asignatura Diseño de software, el cual consiste en una simulac
 
 ## Tabla de contenido
 
-- [Headers](#header)
-- [Emphasis](#emphasis)  
-...snip...    
-## Headers
+- [Programa](#programa)
+- [Patrones de diseño](#patrones)
+- [Información adicional](#info)  
 
-## Para empezar
+<a name="programa"></a>
 
-Este proyecto fue elaborado para mejorar el entendimiento de algunos Patrones de diseño.
-
-### Prerequisites
-
-Java 8 o superior.
-
-
-### Installing
-*Instalar Java 8 o superior
-*Descargar la carpeta de ejecutable
-*Ejecutar el archivo .jar
-
-## Descripción
+## Descripción.
 Centro comercial, que nos presenta una lista de clientes y tiendas, despúes de seleccionar un cliente y solicitar un carrito de compras, podrá a empezar a añadir elementos a su carrito, para luego procesar un pago.
+
+## Capturas de pantalla.
+
+
+
+<!--Patrones de diseño-->
+
+<a name="patrones"></a>
 
 ### Patrones de diseño utilizados
 
@@ -38,17 +33,16 @@ Patrones:
     Iterator
 ```
 
-### Diagramas de cada patron:
+### Diagramas de cada patrón:
 
 #### Singleton:
-![](Diagramas/singleton/DiagramaClases.png)
 
-<p align="center">
-  <img src="https://github.com/SonBear/Proyecto_DisSoft/blob/master/Diagramas/singleton/DiagramaClases.png?raw=true" alt="Sublime's custom image"/>
-</p>
+ <figure id="imagen-centrada">
+    <img src="https://github.com/SonBear/Proyecto_DisSoft/blob/master/Diagramas/singleton/DiagramaClases.png?raw=true" alt="diagrama_clases_singleton">
+    <figcaption>IntelliJ, IDE utilizado para Rust.</figcaption>
+</figure>
 
-Este patrón es utilizado para generar una única instancia de las clases CFactory y CajaRegistradora de esta manera no se crearán más objetos de estas clases, ya que estas clases no necesitan ser modificadas porque brindan métodos que no necesitan cambios internos de su clase.
-
+La implementación de este patrón es muy sencilla, únicamente se usa para mantener una única instancia y un punto de acceso global a la factoría de las tiendas.
 
 #### Decorator:
 ![](Diagramas/decorator/DiagramaClases.png)
@@ -81,21 +75,25 @@ Observado es una clase abstracta que contiene objetos Observadores dentro de él
 Este patrón es utilizado para la clase CarritoCompras el cuál nos ayuda a procesar los estados que el carrito tiene cuando se ejecuta una acción. Este patrón también es utilizado para la parte gráfica uniéndolo con el patrón Observer nos permite actualizar elementos visuales que representan al carrito.
 
 
+### Prerequisites
+
+Java 8 o superior.
+
+
+### Installing
+*Instalar Java 8 o superior
+*Descargar la carpeta de ejecutable
+*Ejecutar el archivo .jar
+
 ## Creado con:
 * [Java 8 swing](https://www.java.com/es/download/) - Lenguaje principal
 
-
-<a name="header"></a>
-
 ## Version
-
-
 
 ## Authors
 
 * **Emmanue Chable** - *Initial work* - [SonBear](https://github.com/SonBear)
 * **Nicólas Ibarra** - *full* - [HikingCarrot7](https://github.com/HikingCarrot7)
-
 
 Lista de contribución [contributors](https://github.com/SonBear/Proyecto_DisSoft/graphs/contributors) que
 han participado en el proyecto.
