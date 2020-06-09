@@ -2,6 +2,14 @@
 
 Proyecto para la asignatura Diseño de software, el cual consiste en una simulación de un centro comercial.
 
+## Tabla de contenido
+
+[Headers](#header)
+[Emphasis](#emphasis)  
+...snip...    
+<a name="headers"/>
+## Headers
+
 ## Para empezar
 
 Este proyecto fue elaborado para mejorar el entendimiento de algunos Patrones de diseño.
