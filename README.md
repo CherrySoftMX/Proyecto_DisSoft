@@ -21,11 +21,15 @@ Centro comercial, que nos presenta una lista de clientes y tiendas, despúes de 
   <img src="https://github.com/SonBear/Proyecto_DisSoft/blob/master/Capturas/menu.png?raw=true" alt="capturas_menu"/>
 </p>
 
+Desde aquí, seleccionamos a un cliente y solicitamos un carrito para empezar a comprar en la tiendas.
+
 #### Menú tienda:
 
 <p align="center">
   <img src="https://github.com/SonBear/Proyecto_DisSoft/blob/master/Capturas/menu_tienda.png?raw=true" alt="capturas_menu_tienda"/>
 </p>
+
+Presionamos en los artículos que deseamos comprar para moverlos al carrito.
 
 #### Menú para ver los detalles del carrito:
 
@@ -33,17 +37,23 @@ Centro comercial, que nos presenta una lista de clientes y tiendas, despúes de 
   <img src="https://github.com/SonBear/Proyecto_DisSoft/blob/master/Capturas/menu_detalles.png?raw=true" alt="capturas_menu_detalles_carrito"/>
 </p>
 
+Vemos los artículos que tenemos en el carrito, el precio total y los detalles de algún artículo en particular.
+
 #### Menú para realizar el pago:
 
 <p align="center">
   <img src="https://github.com/SonBear/Proyecto_DisSoft/blob/master/Capturas/menu_pago.png?raw=true" alt="capturas_menu_realizar_pago"/>
 </p>
 
+Realizamos el pago del carrito.
+
 #### Menú para ver los detalles de un paquete:
 
 <p align="center">
   <img src="https://github.com/SonBear/Proyecto_DisSoft/blob/master/Capturas/detalles_paquete.png?raw=true" alt="capturas_menu_detalles_paquete"/>
 </p>
+
+Vemos todos los artículos contenidos dentro de un paquete.
 
 <!--Patrones de diseño-->
 
@@ -116,6 +126,7 @@ Este patrón de diseño no solo se usa en este contexto específico del sistema,
 
 Este patrón es utilizado para la clase CarritoCompras el cual nos ayuda a procesar los estados que el carrito tiene cuando se ejecuta una acción. Este patrón también es utilizado para la parte gráfica y, uniéndolo con el patrón Observer, nos permite actualizar elementos visuales que representan al carrito.
 
+<a name="info"></a>
 
 ## Información adicional.
 
@@ -125,22 +136,23 @@ Java 8 o superior.
 
 
 ### Installing
-*Instalar Java 8 o superior
-*Descargar la carpeta de ejecutable
-*Ejecutar el archivo .jar
+- Instalar Java 8 o superior.
+- Descargar la carpeta de ejecutable.
+- Ejecutar el archivo .jar
 
 
 ### Creado con:
-* [Java 8 swing](https://www.java.com/es/download/) - Lenguaje principal
+* [Java 8 swing](https://www.java.com/es/download/)
 
 
 ### Version
 
+1.0
 
 ### Authors
 
 * **Emmanue Chable** - *Initial work* - [SonBear](https://github.com/SonBear)
-* **Nicólas Ibarra** - *full* - [HikingCarrot7](https://github.com/HikingCarrot7)
+* **Nicólas Ibarra** - *Full* - [HikingCarrot7](https://github.com/HikingCarrot7)
 
 Lista de contribución [contributors](https://github.com/SonBear/Proyecto_DisSoft/graphs/contributors) que
 han participado en el proyecto.
