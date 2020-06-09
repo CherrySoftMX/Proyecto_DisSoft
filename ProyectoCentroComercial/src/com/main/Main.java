@@ -1,17 +1,17 @@
 package com.main;
 
 import com.controladores.MenuController;
-import com.modelo.enums.ArticuloGameStore;
-import com.modelo.enums.ArticuloLibreria;
-import com.modelo.enums.ArticuloZapateria;
-import com.modelo.enums.Negocio;
-import com.modelo.enums.Persona;
 import com.modelo.ArticuloSencillo;
 import com.modelo.CentroComercial;
 import com.modelo.Cliente;
 import com.modelo.decorator.Articulo;
 import com.modelo.decorator.Paquete1;
 import com.modelo.decorator.PaqueteArticulo;
+import com.modelo.enums.ArticuloGameStore;
+import com.modelo.enums.ArticuloLibreria;
+import com.modelo.enums.ArticuloZapateria;
+import com.modelo.enums.Negocio;
+import com.modelo.enums.Persona;
 import com.modelo.factory.CFactoryTienda;
 import com.modelo.factory.FactoryTienda;
 import com.modelo.tienda.Tienda;
@@ -44,10 +44,6 @@ public class Main
             Cliente cliente = new Cliente(persona.getNombre(), null);
             centroComercial.entrar(cliente);
         }
-
-        centroComercial.addTienda(zapateria);
-        centroComercial.addTienda(libreria);
-        centroComercial.addTienda(gameStore);
 
         for (ArticuloZapateria value : ArticuloZapateria.values())
             zapateria.adicionarArticulo(new ArticuloSencillo(value.getDescripcion(), value.getCategoria(), value.getIdentificador(), zapateria, value.getPrecio()));
@@ -112,9 +108,17 @@ public class Main
 
         gameStore.adicionarArticulo(new Paquete1("Juegos más vendidos de la historia", "Paquete de videojuegos", "PACKMASVENDIDOS", gameStore, juegosMasVendidos, 0.2));
 
+        centroComercial.addTienda(zapateria);
+        centroComercial.addTienda(libreria);
+        centroComercial.addTienda(gameStore);
+
+        /*Ejemplo del observer:
+         Al agregar un nuevo articulo en tienda se manda un mensaje a todos los clientes*/
+        zapateria.adicionarArticulo(new ArticuloSencillo("Zapato femenino marca: Frida", "Zapatos", "ZFFRD", zapateria, 200));
         /**
          * Iniciamos el menú principal.
          */
+
         EventQueue.invokeLater(() ->
         {
             Menu menu = new Menu();
