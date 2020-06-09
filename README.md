@@ -112,13 +112,13 @@ Este patrón de diseño nos facilita mucho la creación de familias de objectos.
 #### Observer:
 
 <p align="center">
-  <img src="https://github.com/SonBear/Proyecto_DisSoft/blob/master/Diagramas/observer/DiagramaClases.png?raw=true" alt="diagrama_clases_observer/>
+  <img src="https://github.com/SonBear/Proyecto_DisSoft/blob/master/Diagramas/observer/DiagramaClases.png?raw=true" alt="diagrama_clases_observer"/>
 </p>
 
 Este patrón de diseño no solo se usa en este contexto específico del sistema, sino también para mandar notificaciones entre ventanas para responder de cierta manera ante las acciones del usuario; dibujar el estado del carrito en pantalla según los cambios que se hagan dentro de él, o simples acciones internas que se realizan dentro de las tablas para actualizar los datos. 
 
 
-#### Estado:
+#### State:
 
 <p align="center">
   <img src="https://github.com/SonBear/Proyecto_DisSoft/blob/master/Diagramas/state/DiagramaClases.png?raw=true" alt="diagrama_clases_state"/>
