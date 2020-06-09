@@ -13,7 +13,7 @@ Proyecto para la asignatura Diseño de software, el cual consiste en una simulac
 ## Descripción.
 Centro comercial, que nos presenta una lista de clientes y tiendas, despúes de seleccionar un cliente y solicitar un carrito de compras, podrá a empezar a añadir elementos a su carrito, para luego procesar un pago.
 
-### Capturas de pantalla.
+### Capturas de pantalla. 
 
 
 

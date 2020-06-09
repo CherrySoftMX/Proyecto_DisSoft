@@ -14,7 +14,7 @@ public enum ArticuloLibreriaDante
     WIGETTA_Y_EL_CUERPO_HUMANO("Wigetta y los secretos del cuerpo humano", "Cuentos para niños", "WIGCUER", 190),
     WIGETTA_Y_FERIA_FANTASMA("Wigetta y la feria fantasma", "Cuentos para niños", "WIGFERIA", 280),
     WIGETTA_Y_EL_CUENTOJAMASCONTADO("Wigetta y el cuento jamás contando", "Cuentos para niños", "WIGCUEN", 230),
-    WIGETTA_Y_MUMUCHUMU("Wigetta y al isla mumúchumu", "Cuentos para niños", "WIGMU", 230),
+    WIGETTA_Y_MUMUCHUMU("Wigetta y la isla mumúchumu", "Cuentos para niños", "WIGMU", 230),
     WIGETTA_Y_ANTIDOTO("Wigetta y el antídoto secreto", "Cuentos para niños", "WIGANT", 300);
 
     private final String descripcion;
