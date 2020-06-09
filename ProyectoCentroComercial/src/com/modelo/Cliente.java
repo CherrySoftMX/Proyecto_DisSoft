@@ -1,5 +1,6 @@
 package com.modelo;
 
+import com.controladores.util.Alerta;
 import com.modelo.observer.Observador;
 import com.modelo.tienda.Tienda;
 
@@ -64,6 +65,7 @@ public class Cliente implements Observador
     @Override
     public void actualizar(Object item)
     {
+        Alerta.mostrarMensaje(null, "Mensaje", nombre + ": Hay un nuevo artículo en la tienda: " + item);
         //System.out.println(nombre + ": Hay un nuevo artículo en la tienda: " + item);
     }
 

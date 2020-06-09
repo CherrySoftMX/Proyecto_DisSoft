@@ -83,7 +83,13 @@ public abstract class Tienda extends Observado
     {
         articulos.add(articulo);
         //Cada vez que un articulo se agrega se notifica a sus observadores
-        notificar(articulo);
+        notificar(this);
+    }
+
+    @Override
+    public String toString()
+    {
+        return nombre;
     }
 
 }
