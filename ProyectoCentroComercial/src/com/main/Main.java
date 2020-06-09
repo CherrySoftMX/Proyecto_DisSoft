@@ -114,7 +114,7 @@ public class Main
 
         /*Ejemplo del observer:
          Al agregar un nuevo articulo en tienda se manda un mensaje a todos los clientes*/
-        zapateria.adicionarArticulo(new ArticuloSencillo("Zapato femenino marca: Frida", "Zapatos", "ZFFRD", zapateria, 200));
+       // zapateria.adicionarArticulo(new ArticuloSencillo("Zapato femenino marca: Frida", "Zapatos", "ZFFRD", zapateria, 200));
         /**
          * Iniciamos el menú principal.
          */
