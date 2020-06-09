@@ -4,8 +4,8 @@ Proyecto para la asignatura Diseño de software, el cual consiste en una simulac
 
 ## Tabla de contenido
 
-[Headers](#header)
-[Emphasis](#emphasis)  
+- [Headers](#header)
+- [Emphasis](#emphasis)  
 ...snip...    
 <a name="headers"/>
 ## Headers
