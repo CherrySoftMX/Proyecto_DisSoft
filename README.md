@@ -36,13 +36,7 @@ Patrones:
 
 #### Singleton:
 ![](Diagramas/singleton/DiagramaClases.png)
-
-<p align="center">
-  <img src="Diagramas/singleton/DiagramaClases" alt="DiagramaClasesSingleton"/>
-</p>
-
 Este patrón es utilizado para generar una única instancia de las clases CFactory y CajaRegistradora de esta manera no se crearán más objetos de estas clases, ya que estas clases no necesitan ser modificadas porque brindan métodos que no necesitan cambios internos de su clase.
----
 
 
 #### Decorator:
