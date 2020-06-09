@@ -33,16 +33,22 @@ Patrones:
 ```
 
 ### Diagramas de cada patron:
+
 #### Singleton:
 ![](Diagramas/singleton/DiagramaClases.png)
-Este patrón es utilizado para generar una única instancia de las clases CFactory y CajaRegistradora de esta manera no se crearán más objetos de estas clases, ya que estas clases no necesitan ser modificadas porque brindan métodos que no necesitan cambios internos de su clase.
 
+<p align="center">
+  <img src="Diagramas/singleton/DiagramaClases?raw=true" alt="DiagramaClasesSingleton"/>
+</p>
+
+Este patrón es utilizado para generar una única instancia de las clases CFactory y CajaRegistradora de esta manera no se crearán más objetos de estas clases, ya que estas clases no necesitan ser modificadas porque brindan métodos que no necesitan cambios internos de su clase.
+---
 
 
 #### Decorator:
 ![](Diagramas/decorator/DiagramaClases.png)
+Para esta situación, el uso del patrón Decorator nos es muy útil para crear paquetes de artículos e incluso paquetes de paquetes, ya que cada paquete es un artículo. De igual forma, el precio para un paquete se puede calcular de una manera muy sencilla siguiendo el diseño que este patrón nos ofrece.	 
 
-  Para esta situación, el uso del patrón Decorator nos es muy útil para crear paquetes de artículos e incluso paquetes de paquetes, ya que cada paquete es un artículo. De igual forma, el precio para un paquete se puede calcular de una manera muy sencilla siguiendo el diseño que este patrón nos ofrece.	 
 
 
 #### Iterator:
