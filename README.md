@@ -37,10 +37,9 @@ Patrones:
 
 #### Singleton:
 
- <figure id="imagen-centrada">
-    <img src="https://github.com/SonBear/Proyecto_DisSoft/blob/master/Diagramas/singleton/DiagramaClases.png?raw=true" alt="diagrama_clases_singleton">
-    <figcaption>IntelliJ, IDE utilizado para Rust.</figcaption>
-</figure>
+<p align="center">
+  <img src="https://github.com/SonBear/Proyecto_DisSoft/blob/master/Diagramas/singleton/DiagramaClases.png?raw=true" alt="diagrama_clases_singleton"/>
+</p>
 
 La implementación de este patrón es muy sencilla, únicamente se usa para mantener una única instancia y un punto de acceso global a la factoría de las tiendas.
 
