@@ -1,9 +1,9 @@
 package com.modelo.factory;
 
-import com.modelo.enums.Negocio;
-import com.modelo.tienda.GameStore;
 import com.modelo.tienda.Libreria;
 import com.modelo.tienda.Tienda;
+import com.modelo.tienda.TiendaEntretenimiento;
+import com.modelo.tienda.TiendaRopa;
 import com.modelo.tienda.Zapateria;
 
 /**
@@ -28,16 +28,40 @@ public class CFactoryTienda implements FactoryTienda
 
     }
 
-    @Override public Tienda crearTienda(Negocio tipo)
+    @Override public Tienda crearTiendaEntretenimiento(String tipo)
     {
         switch (tipo)
         {
-            case Zapateria:
-                return new Zapateria();
-            case Libreria:
-                return new Libreria();
-            case GameStore:
-                return new GameStore();
+            case Tienda.GAMESTORE:
+                return new TiendaEntretenimiento("GameStore", "GS123");
+            case Tienda.PELISHOP:
+                return new TiendaEntretenimiento("PeliShop", "PS674");
+            default:
+                throw new AssertionError();
+        }
+    }
+
+    @Override public Tienda crearTiendaVestimenta(String tipo)
+    {
+        switch (tipo)
+        {
+            case Tienda.ZAPATERIA_ANDREA:
+                return new Zapateria("Zapatería Andrea", "ZAPAND178");
+            case Tienda.TIENDA_SHE_IN:
+                return new TiendaRopa("Tienda SHEIN", "SHE78");
+            default:
+                throw new AssertionError();
+        }
+    }
+
+    @Override public Tienda crearTiendaLibreria(String tipo)
+    {
+        switch (tipo)
+        {
+            case Tienda.LIBRERIA_DANTE:
+                return new Libreria("Librería Dante", "LIB674");
+            case Tienda.LIBRERIA_GANDHI:
+                return new Libreria("Librería Gandhi", "LIB092");
             default:
                 throw new AssertionError();
         }

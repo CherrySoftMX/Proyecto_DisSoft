@@ -7,9 +7,9 @@ package com.modelo.tienda;
 public class Zapateria extends Tienda
 {
 
-    public Zapateria()
+    public Zapateria(String nombre, String identificador)
     {
-        super("Zapatería", "ZAP123");
+        super(nombre, identificador);
     }
 
 }

@@ -93,8 +93,8 @@ public class Menu extends JFrame
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Centro comercial");
-        setMinimumSize(new Dimension(630, 430));
-        setPreferredSize(new Dimension(630, 430));
+        setMinimumSize(new Dimension(730, 475));
+        setPreferredSize(new Dimension(730, 475));
 
         jPanel1.setLayout(new BoxLayout(jPanel1, BoxLayout.Y_AXIS));
         jPanel1.add(filler3);

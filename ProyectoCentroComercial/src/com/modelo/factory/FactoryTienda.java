@@ -1,6 +1,5 @@
 package com.modelo.factory;
 
-import com.modelo.enums.Negocio;
 import com.modelo.tienda.Tienda;
 
 /**
@@ -10,5 +9,9 @@ import com.modelo.tienda.Tienda;
 public interface FactoryTienda
 {
 
-    public Tienda crearTienda(Negocio tipo);
+    public Tienda crearTiendaEntretenimiento(String tipo);
+
+    public Tienda crearTiendaVestimenta(String tipo);
+
+    public Tienda crearTiendaLibreria(String tipo);
 }

@@ -74,7 +74,6 @@ public class DetallesPaqueteController implements UIConstants
         vistaDetallesPaquete.getTxtIdentificador().setText(paqueteArticulo.getIdentificador());
         vistaDetallesPaquete.getTxtPrecio().setText(String.format("$%,.2f", paqueteArticulo.getPrecio()));
         vistaDetallesPaquete.getTxtDescuento().setText(String.format("%,.2f", paqueteArticulo.getDescuento() * 100) + "%");
-
     }
 
 }

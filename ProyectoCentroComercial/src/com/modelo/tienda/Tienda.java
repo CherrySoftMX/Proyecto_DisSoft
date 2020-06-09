@@ -16,6 +16,13 @@ import java.util.List;
 public abstract class Tienda extends Observado
 {
 
+    public static final String ZAPATERIA_ANDREA = "ZapateriaAndrea";
+    public static final String TIENDA_SHE_IN = "TiendaSHEIN";
+    public static final String LIBRERIA_DANTE = "LibreriaDante";
+    public static final String LIBRERIA_GANDHI = "LibreriaGandhi";
+    public static final String GAMESTORE = "GameStore";
+    public static final String PELISHOP = "Pelishop";
+
     protected String nombre;
     protected String identificador;
     protected List<Articulo> articulos;

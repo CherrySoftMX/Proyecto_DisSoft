@@ -4,7 +4,7 @@ package com.modelo.enums;
  *
  * @author emman
  */
-public enum ArticuloLibreria
+public enum ArticuloLibreriaGandhi
 {
     ALGEBRA_INTERMEDIA("Álgebra intermedia", "Libro de matemáticas", "ALGINTER", 200),
     ALGEBRA_SUPERIOR("Álgebra superior", "Libro de matemáticas", "ALGSUP", 300),
@@ -13,7 +13,7 @@ public enum ArticuloLibreria
     CALCULO_DIFERENCIAL("Cálculo diferencial", "Libro de matemáticas", "CALDIF", 150),
     CALCULO_INTEGRAL("Cálculo integral", "Libro de matemáticas", "CALINT", 220),
     CALCULO_VECTORIAL("Cálculo vectorial", "Libro de matemáticas", "CALVEC", 280),
-    PROBABILIDAD("Probabilidad", "PROB", "Libro de matemáticas", 180),
+    PROBABILIDAD("Probabilidad", "Libro de matemáticas", "PROB", 180),
     INFERENCIA_ESTADISTICA("Inferencia estadística", "Libro de matemáticas", "INFEST", 550);
 
     private final String descripcion;
@@ -21,7 +21,7 @@ public enum ArticuloLibreria
     private final String identificador;
     private final double precio;
 
-    private ArticuloLibreria(String descripcion, String categoria, String identificador, double precio)
+    private ArticuloLibreriaGandhi(String descripcion, String categoria, String identificador, double precio)
     {
         this.descripcion = descripcion;
         this.categoria = categoria;
@@ -48,4 +48,5 @@ public enum ArticuloLibreria
     {
         return precio;
     }
+
 }
