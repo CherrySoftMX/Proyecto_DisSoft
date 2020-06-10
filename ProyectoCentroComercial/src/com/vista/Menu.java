@@ -63,8 +63,7 @@ public class Menu extends JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
         GridBagConstraints gridBagConstraints;
 
         jPanel1 = new JPanel();
@@ -192,18 +191,15 @@ public class Menu extends JFrame
         panelTiendas.setLayout(new BorderLayout());
 
         tablaTiendas.setModel(new DefaultTableModel(
-            new Object [][]
-            {
+            new Object [][] {
 
             },
-            new String []
-            {
+            new String [] {
                 "Tienda", "Ir a tienda"
             }
         ));
         jScrollPane1.setViewportView(tablaTiendas);
-        if (tablaTiendas.getColumnModel().getColumnCount() > 0)
-        {
+        if (tablaTiendas.getColumnModel().getColumnCount() > 0) {
             tablaTiendas.getColumnModel().getColumn(1).setMinWidth(70);
             tablaTiendas.getColumnModel().getColumn(1).setPreferredWidth(70);
             tablaTiendas.getColumnModel().getColumn(1).setMaxWidth(70);
