@@ -152,6 +152,7 @@ Java 8 o superior.
 ### Authors
 
 * **Emmanue Chable** - *Initial work* - [SonBear](https://github.com/SonBear)
+* **Eusebio Ajax** - *Full* - [EusebioAjas](https://github.com/EusebioAjas)
 * **Nicólas Ibarra** - *Full* - [HikingCarrot7](https://github.com/HikingCarrot7)
 
 Lista de contribución [contributors](https://github.com/SonBear/Proyecto_DisSoft/graphs/contributors) que
