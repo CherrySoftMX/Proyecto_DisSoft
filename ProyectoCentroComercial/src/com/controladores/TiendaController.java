@@ -175,6 +175,7 @@ public class TiendaController implements UIConstants
                 Articulo articulo = articulos.nextElement();
                 anadirArticuloATablaCarrito(articulo);
             }
+            habilitarBtnCancelarCarrito(true);
         }
     }
 

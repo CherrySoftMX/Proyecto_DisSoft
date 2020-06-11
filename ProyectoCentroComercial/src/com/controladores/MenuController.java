@@ -263,7 +263,7 @@ public class MenuController implements UIConstants
     {
         Cliente clienteSeleccionado = getClienteSeleccionado();
         menu.getBtnCancelarCarrito().setEnabled(clienteSeleccionado != null
-                && carritoClienteTieneArticulos(clienteSeleccionado)
+                && clienteSeleccionado.tieneCarrito()
                 && !clienteSeleccionado.getCarritoCompras().estaCancelado());
     }
 
