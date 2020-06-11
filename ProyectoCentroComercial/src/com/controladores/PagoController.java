@@ -9,7 +9,7 @@ import com.modelo.CajaRegistradora;
 import com.modelo.CarritoCompras;
 import com.modelo.Cliente;
 import com.modelo.decorator.Articulo;
-import com.modelo.decorator.PaqueteArticulo;
+import com.modelo.decorator.Paquete;
 import com.modelo.observer.Observado;
 import com.vista.MenuPago;
 import com.vista.UIConstants;
@@ -77,7 +77,7 @@ public class PagoController extends Observado implements UIConstants
             {
                 int rowClicked = tableManager.getRowClicked(tablaArticulos, tablaArticulos.getMousePosition().getY());
                 tableManager.selecionarFila(tablaArticulos, rowClicked);
-                paqueteMenuItem.setEnabled(cliente.getCarritoCompras().getArticulo(rowClicked) instanceof PaqueteArticulo);
+                paqueteMenuItem.setEnabled(cliente.getCarritoCompras().getArticulo(rowClicked) instanceof Paquete);
             }
         });
 
@@ -123,7 +123,7 @@ public class PagoController extends Observado implements UIConstants
         VistaDetallesPaquete vistaDetallesPaquete = new VistaDetallesPaquete(menuPago);
 
         new DetallesPaqueteController(vistaDetallesPaquete,
-                (PaqueteArticulo) cliente.getCarritoCompras().getArticulo(tablaArticulos.getSelectedRow()));
+                (Paquete) cliente.getCarritoCompras().getArticulo(tablaArticulos.getSelectedRow()));
 
         DialogUtils.showDialogAndWait(menuPago, vistaDetallesPaquete);
     }

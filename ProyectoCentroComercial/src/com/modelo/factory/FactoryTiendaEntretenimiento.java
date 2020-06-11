@@ -8,7 +8,7 @@ import com.modelo.tienda.Tienda;
  *
  * @author emman
  */
-public class FactoryTiendaEntretenimiento implements AbstracFactoryTienda
+public class FactoryTiendaEntretenimiento implements FactoryTienda
 {
 
     private static FactoryTiendaEntretenimiento instance;

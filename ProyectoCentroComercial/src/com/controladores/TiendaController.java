@@ -10,7 +10,7 @@ import com.controladores.util.TableManager;
 import com.modelo.CarritoCompras;
 import com.modelo.Cliente;
 import com.modelo.decorator.Articulo;
-import com.modelo.decorator.PaqueteArticulo;
+import com.modelo.decorator.Paquete;
 import com.modelo.estado.CarritoCancelado;
 import com.modelo.estado.CarritoEstado;
 import com.modelo.exceptions.CarritoLlenoException;
@@ -119,7 +119,7 @@ public class TiendaController implements UIConstants
             {
                 int rowClicked = tableManager.getRowClicked(tablaArticulos, tablaArticulos.getMousePosition().getY());
                 tableManager.selecionarFila(tablaArticulos, rowClicked);
-                paqueteMenuItem.setEnabled(tienda.getArticulo(rowClicked) instanceof PaqueteArticulo);
+                paqueteMenuItem.setEnabled(tienda.getArticulo(rowClicked) instanceof Paquete);
             }
         });
 
@@ -274,7 +274,7 @@ public class TiendaController implements UIConstants
         VistaDetallesPaquete vistaDetallesPaquete = new VistaDetallesPaquete(menuTienda);
 
         new DetallesPaqueteController(vistaDetallesPaquete,
-                (PaqueteArticulo) tienda.getArticulo(tablaArticulos.getSelectedRow()));
+                (Paquete) tienda.getArticulo(tablaArticulos.getSelectedRow()));
 
         DialogUtils.showDialogAndWait(menuTienda, vistaDetallesPaquete);
     }

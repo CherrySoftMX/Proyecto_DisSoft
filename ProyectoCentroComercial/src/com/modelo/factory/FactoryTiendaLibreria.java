@@ -8,7 +8,7 @@ import com.modelo.tienda.outlet.LibreriaGandhi;
  *
  * @author emman
  */
-public class FactoryTiendaLibreria implements AbstracFactoryTienda
+public class FactoryTiendaLibreria implements FactoryTienda
 {
 
     private static FactoryTiendaLibreria instance;

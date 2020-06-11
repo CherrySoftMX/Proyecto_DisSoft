@@ -8,7 +8,7 @@ import com.modelo.tienda.outlet.TiendaSHEIN;
  *
  * @author HikingCarrot7
  */
-public class FactoryTiendaVestimenta implements AbstracFactoryTienda
+public class FactoryTiendaVestimenta implements FactoryTienda
 {
 
     private static FactoryTiendaVestimenta instance;

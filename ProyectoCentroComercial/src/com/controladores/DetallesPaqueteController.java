@@ -2,7 +2,7 @@ package com.controladores;
 
 import com.controladores.util.DialogUtils;
 import com.modelo.decorator.Articulo;
-import com.modelo.decorator.PaqueteArticulo;
+import com.modelo.decorator.Paquete;
 import com.vista.UIConstants;
 import com.vista.VistaDetallesPaquete;
 import java.awt.event.ActionEvent;
@@ -18,9 +18,9 @@ public class DetallesPaqueteController implements UIConstants
 {
 
     private final VistaDetallesPaquete vistaDetallesPaquete;
-    private final PaqueteArticulo paqueteArticulo;
+    private final Paquete paqueteArticulo;
 
-    public DetallesPaqueteController(VistaDetallesPaquete vistaDetallesPaquete, PaqueteArticulo paqueteArticulo)
+    public DetallesPaqueteController(VistaDetallesPaquete vistaDetallesPaquete, Paquete paqueteArticulo)
     {
         this.vistaDetallesPaquete = vistaDetallesPaquete;
         this.paqueteArticulo = paqueteArticulo;
@@ -48,14 +48,14 @@ public class DetallesPaqueteController implements UIConstants
     }
     //</editor-fold>
 
-    private void cargarDatosArbol(PaqueteArticulo paqueteArticuloRaiz, DefaultMutableTreeNode raiz)
+    private void cargarDatosArbol(Paquete paqueteArticuloRaiz, DefaultMutableTreeNode raiz)
     {
         for (Articulo articulo : paqueteArticuloRaiz.getArticulos())
-            if (articulo instanceof PaqueteArticulo)
+            if (articulo instanceof Paquete)
             {
                 DefaultMutableTreeNode hijo = new DefaultMutableTreeNode(articulo.getDescripcion());
                 raiz.add(hijo);
-                cargarDatosArbol((PaqueteArticulo) articulo, hijo);
+                cargarDatosArbol((Paquete) articulo, hijo);
 
             } else
                 raiz.add(new DefaultMutableTreeNode(articulo.getDescripcion()));
@@ -66,7 +66,7 @@ public class DetallesPaqueteController implements UIConstants
         DialogUtils.quitarDialog(vistaDetallesPaquete);
     }
 
-    private void rellanarCamposDetalles(PaqueteArticulo paqueteArticulo)
+    private void rellanarCamposDetalles(Paquete paqueteArticulo)
     {
         vistaDetallesPaquete.getLblPaquete().setText(paqueteArticulo.getDescripcion());
         vistaDetallesPaquete.getTxtDescripcion().setText(paqueteArticulo.getDescripcion());

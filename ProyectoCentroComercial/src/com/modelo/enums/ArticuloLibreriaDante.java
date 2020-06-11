@@ -1,5 +1,8 @@
 package com.modelo.enums;
 
+import com.modelo.ArticuloSencillo;
+import com.modelo.tienda.Tienda;
+
 /**
  *
  * @author HikingCarrot7
@@ -19,14 +22,14 @@ public enum ArticuloLibreriaDante
 
     private final String descripcion;
     private final String categoria;
-    private final String identificador;
+    private final String id;
     private final double precio;
 
-    private ArticuloLibreriaDante(String descripcion, String categoria, String identificador, double precio)
+    private ArticuloLibreriaDante(String descripcion, String categoria, String id, double precio)
     {
         this.descripcion = descripcion;
         this.categoria = categoria;
-        this.identificador = identificador;
+        this.id = id;
         this.precio = precio;
     }
 
@@ -40,13 +43,18 @@ public enum ArticuloLibreriaDante
         return categoria;
     }
 
-    public String getIdentificador()
+    public String getId()
     {
-        return identificador;
+        return id;
     }
 
     public double getPrecio()
     {
         return precio;
+    }
+
+    public ArticuloSencillo getAsArticuloSencillo(Tienda tienda)
+    {
+        return new ArticuloSencillo(descripcion, categoria, id, tienda, precio);
     }
 }

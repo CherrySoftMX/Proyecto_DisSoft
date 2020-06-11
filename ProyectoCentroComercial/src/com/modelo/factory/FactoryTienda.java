@@ -6,7 +6,7 @@ import com.modelo.tienda.Tienda;
  *
  * @author emman
  */
-public interface AbstracFactoryTienda
+public interface FactoryTienda
 {
 
     public Tienda crearOutlet();

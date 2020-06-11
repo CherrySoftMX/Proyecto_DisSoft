@@ -9,7 +9,7 @@ import com.modelo.CajaRegistradora;
 import com.modelo.CarritoCompras;
 import com.modelo.Cliente;
 import com.modelo.decorator.Articulo;
-import com.modelo.decorator.PaqueteArticulo;
+import com.modelo.decorator.Paquete;
 import com.vista.DibujadorCarrito;
 import com.vista.MenuCarrito;
 import com.vista.UIConstants;
@@ -103,7 +103,7 @@ public class CarritoController implements UIConstants
             {
                 int rowClicked = tableManager.getRowClicked(tablaArticulos, tablaArticulos.getMousePosition().getY());
                 tableManager.selecionarFila(tablaArticulos, rowClicked);
-                paqueteMenuItem.setEnabled(cliente.getCarritoCompras().getArticulo(rowClicked) instanceof PaqueteArticulo);
+                paqueteMenuItem.setEnabled(cliente.getCarritoCompras().getArticulo(rowClicked) instanceof Paquete);
             }
         });
 
@@ -155,7 +155,7 @@ public class CarritoController implements UIConstants
             actualizarCamposArticulo(articuloSeleccionado);
             habilitarBtnEliminarArticulos(true);
             habilitarBtnVerDetallesPaquete(idxSeleccionados.length == 1
-                    && articuloSeleccionado instanceof PaqueteArticulo);
+                    && articuloSeleccionado instanceof Paquete);
 
         } else
         {
@@ -171,7 +171,7 @@ public class CarritoController implements UIConstants
         VistaDetallesPaquete vistaDetallesPaquete = new VistaDetallesPaquete(menuCarrito);
 
         new DetallesPaqueteController(vistaDetallesPaquete,
-                (PaqueteArticulo) cliente.getCarritoCompras().getArticulo(tablaArticulos.getSelectedRow()));
+                (Paquete) cliente.getCarritoCompras().getArticulo(tablaArticulos.getSelectedRow()));
 
         DialogUtils.showDialogAndWait(menuCarrito, vistaDetallesPaquete);
     }

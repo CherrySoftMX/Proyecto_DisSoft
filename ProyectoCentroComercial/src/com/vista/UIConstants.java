@@ -2,7 +2,7 @@ package com.vista;
 
 import com.modelo.Cliente;
 import com.modelo.decorator.Articulo;
-import com.modelo.decorator.PaqueteArticulo;
+import com.modelo.decorator.Paquete;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -188,7 +188,7 @@ public interface UIConstants
         Articulo articulo = (Articulo) value;
 
         JLabel label = new JLabel(articulo.getDescripcion());
-        label.setIcon(articulo instanceof PaqueteArticulo ? PAQUETE_ICON : ARTICULO_ICON);
+        label.setIcon(articulo instanceof Paquete ? PAQUETE_ICON : ARTICULO_ICON);
         label.setHorizontalAlignment(SwingConstants.LEFT);
         label.setFont(new Font("Tahoma", Font.PLAIN, 13));
         label.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 1, Color.WHITE));
