@@ -89,8 +89,7 @@ public abstract class Tienda extends Observado
     public void adicionarArticulo(Articulo articulo)
     {
         articulos.add(articulo);
-        //Cada vez que un articulo se agrega se notifica a sus observadores
-        notificar(this);
+        notificar(this); //Cada vez que un articulo se agrega se notifica a sus observadores.
     }
 
     @Override

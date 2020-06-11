@@ -14,8 +14,10 @@ import com.modelo.enums.ArticuloPeliShop;
 import com.modelo.enums.ArticuloTiendaSHEIN;
 import com.modelo.enums.ArticuloZapateriaAndrea;
 import com.modelo.enums.Persona;
-import com.modelo.factory.CFactoryTienda;
-import com.modelo.factory.FactoryTienda;
+import com.modelo.factory.AbstracFactoryTienda;
+import com.modelo.factory.FactoryTiendaEntretenimiento;
+import com.modelo.factory.FactoryTiendaLibreria;
+import com.modelo.factory.FactoryTiendaVestimenta;
 import com.modelo.tienda.Tienda;
 import com.vista.Menu;
 import java.awt.EventQueue;
@@ -36,16 +38,19 @@ public class Main
     {
         CentroComercial centroComercial = new CentroComercial("MATH.ES");
 
-        FactoryTienda factory = CFactoryTienda.getInstance();
+        //Abstract factory para las tiendas...
+        AbstracFactoryTienda factoryVest = FactoryTiendaVestimenta.getInstance();
+        AbstracFactoryTienda factoryLib = FactoryTiendaLibreria.getInstance();
+        AbstracFactoryTienda factoryEntre = FactoryTiendaEntretenimiento.getInstance();
 
-        Tienda zapateriaAndrea = factory.crearTiendaVestimenta(Tienda.ZAPATERIA_ANDREA);
-        Tienda tiendaSHEIN = factory.crearTiendaVestimenta(Tienda.TIENDA_SHE_IN);
+        Tienda zapateriaAndrea = factoryVest.crearFranquicia();
+        Tienda tiendaSHEIN = factoryVest.crearOutlet();
 
-        Tienda libreriaDante = factory.crearTiendaLibreria(Tienda.LIBRERIA_DANTE);
-        Tienda libreriaGandhi = factory.crearTiendaLibreria(Tienda.LIBRERIA_GANDHI);
+        Tienda libreriaDante = factoryLib.crearFranquicia();
+        Tienda libreriaGandhi = factoryLib.crearOutlet();
 
-        Tienda gameStore = factory.crearTiendaEntretenimiento(Tienda.GAMESTORE);
-        Tienda peliShop = factory.crearTiendaEntretenimiento(Tienda.PELISHOP);
+        Tienda gameStore = factoryEntre.crearFranquicia();
+        Tienda pelisPlus = factoryEntre.crearOutlet();
 
         for (Persona persona : Persona.values())
         {
@@ -54,22 +59,22 @@ public class Main
         }
 
         for (ArticuloZapateriaAndrea value : ArticuloZapateriaAndrea.values())
-            zapateriaAndrea.adicionarArticulo(new ArticuloSencillo(value.getDescripcion(), value.getCategoria(), value.getIdentificador(), zapateriaAndrea, value.getPrecio()));
+            zapateriaAndrea.adicionarArticulo(new ArticuloSencillo(value.getDescripcion(), value.getCategoria(), value.getIdentificador(), libreriaDante, value.getPrecio()));
 
         for (ArticuloTiendaSHEIN value : ArticuloTiendaSHEIN.values())
-            tiendaSHEIN.adicionarArticulo(new ArticuloSencillo(value.getDescripcion(), value.getCategoria(), value.getIdentificador(), zapateriaAndrea, value.getPrecio()));
+            tiendaSHEIN.adicionarArticulo(new ArticuloSencillo(value.getDescripcion(), value.getCategoria(), value.getIdentificador(), libreriaGandhi, value.getPrecio()));
 
         for (ArticuloLibreriaDante value : ArticuloLibreriaDante.values())
-            libreriaDante.adicionarArticulo(new ArticuloSencillo(value.getDescripcion(), value.getCategoria(), value.getIdentificador(), zapateriaAndrea, value.getPrecio()));
+            libreriaDante.adicionarArticulo(new ArticuloSencillo(value.getDescripcion(), value.getCategoria(), value.getIdentificador(), libreriaDante, value.getPrecio()));
 
         for (ArticuloLibreriaGandhi value : ArticuloLibreriaGandhi.values())
-            libreriaGandhi.adicionarArticulo(new ArticuloSencillo(value.getDescripcion(), value.getCategoria(), value.getIdentificador(), zapateriaAndrea, value.getPrecio()));
+            libreriaGandhi.adicionarArticulo(new ArticuloSencillo(value.getDescripcion(), value.getCategoria(), value.getIdentificador(), libreriaGandhi, value.getPrecio()));
 
         for (ArticuloGameStore value : ArticuloGameStore.values())
-            gameStore.adicionarArticulo(new ArticuloSencillo(value.getDescripcion(), value.getCategoria(), value.getIdentificador(), zapateriaAndrea, value.getPrecio()));
+            gameStore.adicionarArticulo(new ArticuloSencillo(value.getDescripcion(), value.getCategoria(), value.getIdentificador(), gameStore, value.getPrecio()));
 
         for (ArticuloPeliShop value : ArticuloPeliShop.values())
-            peliShop.adicionarArticulo(new ArticuloSencillo(value.getDescripcion(), value.getCategoria(), value.getIdentificador(), zapateriaAndrea, value.getPrecio()));
+            pelisPlus.adicionarArticulo(new ArticuloSencillo(value.getDescripcion(), value.getCategoria(), value.getIdentificador(), pelisPlus, value.getPrecio()));
 
         List<Articulo> sagaGOW = new ArrayList<>();
 
@@ -132,7 +137,7 @@ public class Main
         centroComercial.addTienda(libreriaGandhi);
 
         centroComercial.addTienda(gameStore);
-        centroComercial.addTienda(peliShop);
+        centroComercial.addTienda(pelisPlus);
 
         /**
          * Iniciamos el menú principal.
