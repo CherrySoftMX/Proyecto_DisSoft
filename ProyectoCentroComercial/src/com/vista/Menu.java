@@ -44,7 +44,7 @@ public class Menu extends JFrame
     private void initLookAndFeel()
     {
         /* Set the Nimbus look and feel
-        /*If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         /*If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try
@@ -76,7 +76,7 @@ public class Menu extends JFrame
         jSplitPane1 = new JSplitPane();
         jPanel5 = new JPanel();
         jScrollPane2 = new JScrollPane();
-        listClientes = new JList<>();
+        listClientes = new JList<Cliente>();
         jPanel8 = new JPanel();
         lblClienteSeleccionado = new JLabel();
         panelCarrito = new JPanel();

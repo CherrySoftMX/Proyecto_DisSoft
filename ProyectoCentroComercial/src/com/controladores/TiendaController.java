@@ -68,14 +68,15 @@ public class TiendaController implements UIConstants
         initPopupMenus();
 
         // El cliente no puede mover artículos ni comprar nada si entra sin carrito.
-        habilitarAccionesEnTienda(cliente.getCarritoCompras() != null
+        habilitarAccionesEnTienda(cliente.tieneCarrito()
                 && !cliente.getCarritoCompras().estaCancelado());
 
-        if (cliente.getCarritoCompras() != null && !cliente.getCarritoCompras().estaCancelado())
-            habilitarAccionesDelCarrito(!cliente.getCarritoCompras().estaVacio());
+        if (cliente.tieneCarrito() && !cliente.getCarritoCompras().estaCancelado())
+            habilitarAccionesDelCarrito(true);
 
         else
             habilitarAccionesDelCarrito(false);
+
     }
 
     private void initTablas()
@@ -175,7 +176,7 @@ public class TiendaController implements UIConstants
                 Articulo articulo = articulos.nextElement();
                 anadirArticuloATablaCarrito(articulo);
             }
-            habilitarBtnCancelarCarrito(true);
+
         }
     }
 

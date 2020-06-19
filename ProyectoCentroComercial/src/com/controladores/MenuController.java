@@ -116,6 +116,22 @@ public class MenuController implements UIConstants
         }
     }
 
+    private void mostrarNotificaciones(Cliente cliente)
+    {
+        if (cliente.getNotificaciones().empty())
+        {
+            System.out.println("Sin notificaciones");
+            return;
+        }
+        Enumeration<String> notificaciones = cliente.getNotificaciones().elements();
+        String noti = "";
+        while (notificaciones.hasMoreElements())
+            noti += notificaciones.nextElement() + "\n";
+
+        Alerta.mostrarMensaje(menu, "Nuevo Articulo", noti);
+        cliente.getNotificaciones().clear();
+    }
+
     private void accionClicListaClientes(ListSelectionEvent e)
     {
         Cliente clienteSeleccionado = getClienteSeleccionado();
@@ -130,6 +146,7 @@ public class MenuController implements UIConstants
 
             comprobarBtnPagar();
             comprobarBtnCancelarCarrito();
+            mostrarNotificaciones(clienteActual);
 
         } else
         {

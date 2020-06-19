@@ -42,8 +42,7 @@ public class MenuCarrito extends JDialog
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
         GridBagConstraints gridBagConstraints;
 
         jPanel3 = new JPanel();
@@ -101,18 +100,15 @@ public class MenuCarrito extends JDialog
         jPanel1.setLayout(new BorderLayout());
 
         tablaArticulosCarrito.setModel(new DefaultTableModel(
-            new Object [][]
-            {
+            new Object [][] {
 
             },
-            new String []
-            {
+            new String [] {
                 "Artículo", "Precio"
             }
         ));
         jScrollPane1.setViewportView(tablaArticulosCarrito);
-        if (tablaArticulosCarrito.getColumnModel().getColumnCount() > 0)
-        {
+        if (tablaArticulosCarrito.getColumnModel().getColumnCount() > 0) {
             tablaArticulosCarrito.getColumnModel().getColumn(1).setMinWidth(90);
             tablaArticulosCarrito.getColumnModel().getColumn(1).setPreferredWidth(90);
             tablaArticulosCarrito.getColumnModel().getColumn(1).setMaxWidth(90);

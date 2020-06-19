@@ -1,6 +1,7 @@
 package com.main;
 
 import com.controladores.MenuController;
+import com.modelo.ArticuloSencillo;
 import com.modelo.CentroComercial;
 import com.modelo.Cliente;
 import com.modelo.decorator.Articulo;
@@ -48,6 +49,7 @@ public class Main
             menu.setVisible(true);
             new MenuController(menu, centroComercial);
         });
+
     }
 
     //<editor-fold defaultstate="collapsed" desc="Cargar Datos.">
@@ -122,6 +124,9 @@ public class Main
 
         centroComercial.addTienda(gamePlanet);
         centroComercial.addTienda(pelisPlus);
+
+        //Agregar un nuevo articulo en tienda luego de la ejecución provocará una ventana con notificaciones
+        zapateriaAndrea.adicionarArticulo(new ArticuloSencillo("Zapato femenino", "Zapateria", "zapF123", zapateriaAndrea, 1200.0));
     }
     //</editor-fold>
 

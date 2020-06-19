@@ -1,8 +1,8 @@
 package com.modelo;
 
-import com.controladores.util.Alerta;
 import com.modelo.observer.Observador;
 import com.modelo.tienda.Tienda;
+import java.util.Stack;
 
 /**
  *
@@ -14,11 +14,18 @@ public class Cliente implements Observador
     private String nombre;
     private CarritoCompras carritoCompras;
     private Tienda tiendaActual;
+    private Stack<String> notificaciones;
 
     public Cliente(String nombre, CarritoCompras carritoCompras)
     {
         this.nombre = nombre;
         this.carritoCompras = carritoCompras;
+        notificaciones = new Stack<>();
+    }
+
+    public Stack<String> getNotificaciones()
+    {
+        return notificaciones;
     }
 
     public String getNombre()
@@ -65,8 +72,8 @@ public class Cliente implements Observador
     @Override
     public void actualizar(Object item)
     {
-        Alerta.mostrarMensaje(null, "Mensaje", nombre + ": Hay un nuevo artículo en la tienda: " + item);
-        //System.out.println(nombre + ": Hay un nuevo artículo en la tienda: " + item);
+        notificaciones.add(nombre + ": Hay un nuevo artículo en la tienda: " + item);
+
     }
 
 }
