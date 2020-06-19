@@ -46,26 +46,26 @@ public interface UIConstants
     public Border LIST_HIGHLIGHT_BORDER = (Border) UIManager.get("List.focusCellHighlightBorder");
     public Border TABLE_HIGHLIGHT_BORDER = (Border) UIManager.get("List.focusCellHighlightBorder");
 
-    public Icon CLIENTE_ICON = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/cliente_icon.png"));
-    public Icon DEFAULT_ROW_ICON = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/right.gif"));
+    public Icon CLIENTE_ICON = new ImageIcon("img/cliente_icon.png");
+    public Icon DEFAULT_ROW_ICON = new ImageIcon("img/right.gif");
 
-    public Icon AJAX = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/ajax.png"));
-    public Icon AJAX_2 = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/ajax_2.png"));
-    public Icon SONBEAR = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/sonbear.jpg"));
-    public Icon SHADIC = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/shadic.png"));
-    public Icon MOHAMMED = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/mohammed.jpg"));
+    public Icon AJAX = new ImageIcon("img/ajax.png");
+    public Icon AJAX_2 = new ImageIcon("img/ajax_2.png");
+    public Icon SONBEAR = new ImageIcon("img/sonbear.jpg");
+    public Icon SHADIC = new ImageIcon(("img/shadic.png"));
+    public Icon MOHAMMED = new ImageIcon(("img/mohammed.jpg"));
 
-    public Icon CARRITO_ICON = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/carrito_icon.png"));
-    public Icon DELETE_ICON = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/delete.png"));
-    public Icon PAQUETE_ICON = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/box.png"));
-    public Icon ARTICULO_ICON = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/articulo_icon.png"));
-    public Icon TIENDA_ICON = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/tienda_icon.png"));
+    public Icon CARRITO_ICON = new ImageIcon(("img/carrito_icon.png"));
+    public Icon DELETE_ICON = new ImageIcon(("img/delete.png"));
+    public Icon PAQUETE_ICON = new ImageIcon(("img/box.png"));
+    public Icon ARTICULO_ICON = new ImageIcon(("img/articulo_icon.png"));
+    public Icon TIENDA_ICON = new ImageIcon(("img/tienda_icon.png"));
 
-    public Icon CARRITO_USADO = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/CarritoUsado.png"));
-    public Icon CARRITO_LLENO = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/CarritoLleno.png"));
-    public Icon CARRITO_VACIO = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/CarritoVacio.png"));
-    public Icon CARRITO_CANCELADO = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/CarritoCancelado.png"));
-    public Icon CARRITO_NO_EXISTENTE = new ImageIcon(UIConstants.class.getClass().getResource("/com/img/Carrito_no_existente.png"));
+    public Icon CARRITO_USADO = new ImageIcon(("img/CarritoUsado.png"));
+    public Icon CARRITO_LLENO = new ImageIcon(("img/CarritoLleno.png"));
+    public Icon CARRITO_VACIO = new ImageIcon(("img/CarritoVacio.png"));
+    public Icon CARRITO_CANCELADO = new ImageIcon(("img/CarritoCancelado.png"));
+    public Icon CARRITO_NO_EXISTENTE = new ImageIcon(("img/Carrito_no_existente.png"));
 
     public TableCellRenderer MY_TABLE_HEADER_RENDERER = (table, value, isSelected, hasFocus, row, column) ->
     {
